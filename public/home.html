@@ -822,7 +822,7 @@
               id="apiSaveBtn"
               style="margin-top: 10px; width: 100%"
             >
-              Save &amp; reload
+              Save & reload
             </button>
           </div>
         </div>
@@ -912,7 +912,7 @@
 
       <div class="metrics">
         <div class="metric-group">
-          <div class="group-label">Price &amp; Range</div>
+          <div class="group-label">Price & Range</div>
           <div class="group-cards" id="cardsPrice"></div>
         </div>
         <div class="metric-group">
@@ -920,7 +920,7 @@
           <div class="group-cards" id="cardsReturns"></div>
         </div>
         <div class="metric-group">
-          <div class="group-label">Risk &amp; Drawdown</div>
+          <div class="group-label">Risk & Drawdown</div>
           <div class="group-cards" id="cardsRisk"></div>
         </div>
       </div>
@@ -1051,8 +1051,6 @@
     <script>
       /* ================================================================
    API CONFIG
-   Change API_BASE to point at a deployed server. Also editable at
-   runtime via the gear icon (top-right) — persisted to localStorage.
    ================================================================ */
       const DEFAULT_API_BASE = "https://stock-api-nu-eight.vercel.app";
       const API_TICKER_PATH = "/api/ticker/";
@@ -1063,79 +1061,27 @@
         if (saved) API_BASE = saved;
       } catch (e) {}
 
-      /* Popular DSE tickers shown in the search dropdown until you fetch
-   others. Typing any ticker that isn't in this list offers a
-   "Fetch …" option. */
       const FALLBACK_TICKERS = [
-        "00DSEX",
-        "00DS30",
-        "00DSES",
-        "00DSMEX",
-        "BEXIMCO",
-        "GP",
-        "SQURPHARMA",
-        "BRACBANK",
-        "RENATA",
-        "WALTONHIL",
-        "BATBC",
-        "BERGERPBL",
-        "LHBL",
-        "CITYBANK",
-        "DUTCHBANGL",
-        "EBL",
-        "ISLAMIBANK",
-        "IFIC",
-        "MTB",
-        "NBL",
-        "SIBL",
-        "UCB",
-        "UNIONBANK",
-        "ACI",
-        "ACMELAB",
-        "GLAXOSMITH",
-        "SQUAREPHARMA",
-        "BSCCL",
-        "POWERGRID",
-        "TITASGAS",
-        "SUMITPOWER",
+        "00DSEX", "00DS30", "00DSES", "00DSMEX", "BEXIMCO", "GP",
+        "SQURPHARMA", "BRACBANK", "RENATA", "WALTONHIL", "BATBC",
+        "BERGERPBL", "LHBL", "CITYBANK", "DUTCHBANGL", "EBL",
+        "ISLAMIBANK", "IFIC", "MTB", "NBL", "SIBL", "UCB",
+        "UNIONBANK", "ACI", "ACMELAB", "GLAXOSMITH", "SQUAREPHARMA",
+        "BSCCL", "POWERGRID", "TITASGAS", "SUMITPOWER",
       ];
 
-      /* Tickers the "Load sample" button in the Performance tab fetches. */
       const SAMPLE_TICKERS = [
-        "00DSEX",
-        "00DS30",
-        "BEXIMCO",
-        "GP",
-        "SQURPHARMA",
-        "BRACBANK",
-        "RENATA",
-        "WALTONHIL",
-        "BATBC",
-        "BERGERPBL",
-        "CITYBANK",
-        "ISLAMIBANK",
-        "UCB",
-        "EBL",
+        "00DSEX", "00DS30", "BEXIMCO", "GP", "SQURPHARMA", "BRACBANK",
+        "RENATA", "WALTONHIL", "BATBC", "BERGERPBL", "CITYBANK",
+        "ISLAMIBANK", "UCB", "EBL",
       ];
 
       const FIRST_LOAD_CANDIDATES = [
-        "00DSEX",
-        "DSEX",
-        "00DS30",
-        "DS30",
-        "BEXIMCO",
-        "GP",
+        "00DSEX", "DSEX", "00DS30", "DS30", "BEXIMCO", "GP",
       ];
       const INDEX_TICKERS = new Set([
-        "00DS30",
-        "00DSES",
-        "00DSEX",
-        "00DSMEX",
-        "DS30",
-        "DSES",
-        "DSEX",
-        "DSMEX",
-        "DGEN",
+        "00DS30", "00DSES", "00DSEX", "00DSMEX", "DS30", "DSES",
+        "DSEX", "DSMEX", "DGEN",
       ]);
 
       /* ================================================================
@@ -1143,58 +1089,28 @@
    ================================================================ */
       const THEMES = {
         minty: {
-          up: "#4a6b3f",
-          down: "#9c4a35",
-          line: "#566246",
-          accent: "#566246",
-          accent2: "#7d9471",
-          ma: ["#c08a3e", "#7d9471", "#9a6b8f"],
-          grid: "#e0e2da",
-          axis: "#6b7261",
-          text: "#2b2f26",
-          border: "#d8dad3",
-          tipBg: "rgba(250,251,246,.97)",
-          tipText: "#2b2f26",
-          upFill: "rgba(74,107,63,.55)",
-          downFill: "rgba(156,74,53,.55)",
-          area: "rgba(86,98,70,.14)",
-          heatMid: "#f1f2eb",
+          up: "#4a6b3f", down: "#9c4a35", line: "#566246",
+          accent: "#566246", accent2: "#7d9471", ma: ["#c08a3e", "#7d9471", "#9a6b8f"],
+          grid: "#e0e2da", axis: "#6b7261", text: "#2b2f26",
+          border: "#d8dad3", tipBg: "rgba(250,251,246,.97)", tipText: "#2b2f26",
+          upFill: "rgba(74,107,63,.55)", downFill: "rgba(156,74,53,.55)",
+          area: "rgba(86,98,70,.14)", heatMid: "#f1f2eb",
         },
         ocean: {
-          up: "#7ed9a4",
-          down: "#ff8577",
-          line: "#598392",
-          accent: "#598392",
-          accent2: "#aec3b0",
-          ma: ["#e3a857", "#6fc3b8", "#b98bb0"],
-          grid: "#123b47",
-          axis: "#8fb0ae",
-          text: "#eff6e0",
-          border: "#1d4b58",
-          tipBg: "rgba(11,40,51,.97)",
-          tipText: "#eff6e0",
-          upFill: "rgba(126,217,164,.5)",
-          downFill: "rgba(255,133,119,.5)",
-          area: "rgba(89,131,146,.28)",
-          heatMid: "#0b2833",
+          up: "#7ed9a4", down: "#ff8577", line: "#598392",
+          accent: "#598392", accent2: "#aec3b0", ma: ["#e3a857", "#6fc3b8", "#b98bb0"],
+          grid: "#123b47", axis: "#8fb0ae", text: "#eff6e0",
+          border: "#1d4b58", tipBg: "rgba(11,40,51,.97)", tipText: "#eff6e0",
+          upFill: "rgba(126,217,164,.5)", downFill: "rgba(255,133,119,.5)",
+          area: "rgba(89,131,146,.28)", heatMid: "#0b2833",
         },
         sunny: {
-          up: "#15616d",
-          down: "#78290f",
-          line: "#ff7d00",
-          accent: "#ff7d00",
-          accent2: "#15616d",
-          ma: ["#c25e00", "#15616d", "#7b3f61"],
-          grid: "#f3cf9f",
-          axis: "#8a5a34",
-          text: "#001524",
-          border: "#f3cf9f",
-          tipBg: "rgba(255,249,239,.97)",
-          tipText: "#001524",
-          upFill: "rgba(21,97,109,.45)",
-          downFill: "rgba(120,41,15,.45)",
-          area: "rgba(255,125,0,.16)",
-          heatMid: "#ffecd1",
+          up: "#15616d", down: "#78290f", line: "#ff7d00",
+          accent: "#ff7d00", accent2: "#15616d", ma: ["#c25e00", "#15616d", "#7b3f61"],
+          grid: "#f3cf9f", axis: "#8a5a34", text: "#001524",
+          border: "#f3cf9f", tipBg: "rgba(255,249,239,.97)", tipText: "#001524",
+          upFill: "rgba(21,97,109,.45)", downFill: "rgba(120,41,15,.45)",
+          area: "rgba(255,125,0,.16)", heatMid: "#ffecd1",
         },
       };
       let TH = THEMES.minty;
@@ -1202,11 +1118,11 @@
       /* ================================================================
    STATE
    ================================================================ */
-      const DATA = new Map(); // ticker -> [{date,o,h,l,c,v}, …]
-      const META = new Map(); // ticker -> {lastClose, lastChg, lastDate, rows}
-      const LOADING = new Set(); // tickers currently being fetched
-      let TICKER_LIST = []; // known tickers (fallback + history + fetched)
-      let CUR = null; // currently displayed ticker
+      const DATA = new Map();
+      const META = new Map();
+      const LOADING = new Set();
+      let TICKER_LIST = [];
+      let CUR = null;
       let RANGE_DAYS = 0;
       let CURRENT_TAB = "charts";
       let PENDING_TICKER = null;
@@ -1214,35 +1130,16 @@
       const charts = {};
 
       const $ = (id) => document.getElementById(id);
-      const fmt = (n, d = 2) =>
-        n == null || !isFinite(n)
-          ? "—"
-          : Number(n).toLocaleString("en-US", {
-              minimumFractionDigits: d,
-              maximumFractionDigits: d,
-            });
-      const pct = (n) =>
-        n == null || !isFinite(n)
-          ? "—"
-          : (n >= 0 ? "+" : "") + fmt(n * 100, 2) + "%";
-      const fmtDate = (d) =>
-        d.getFullYear() +
-        "-" +
-        String(d.getMonth() + 1).padStart(2, "0") +
-        "-" +
-        String(d.getDate()).padStart(2, "0");
-      const escapeHtml = (s) =>
-        String(s).replace(
-          /[&<>"']/g,
-          (c) =>
-            ({
-              "&": "&amp;",
-              "<": "&lt;",
-              ">": "&gt;",
-              '"': "&quot;",
-              "'": "&#39;",
-            }[c])
-        );
+      const fmt = (n, d = 2) => n == null || !isFinite(n) ? "—" : Number(n).toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+      const pct = (n) => n == null || !isFinite(n) ? "—" : (n >= 0 ? "+" : "") + fmt(n * 100, 2) + "%";
+      const fmtDate = (d) => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+      const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({ 
+  "&": "&" + "amp;", 
+  "<": "&" + "lt;", 
+  ">": "&" + "gt;", 
+  '"': "&" + "quot;", 
+  "'": "&" + "#39;" 
+}[c]));
 
       const TAB_CHARTS = {
         charts: ["chartMain", "chartRSI", "chartMACD", "chartDD"],
@@ -1276,34 +1173,24 @@
       }
       function tip(extra) {
         return Object.assign(
-          {
-            trigger: "axis",
-            axisPointer: { type: "cross", lineStyle: { color: TH.axis } },
-            backgroundColor: TH.tipBg,
-            borderColor: TH.border,
-            textStyle: { color: TH.tipText, fontSize: 12 },
-          },
+          { trigger: "axis", axisPointer: { type: "cross", lineStyle: { color: TH.axis } }, backgroundColor: TH.tipBg, borderColor: TH.border, textStyle: { color: TH.tipText, fontSize: 12 } },
           extra || {}
         );
       }
       window.addEventListener("resize", () => {
         for (const id in charts) {
-          try {
-            charts[id].resize();
-          } catch (e) {}
+          try { charts[id].resize(); } catch (e) {}
         }
       });
 
       /* ================================================================
-   THEME SWITCHING
+   THEME SWITCHING & WIDGET WIRING
    ================================================================ */
       function applyTheme(name) {
         if (!THEMES[name]) name = "minty";
         document.documentElement.setAttribute("data-theme", name);
         TH = THEMES[name];
-        try {
-          localStorage.setItem("dse-theme", name);
-        } catch (e) {}
+        try { localStorage.setItem("dse-theme", name); } catch (e) {}
         const menu = $("themeMenu");
         if (menu)
           menu.querySelectorAll("button").forEach((b) => {
@@ -1314,9 +1201,7 @@
       }
       (function bootTheme() {
         let saved = "minty";
-        try {
-          saved = localStorage.getItem("dse-theme") || "minty";
-        } catch (e) {}
+        try { saved = localStorage.getItem("dse-theme") || "minty"; } catch (e) {}
         if (!THEMES[saved]) saved = "minty";
         document.documentElement.setAttribute("data-theme", saved);
         TH = THEMES[saved];
@@ -1327,32 +1212,17 @@
           });
       })();
 
-      /* ================================================================
-   WIDGET WIRING (theme + API settings)
-   ================================================================ */
       function openMenu(menu, otherMenus) {
-        otherMenus.forEach((m) => {
-          if (m) m.classList.remove("open");
-        });
+        otherMenus.forEach((m) => { if (m) m.classList.remove("open"); });
         menu.classList.toggle("open");
       }
       (function wireWidgets() {
-        const themeWidget = $("themeWidget"),
-          themeBtn = $("themeBtn"),
-          themeMenu = $("themeMenu");
-        const apiWidget = $("apiWidget"),
-          apiBtn = $("apiBtn"),
-          apiMenu = $("apiMenu");
+        const themeWidget = $("themeWidget"), themeBtn = $("themeBtn"), themeMenu = $("themeMenu");
+        const apiWidget = $("apiWidget"), apiBtn = $("apiBtn"), apiMenu = $("apiMenu");
 
-        themeBtn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          openMenu(themeMenu, [apiMenu]);
-        });
+        themeBtn.addEventListener("click", (e) => { e.stopPropagation(); openMenu(themeMenu, [apiMenu]); });
         themeMenu.querySelectorAll("button").forEach((b) => {
-          b.addEventListener("click", () => {
-            applyTheme(b.dataset.theme);
-            themeMenu.classList.remove("open");
-          });
+          b.addEventListener("click", () => { applyTheme(b.dataset.theme); themeMenu.classList.remove("open"); });
         });
 
         apiBtn.addEventListener("click", (e) => {
@@ -1367,98 +1237,52 @@
           const v = inp.value.trim().replace(/\/+$/, "");
           if (!v) return;
           API_BASE = v;
-          try {
-            localStorage.setItem("dse-api-base", v);
-          } catch (e) {}
+          try { localStorage.setItem("dse-api-base", v); } catch (e) {}
           updateApiEndpointLabel();
           apiMenu.classList.remove("open");
-          // Clear cache and reload with new base
-          DATA.clear();
-          META.clear();
-          LOADING.clear();
-          CUR = null;
-          PENDING_TICKER = null;
-          sparkDirty = true;
-          init();
+          DATA.clear(); META.clear(); LOADING.clear(); CUR = null; PENDING_TICKER = null; sparkDirty = true; init();
         });
 
         document.addEventListener("click", (e) => {
-          if (!themeWidget.contains(e.target))
-            themeMenu.classList.remove("open");
+          if (!themeWidget.contains(e.target)) themeMenu.classList.remove("open");
           if (!apiWidget.contains(e.target)) apiMenu.classList.remove("open");
         });
-
         updateApiEndpointLabel();
       })();
 
       function updateApiEndpointLabel() {
         const el = $("apiEndpointLabel");
-        if (el)
-          el.textContent =
-            API_BASE.replace(/\/+$/, "") + API_TICKER_PATH + "{ticker}";
+        if (el) el.textContent = API_BASE.replace(/\/+$/, "") + API_TICKER_PATH + "{ticker}";
       }
 
-      /* ================================================================
-   LOADING BADGE
-   ================================================================ */
       function showLoadingBadge(t) {
         const b = $("loadingBadge");
-        if (b) {
-          b.textContent = "Loading " + t + "…";
-          b.style.display = "";
-        }
+        if (b) { b.textContent = "Loading " + t + "…"; b.style.display = ""; }
       }
       function hideLoadingBadge() {
         const b = $("loadingBadge");
         if (b) b.style.display = "none";
       }
 
-      /* ================================================================
-   TICKER LIST PERSISTENCE
-   ================================================================ */
-      function saveTickerListToStorage() {
-        try {
-          localStorage.setItem("dse-tickers", JSON.stringify(TICKER_LIST));
-        } catch (e) {}
-      }
+      function saveTickerListToStorage() { try { localStorage.setItem("dse-tickers", JSON.stringify(TICKER_LIST)); } catch (e) {} }
       function loadTickerListFromStorage() {
         try {
           const s = localStorage.getItem("dse-tickers");
-          if (s) {
-            const arr = JSON.parse(s);
-            if (Array.isArray(arr)) return arr;
-          }
-        } catch (e) {}
-        return [];
+          if (s) { const arr = JSON.parse(s); if (Array.isArray(arr)) return arr; }
+        } catch (e) {} return [];
       }
-      function saveLastTicker(t) {
-        try {
-          localStorage.setItem("dse-last-ticker", t);
-        } catch (e) {}
-      }
+      function saveLastTicker(t) { try { localStorage.setItem("dse-last-ticker", t); } catch (e) {} }
 
-      /* ================================================================
-   API FETCH
-   ================================================================ */
       function num(x) {
         if (x == null || x === "") return NaN;
         if (typeof x === "number") return x;
         const s = String(x).replace(/[,\s৳$"]/g, "");
-        if (
-          s === "" ||
-          s === "-" ||
-          s === "—" ||
-          /^null$/i.test(s) ||
-          /^nan$/i.test(s)
-        )
-          return NaN;
+        if (s === "" || s === "-" || s === "—" || /^null$/i.test(s) || /^nan$/i.test(s)) return NaN;
         return parseFloat(s);
       }
       function parseAPIDate(s) {
         if (!s) return null;
         const str = String(s);
-        // API returns ISO like "2012-10-01T00:00:00.000Z" — take the date part
-        // and construct a LOCAL date so month/year math is consistent.
         const m = str.match(/^(\d{4})-(\d{2})-(\d{2})/);
         if (m) return new Date(+m[1], +m[2] - 1, +m[3]);
         const d = new Date(str);
@@ -1466,19 +1290,10 @@
       }
 
       async function fetchTicker(t) {
-        const url =
-          API_BASE.replace(/\/+$/, "") +
-          API_TICKER_PATH +
-          encodeURIComponent(t);
+        const url = API_BASE.replace(/\/+$/, "") + API_TICKER_PATH + encodeURIComponent(t);
         const r = await fetch(url, { cache: "no-store" });
         if (r.status === 404) return [];
-        if (!r.ok) {
-          let detail = "";
-          try {
-            detail = (await r.text()).slice(0, 160);
-          } catch (e) {}
-          throw new Error("HTTP " + r.status + (detail ? " — " + detail : ""));
-        }
+        if (!r.ok) throw new Error("HTTP " + r.status);
         const json = await r.json();
         if (!json || !Array.isArray(json.data)) return [];
         const rows = [];
@@ -1486,11 +1301,8 @@
           const d = parseAPIDate(item.Date);
           if (!d) continue;
           const c = num(item.Close);
-          if (!(c > 0)) continue; // filter negative-price artifacts per API docs
-          let o = num(item.Open),
-            h = num(item.High),
-            l = num(item.Low),
-            v = num(item.Volume);
+          if (!(c > 0)) continue;
+          let o = num(item.Open), h = num(item.High), l = num(item.Low), v = num(item.Volume);
           if (!(o > 0)) o = c;
           if (!(h > 0)) h = Math.max(o, c);
           if (!(l > 0)) l = Math.min(o, c);
@@ -1502,287 +1314,125 @@
       }
 
       async function loadTicker(t, silent) {
-        t = String(t || "")
-          .trim()
-          .toUpperCase();
+        t = String(t || "").trim().toUpperCase();
         if (!t) return null;
-
         if (DATA.has(t)) {
-          if (!silent) {
-            CUR = t;
-            renderAll();
-            saveLastTicker(t);
-          }
+          if (!silent) { CUR = t; renderAll(); saveLastTicker(t); }
           return DATA.get(t);
         }
         if (LOADING.has(t)) return null;
 
-        LOADING.add(t);
-        PENDING_TICKER = t;
-        showLoadingBadge(t);
-
+        LOADING.add(t); PENDING_TICKER = t; showLoadingBadge(t);
         try {
           const rows = await fetchTicker(t);
           const isCurrent = PENDING_TICKER === t;
-
           if (!rows || !rows.length) {
             if (isCurrent) hideLoadingBadge();
             if (!silent && isCurrent) alert("No data returned for " + t);
             return null;
           }
-
           DATA.set(t, rows);
-          const last = rows[rows.length - 1],
-            prev = rows.length > 1 ? rows[rows.length - 2] : last;
-          META.set(t, {
-            lastClose: last.c,
-            lastChg: prev ? last.c / prev.c - 1 : 0,
-            lastDate: last.date,
-            rows: rows.length,
-          });
-
-          if (!TICKER_LIST.includes(t)) {
-            TICKER_LIST.push(t);
-            TICKER_LIST.sort();
-            saveTickerListToStorage();
-          }
+          const last = rows[rows.length - 1], prev = rows.length > 1 ? rows[rows.length - 2] : last;
+          META.set(t, { lastClose: last.c, lastChg: prev ? last.c / prev.c - 1 : 0, lastDate: last.date, rows: rows.length });
+          if (!TICKER_LIST.includes(t)) { TICKER_LIST.push(t); TICKER_LIST.sort(); saveTickerListToStorage(); }
           sparkDirty = true;
-
-          if (!silent && isCurrent) {
-            CUR = t;
-            renderAll();
-            saveLastTicker(t);
-          }
+          if (!silent && isCurrent) { CUR = t; renderAll(); saveLastTicker(t); }
           if (isCurrent) hideLoadingBadge();
           return rows;
         } catch (e) {
-          if (PENDING_TICKER === t) {
-            hideLoadingBadge();
-            if (!silent) alert("Failed to load " + t + "\n\n" + e.message);
-          }
+          if (PENDING_TICKER === t) { hideLoadingBadge(); if (!silent) alert("Failed to load " + t + "\n\n" + e.message); }
           return null;
-        } finally {
-          LOADING.delete(t);
-        }
+        } finally { LOADING.delete(t); }
       }
 
-      /* ================================================================
-   INIT
-   ================================================================ */
       async function init() {
-        // Merge fallback list with previously-seen tickers
-        TICKER_LIST = [
-          ...new Set([...loadTickerListFromStorage(), ...FALLBACK_TICKERS]),
-        ].sort();
-
-        // Reset UI
+        TICKER_LIST = [...new Set([...loadTickerListFromStorage(), ...FALLBACK_TICKERS])].sort();
         $("emptyState").style.display = "none";
         $("main").style.display = "block";
         $("emptyMsg").textContent = "Connecting to API…";
         fillDropdown("");
-
-        // Choose a starting ticker
         let start = null;
-        try {
-          start = localStorage.getItem("dse-last-ticker");
-        } catch (e) {}
+        try { start = localStorage.getItem("dse-last-ticker"); } catch (e) {}
         if (!start || (!TICKER_LIST.includes(start) && !DATA.has(start))) {
-          for (const b of FIRST_LOAD_CANDIDATES) {
-            if (TICKER_LIST.includes(b)) {
-              start = b;
-              break;
-            }
-          }
+          for (const b of FIRST_LOAD_CANDIDATES) { if (TICKER_LIST.includes(b)) { start = b; break; } }
         }
         if (!start) start = TICKER_LIST[0];
-
         const rows = await loadTicker(start, true);
-        if (!rows || !rows.length) {
-          showAPIError();
-          return;
-        }
-        CUR = start;
-        saveLastTicker(start);
-        renderAll();
+        if (!rows || !rows.length) { showAPIError(); return; }
+        CUR = start; saveLastTicker(start); renderAll();
       }
 
       function showAPIError() {
         $("main").style.display = "none";
         $("emptyState").style.display = "block";
-        $("emptyMsg").innerHTML =
-          "Could not reach the API.<br><br>" +
-          'Endpoint: <span class="kbd">' +
-          escapeHtml(API_BASE.replace(/\/+$/, "") + API_TICKER_PATH) +
-          "{ticker}</span><br><br>" +
-          "Check that:<br>" +
-          "• The server is running<br>" +
-          "• The API base URL is correct (click ⚙ in the top-right)<br>" +
-          "• CORS is enabled on the server (or host this page on the same origin)<br><br>" +
-          '<button class="btn sm" id="retryInitBtn" style="margin-top:8px">Retry</button>';
-        const btn = $("retryInitBtn");
-        if (btn) btn.onclick = init;
+        $("emptyMsg").innerHTML = "Could not reach the API.<br><br>" + 'Endpoint: <span class="kbd">' + escapeHtml(API_BASE.replace(/\/+$/, "") + API_TICKER_PATH) + "{ticker}</span><br><br>" + "Check that server is running, CORS enabled, and API base URL is correct.<br><br>" + '<button class="btn sm" id="retryInitBtn" style="margin-top:8px">Retry</button>';
+        const btn = $("retryInitBtn"); if (btn) btn.onclick = init;
       }
 
-      /* ================================================================
-   SEARCH DROPDOWN
-   ================================================================ */
-      const q = $("q"),
-        dd = $("dropdown");
+      /* SEARCH DROPDOWN */
+      const q = $("q"), dd = $("dropdown");
       q.addEventListener("input", () => fillDropdown(q.value));
       q.addEventListener("focus", () => fillDropdown(q.value));
-      document.addEventListener("click", (e) => {
-        if (!e.target.closest(".searchwrap")) dd.style.display = "none";
-      });
+      document.addEventListener("click", (e) => { if (!e.target.closest(".searchwrap")) dd.style.display = "none"; });
       q.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
           const it = dd.querySelector("div");
-          if (it) {
-            pick(it.dataset.t);
-          } else {
-            const typed = q.value.trim().toUpperCase();
-            if (typed && typed.length <= 20) pick(typed);
-          }
+          if (it) pick(it.dataset.t);
+          else { const typed = q.value.trim().toUpperCase(); if (typed && typed.length <= 20) pick(typed); }
         }
       });
-
       function fillDropdown(f) {
         const s = f.trim().toUpperCase();
-        const matches = TICKER_LIST.filter((t) => !s || t.includes(s))
-          .sort()
-          .slice(0, 30);
-
+        const matches = TICKER_LIST.filter((t) => !s || t.includes(s)).sort().slice(0, 30);
         const items = matches.map((t) => {
           const m = META.get(t);
-          const right = m
-            ? fmt(m.lastClose) + " (" + pct(m.lastChg) + ")"
-            : "click to fetch";
-          return (
-            '<div data-t="' +
-            escapeHtml(t) +
-            '"><span class="sym">' +
-            escapeHtml(t) +
-            '</span><span class="nm">' +
-            right +
-            "</span></div>"
-          );
+          const right = m ? fmt(m.lastClose) + " (" + pct(m.lastChg) + ")" : "click to fetch";
+          return '<div data-t="' + escapeHtml(t) + '"><span class="sym">' + escapeHtml(t) + '</span><span class="nm">' + right + "</span></div>";
         });
-
         if (s && s.length <= 20 && !matches.some((t) => t === s)) {
-          items.push(
-            '<div data-t="' +
-              escapeHtml(s) +
-              '"><span class="sym">Fetch ' +
-              escapeHtml(s) +
-              '</span><span class="nm">from API</span></div>'
-          );
+          items.push('<div data-t="' + escapeHtml(s) + '"><span class="sym">Fetch ' + escapeHtml(s) + '</span><span class="nm">from API</span></div>');
         }
-
-        if (!items.length) {
-          dd.style.display = "none";
-          return;
-        }
-        dd.innerHTML = items.join("");
-        dd.style.display = "block";
-        dd.querySelectorAll("div").forEach(
-          (d) => (d.onclick = () => pick(d.dataset.t))
-        );
+        if (!items.length) { dd.style.display = "none"; return; }
+        dd.innerHTML = items.join(""); dd.style.display = "block";
+        dd.querySelectorAll("div").forEach((d) => (d.onclick = () => pick(d.dataset.t)));
       }
-      function pick(t) {
-        dd.style.display = "none";
-        q.value = t;
-        loadTicker(t);
-      }
+      function pick(t) { dd.style.display = "none"; q.value = t; loadTicker(t); }
 
-      /* ================================================================
-   REFRESH
-   ================================================================ */
       $("refreshBtn").onclick = async () => {
         if (!CUR) return;
-        const btn = $("refreshBtn");
-        btn.textContent = "Refreshing…";
-        btn.disabled = true;
-        showLoadingBadge(CUR);
+        const btn = $("refreshBtn"); btn.textContent = "Refreshing…"; btn.disabled = true; showLoadingBadge(CUR);
         try {
           const rows = await fetchTicker(CUR);
           if (rows && rows.length) {
             DATA.set(CUR, rows);
-            const last = rows[rows.length - 1],
-              prev = rows.length > 1 ? rows[rows.length - 2] : last;
-            META.set(CUR, {
-              lastClose: last.c,
-              lastChg: prev ? last.c / prev.c - 1 : 0,
-              lastDate: last.date,
-              rows: rows.length,
-            });
-            sparkDirty = true;
-            renderAll();
-          } else {
-            alert("No data returned for " + CUR);
-          }
-        } catch (e) {
-          alert("Refresh failed: " + e.message);
-        } finally {
-          hideLoadingBadge();
-          btn.textContent = "Refresh";
-          btn.disabled = false;
-        }
+            const last = rows[rows.length - 1], prev = rows.length > 1 ? rows[rows.length - 2] : last;
+            META.set(CUR, { lastClose: last.c, lastChg: prev ? last.c / prev.c - 1 : 0, lastDate: last.date, rows: rows.length });
+            sparkDirty = true; renderAll();
+          } else alert("No data returned for " + CUR);
+        } catch (e) { alert("Refresh failed: " + e.message); } finally { hideLoadingBadge(); btn.textContent = "Refresh"; btn.disabled = false; }
       };
 
-      /* ================================================================
-   RENDER — only the active tab is rendered on ticker switch
-   ================================================================ */
       function subset(rows) {
         if (!RANGE_DAYS || RANGE_DAYS >= rows.length) return rows;
         return rows.slice(rows.length - RANGE_DAYS);
       }
-      function isIndex(t) {
-        return INDEX_TICKERS.has(t);
-      }
+      function isIndex(t) { return INDEX_TICKERS.has(t); }
 
       function renderAll() {
-        if (!CUR) return;
-        const full = DATA.get(CUR);
-        if (!full) return;
-
-        const last = full[full.length - 1].c;
-        const prev = full.length > 1 ? full[full.length - 2].c : last;
-        const chg = prev ? last / prev - 1 : 0;
-
+        if (!CUR) return; const full = DATA.get(CUR); if (!full) return;
+        const last = full[full.length - 1].c, prev = full.length > 1 ? full[full.length - 2].c : last, chg = prev ? last / prev - 1 : 0;
         $("tName").textContent = CUR;
-        const px = $("tLast");
-        px.textContent = fmt(last);
-        px.className = "px " + (chg >= 0 ? "up" : "dn");
-        const el = $("tChg");
-        el.textContent =
-          (chg >= 0 ? "+" : "") + fmt(last - prev) + " (" + pct(chg) + ")";
-        el.className = "chg " + (chg >= 0 ? "up" : "dn");
-
-        const win = full.slice(-Math.min(252, full.length));
-        const hi52 = Math.max(...win.map((r) => r.h));
-        const lo52 = Math.min(...win.map((r) => r.l));
-        const ath = Math.max(...full.map((r) => r.h));
-        $("tSub").textContent =
-          full.length +
-          " sessions · 52W " +
-          fmt(lo52) +
-          "–" +
-          fmt(hi52) +
-          " · ATH " +
-          fmt(ath) +
-          " (" +
-          pct(last / ath - 1) +
-          ")";
-        $("dspan").textContent =
-          fmtDate(full[0].date) + " → " + fmtDate(full[full.length - 1].date);
-
+        const px = $("tLast"); px.textContent = fmt(last); px.className = "px " + (chg >= 0 ? "up" : "dn");
+        const el = $("tChg"); el.textContent = (chg >= 0 ? "+" : "") + fmt(last - prev) + " (" + pct(chg) + ")"; el.className = "chg " + (chg >= 0 ? "up" : "dn");
+        const win = full.slice(-Math.min(252, full.length)), hi52 = Math.max(...win.map((r) => r.h)), lo52 = Math.min(...win.map((r) => r.l)), ath = Math.max(...full.map((r) => r.h));
+        $("tSub").textContent = full.length + " sessions · 52W " + fmt(lo52) + "–" + fmt(hi52) + " · ATH " + fmt(ath) + " (" + pct(last / ath - 1) + ")";
+        $("dspan").textContent = fmtDate(full[0].date) + " → " + fmtDate(full[full.length - 1].date);
         renderCards(full, last, chg, hi52, lo52, ath);
         renderActiveTab();
       }
 
       function renderActiveTab() {
-        if (!CUR) return;
-        const full = DATA.get(CUR);
-        if (!full) return;
+        if (!CUR) return; const full = DATA.get(CUR); if (!full) return;
         if (CURRENT_TAB === "charts") renderChartsTab(full);
         else if (CURRENT_TAB === "overview") renderOverviewTab(full);
         else if (CURRENT_TAB === "perf") renderPerfTab(full);
@@ -1790,400 +1440,79 @@
       }
 
       function renderCards(full, last, chg, hi52, lo52, ath) {
-        const c = full.map((r) => r.c),
-          v = full.map((r) => r.v),
-          d = full.map((r) => r.date);
-        const ar = annRet(c),
-          av = annVol(c),
-          mdd = maxDD(c);
-        const r1w = retOver(c, 5),
-          r1 = retOver(c, 21),
-          r3 = retOver(c, 63),
-          r6 = retOver(c, 126),
-          r1y = retOver(c, 252),
-          ytd = ytdRet(c, d);
+        const c = full.map((r) => r.c), v = full.map((r) => r.v), d = full.map((r) => r.date);
+        const ar = annRet(c), av = annVol(c), mdd = maxDD(c);
+        const r1w = retOver(c, 5), r1 = retOver(c, 21), r3 = retOver(c, 63), r6 = retOver(c, 126), r1y = retOver(c, 252), ytd = ytdRet(c, d);
         const sh = ar != null && av ? (ar - 0.065) / av : null;
         const pos52 = ((last - lo52) / Math.max(1e-9, hi52 - lo52)) * 100;
-        const sliceN = Math.min(30, v.length);
-        const avgV = v.slice(-sliceN).reduce((a, b) => a + b, 0) / sliceN;
-        const avgVtxt =
-          avgV >= 1e6 ? (avgV / 1e6).toFixed(2) + "M" : fmt(avgV, 0);
-
-        const card = (k, val, sub, cls) =>
-          '<div class="card"><div class="k">' +
-          k +
-          '</div><div class="v ' +
-          (cls || "") +
-          '">' +
-          val +
-          "</div>" +
-          (sub ? '<div class="s">' + sub + "</div>" : "") +
-          "</div>";
-
-        $("cardsPrice").innerHTML =
-          card(
-            "Last Price",
-            fmt(last),
-            pct(chg) + " today",
-            chg >= 0 ? "up" : "dn"
-          ) +
-          card(
-            "52W Range",
-            fmt(lo52) + " – " + fmt(hi52),
-            "position " + fmt(pos52, 0) + "%"
-          ) +
-          card("All-Time High", fmt(ath), pct(last / ath - 1) + " below") +
-          card("Avg Volume 30d", avgVtxt, "shares / day");
-
-        $("cardsReturns").innerHTML =
-          card("1W", pct(r1w), "5 sessions", r1w >= 0 ? "up" : "dn") +
-          card("1M", pct(r1), "21 sessions", r1 >= 0 ? "up" : "dn") +
-          card("3M", pct(r3), "63 sessions", r3 >= 0 ? "up" : "dn") +
-          card("6M", pct(r6), "126 sessions", r6 >= 0 ? "up" : "dn") +
-          card(
-            "YTD",
-            pct(ytd),
-            String(d[d.length - 1].getFullYear()),
-            ytd >= 0 ? "up" : "dn"
-          ) +
-          card("1Y", pct(r1y), "252 sessions", r1y >= 0 ? "up" : "dn");
-
-        $("cardsRisk").innerHTML =
-          card("CAGR", pct(ar), "annualised", ar >= 0 ? "up" : "dn") +
-          card("Volatility", pct(av), "annualised σ") +
-          card(
-            "Sharpe",
-            fmt(sh, 2),
-            "rf 6.5%",
-            sh != null && sh >= 0 ? "up" : "dn"
-          ) +
-          card("Max Drawdown", pct(mdd), "peak to trough", "dn");
+        const sliceN = Math.min(30, v.length), avgV = v.slice(-sliceN).reduce((a, b) => a + b, 0) / sliceN;
+        const avgVtxt = avgV >= 1e6 ? (avgV / 1e6).toFixed(2) + "M" : fmt(avgV, 0);
+        const card = (k, val, sub, cls) => '<div class="card"><div class="k">' + k + '</div><div class="v ' + (cls || "") + '">' + val + "</div>" + (sub ? '<div class="s">' + sub + "</div>" : "") + "</div>";
+        $("cardsPrice").innerHTML = card("Last Price", fmt(last), pct(chg) + " today", chg >= 0 ? "up" : "dn") + card("52W Range", fmt(lo52) + " – " + fmt(hi52), "position " + fmt(pos52, 0) + "%") + card("All-Time High", fmt(ath), pct(last / ath - 1) + " below") + card("Avg Volume 30d", avgVtxt, "shares / day");
+        $("cardsReturns").innerHTML = card("1W", pct(r1w), "5 sessions", r1w >= 0 ? "up" : "dn") + card("1M", pct(r1), "21 sessions", r1 >= 0 ? "up" : "dn") + card("3M", pct(r3), "63 sessions", r3 >= 0 ? "up" : "dn") + card("6M", pct(r6), "126 sessions", r6 >= 0 ? "up" : "dn") + card("YTD", pct(ytd), String(d[d.length - 1].getFullYear()), ytd >= 0 ? "up" : "dn") + card("1Y", pct(r1y), "252 sessions", r1y >= 0 ? "up" : "dn");
+        $("cardsRisk").innerHTML = card("CAGR", pct(ar), "annualised", ar >= 0 ? "up" : "dn") + card("Volatility", pct(av), "annualised σ") + card("Sharpe", fmt(sh, 2), "rf 6.5%", sh != null && sh >= 0 ? "up" : "dn") + card("Max Drawdown", pct(mdd), "peak to trough", "dn");
       }
 
       /* ================================================================
    CHARTS TAB
    ================================================================ */
-      const BASE_TOOLBOX = {
-        feature: { dataZoom: { yAxisIndex: "none" }, restore: {} },
-      };
+      const BASE_TOOLBOX = { feature: { dataZoom: { yAxisIndex: "none" }, restore: {} } };
 
       function renderChartsTab(full) {
         const rows = subset(full);
-        const dates = rows.map((r) => r.date),
-          c = rows.map((r) => r.c),
-          v = rows.map((r) => r.v);
-        renderMain(rows, dates, c, v);
-        renderRSI(dates, c);
-        renderMACD(dates, c);
-        renderDD(dates, c);
+        const dates = rows.map((r) => r.date), c = rows.map((r) => r.c), v = rows.map((r) => r.v);
+        renderMain(rows, dates, c, v); renderRSI(dates, c); renderMACD(dates, c); renderDD(dates, c);
       }
 
       function renderMain(rows, dates, c, v) {
-        const type = $("chartType").value;
-        const volMode = $("volMode") ? $("volMode").value : "overlay";
-        const C = rows.map((r) => r.c);
-        const s20 = sma(C, 20),
-          s50 = sma(C, 50),
-          s200 = sma(C, 200);
-        const dts = dates.map(fmtDate);
-        const volData = rows.map((r, i) => ({
-          value: r.v,
-          itemStyle: {
-            color: i > 0 && r.c >= rows[i - 1].c ? TH.upFill : TH.downFill,
-          },
-        }));
-
+        const type = $("chartType").value, volMode = $("volMode") ? $("volMode").value : "overlay";
+        const C = rows.map((r) => r.c), s20 = sma(C, 20), s50 = sma(C, 50), s200 = sma(C, 200), dts = dates.map(fmtDate);
+        const volData = rows.map((r, i) => ({ value: r.v, itemStyle: { color: i > 0 && r.c >= rows[i - 1].c ? TH.upFill : TH.downFill } }));
         let series = [];
-        if (type === "candle") {
-          series.push({
-            name: CUR,
-            type: "candlestick",
-            data: rows.map((r) => [r.o, r.c, r.l, r.h]),
-            itemStyle: {
-              color: TH.up,
-              color0: TH.down,
-              borderColor: TH.up,
-              borderColor0: TH.down,
-            },
-          });
-        } else if (type === "area") {
-          series.push({
-            name: CUR,
-            type: "line",
-            data: C,
-            areaStyle: { color: TH.area },
-            lineStyle: { width: 1.6, color: TH.line },
-            itemStyle: { color: TH.line },
-            showSymbol: false,
-          });
-        } else {
-          series.push({
-            name: CUR,
-            type: "line",
-            data: C,
-            lineStyle: { width: 1.6, color: TH.line },
-            itemStyle: { color: TH.line },
-            showSymbol: false,
-          });
-        }
-        series.push({
-          name: "SMA20",
-          type: "line",
-          data: s20,
-          lineStyle: { width: 1, color: TH.ma[0] },
-          showSymbol: false,
-        });
-        series.push({
-          name: "SMA50",
-          type: "line",
-          data: s50,
-          lineStyle: { width: 1, color: TH.ma[1] },
-          showSymbol: false,
-        });
-        series.push({
-          name: "SMA200",
-          type: "line",
-          data: s200,
-          lineStyle: { width: 1, color: TH.ma[2] },
-          showSymbol: false,
-        });
+        if (type === "candle") series.push({ name: CUR, type: "candlestick", data: rows.map((r) => [r.o, r.c, r.l, r.h]), itemStyle: { color: TH.up, color0: TH.down, borderColor: TH.up, borderColor0: TH.down } });
+        else if (type === "area") series.push({ name: CUR, type: "line", data: C, areaStyle: { color: TH.area }, lineStyle: { width: 1.6, color: TH.line }, itemStyle: { color: TH.line }, showSymbol: false });
+        else series.push({ name: CUR, type: "line", data: C, lineStyle: { width: 1.6, color: TH.line }, itemStyle: { color: TH.line }, showSymbol: false });
+        series.push({ name: "SMA20", type: "line", data: s20, lineStyle: { width: 1, color: TH.ma[0] }, showSymbol: false });
+        series.push({ name: "SMA50", type: "line", data: s50, lineStyle: { width: 1, color: TH.ma[1] }, showSymbol: false });
+        series.push({ name: "SMA200", type: "line", data: s200, lineStyle: { width: 1, color: TH.ma[2] }, showSymbol: false });
 
-        let grid,
-          xAxis,
-          yAxis,
-          dataZoom,
-          legendData = [CUR, "SMA20", "SMA50", "SMA200"];
-
+        let grid, xAxis, yAxis, dataZoom, legendData = [CUR, "SMA20", "SMA50", "SMA200"];
         if (volMode === "off") {
           grid = { left: 60, right: 20, top: 40, bottom: 50 };
-          xAxis = [
-            Object.assign(
-              { type: "category", data: dts, boundaryGap: false },
-              ax()
-            ),
-          ];
+          xAxis = [Object.assign({ type: "category", data: dts, boundaryGap: false }, ax())];
           yAxis = [Object.assign({ scale: true }, ax())];
-          dataZoom = [
-            { type: "inside" },
-            { type: "slider", bottom: 5, height: 20 },
-          ];
+          dataZoom = [{ type: "inside" }, { type: "slider", bottom: 5, height: 20 }];
         } else if (volMode === "overlay") {
-          series.push({
-            name: "Volume",
-            type: "bar",
-            data: volData,
-            yAxisIndex: 1,
-            zlevel: 0,
-          });
-          legendData.push("Volume");
+          series.push({ name: "Volume", type: "bar", data: volData, yAxisIndex: 1, zlevel: 0 }); legendData.push("Volume");
           grid = { left: 60, right: 70, top: 40, bottom: 50 };
-          xAxis = [
-            Object.assign(
-              { type: "category", data: dts, boundaryGap: false },
-              ax()
-            ),
-          ];
-          yAxis = [
-            Object.assign({ scale: true }, ax()),
-            Object.assign(
-              {
-                scale: true,
-                splitLine: { show: false },
-                axisLine: { show: false },
-                axisTick: { show: false },
-                axisLabel: {
-                  formatter: (val) =>
-                    val >= 1e6
-                      ? (val / 1e6).toFixed(1) + "M"
-                      : val >= 1e3
-                      ? (val / 1e3).toFixed(0) + "K"
-                      : val.toFixed(0),
-                  color: TH.axis,
-                },
-                max: function (v) {
-                  return v.max * 4;
-                },
-              },
-              ax()
-            ),
-          ];
-          dataZoom = [
-            { type: "inside" },
-            { type: "slider", bottom: 5, height: 20 },
-          ];
+          xAxis = [Object.assign({ type: "category", data: dts, boundaryGap: false }, ax())];
+          yAxis = [Object.assign({ scale: true }, ax()), Object.assign({ scale: true, splitLine: { show: false }, axisLine: { show: false }, axisTick: { show: false }, axisLabel: { formatter: (val) => val >= 1e6 ? (val / 1e6).toFixed(1) + "M" : val >= 1e3 ? (val / 1e3).toFixed(0) + "K" : val.toFixed(0), color: TH.axis }, max: function (v) { return v.max * 4; } }, ax())];
+          dataZoom = [{ type: "inside" }, { type: "slider", bottom: 5, height: 20 }];
         } else {
-          series.push({
-            name: "Volume",
-            type: "bar",
-            xAxisIndex: 1,
-            yAxisIndex: 1,
-            data: volData,
-          });
-          legendData.push("Volume");
-          grid = [
-            { left: 60, right: 20, top: 40, height: "65%" },
-            { left: 60, right: 20, top: "72%", height: "23%" },
-          ];
-          xAxis = [
-            Object.assign(
-              { type: "category", data: dts, boundaryGap: false },
-              ax()
-            ),
-            Object.assign({ type: "category", data: dts, gridIndex: 1 }, ax(), {
-              show: false,
-            }),
-          ];
-          yAxis = [
-            Object.assign({ scale: true }, ax()),
-            Object.assign({ gridIndex: 1, scale: true, splitNumber: 2 }, ax()),
-          ];
-          dataZoom = [
-            { type: "inside", xAxisIndex: [0, 1] },
-            { type: "slider", xAxisIndex: [0, 1], bottom: 5, height: 20 },
-          ];
+          series.push({ name: "Volume", type: "bar", xAxisIndex: 1, yAxisIndex: 1, data: volData }); legendData.push("Volume");
+          grid = [{ left: 60, right: 20, top: 40, height: "65%" }, { left: 60, right: 20, top: "72%", height: "23%" }];
+          xAxis = [Object.assign({ type: "category", data: dts, boundaryGap: false }, ax()), Object.assign({ type: "category", data: dts, gridIndex: 1 }, ax(), { show: false })];
+          yAxis = [Object.assign({ scale: true }, ax()), Object.assign({ gridIndex: 1, scale: true, splitNumber: 2 }, ax())];
+          dataZoom = [{ type: "inside", xAxisIndex: [0, 1] }, { type: "slider", xAxisIndex: [0, 1], bottom: 5, height: 20 }];
         }
-
-        drawChart("chartMain", {
-          tooltip: tip(),
-          legend: { data: legendData, top: 0, textStyle: { color: TH.axis } },
-          grid: grid,
-          xAxis: xAxis,
-          yAxis: yAxis,
-          dataZoom: dataZoom,
-          toolbox: BASE_TOOLBOX,
-          series: series,
-        });
+        drawChart("chartMain", { tooltip: tip(), legend: { data: legendData, top: 0, textStyle: { color: TH.axis } }, grid: grid, xAxis: xAxis, yAxis: yAxis, dataZoom: dataZoom, toolbox: BASE_TOOLBOX, series: series });
       }
 
-      $("chartType").onchange = () => {
-        if (CUR) renderActiveTab();
-      };
-      if ($("volMode"))
-        $("volMode").onchange = () => {
-          if (CUR) renderActiveTab();
-        };
-      document.querySelectorAll(".tf").forEach(
-        (b) =>
-          (b.onclick = () => {
-            document
-              .querySelectorAll(".tf")
-              .forEach((x) => x.classList.remove("primary"));
-            b.classList.add("primary");
-            RANGE_DAYS = +b.dataset.days;
-            if (CUR) renderAll();
-          })
-      );
+      $("chartType").onchange = () => { if (CUR) renderActiveTab(); };
+      if ($("volMode")) $("volMode").onchange = () => { if (CUR) renderActiveTab(); };
+      document.querySelectorAll(".tf").forEach((b) => b.onclick = () => { document.querySelectorAll(".tf").forEach((x) => x.classList.remove("primary")); b.classList.add("primary"); RANGE_DAYS = +b.dataset.days; if (CUR) renderAll(); });
 
       function renderRSI(dates, c) {
         const r = rsi(c);
-        drawChart("chartRSI", {
-          tooltip: tip(),
-          grid: { left: 50, right: 15, top: 10, bottom: 20 },
-          xAxis: Object.assign(
-            { type: "category", data: dates.map(fmtDate) },
-            ax(),
-            { show: false }
-          ),
-          yAxis: Object.assign({ min: 0, max: 100 }, ax()),
-          series: [
-            {
-              type: "line",
-              data: r,
-              lineStyle: { width: 1.2, color: TH.accent },
-              showSymbol: false,
-              markLine: {
-                silent: true,
-                symbol: "none",
-                data: [
-                  {
-                    yAxis: 70,
-                    lineStyle: { color: TH.down, type: "dashed", width: 1 },
-                  },
-                  {
-                    yAxis: 30,
-                    lineStyle: { color: TH.up, type: "dashed", width: 1 },
-                  },
-                ],
-              },
-            },
-          ],
-          dataZoom: [{ type: "inside" }],
-        });
+        drawChart("chartRSI", { tooltip: tip(), grid: { left: 50, right: 15, top: 10, bottom: 20 }, xAxis: Object.assign({ type: "category", data: dates.map(fmtDate) }, ax(), { show: false }), yAxis: Object.assign({ min: 0, max: 100 }, ax()), series: [{ type: "line", data: r, lineStyle: { width: 1.2, color: TH.accent }, showSymbol: false, markLine: { silent: true, symbol: "none", data: [{ yAxis: 70, lineStyle: { color: TH.down, type: "dashed", width: 1 } }, { yAxis: 30, lineStyle: { color: TH.up, type: "dashed", width: 1 } }] } }], dataZoom: [{ type: "inside" }] });
       }
       function renderMACD(dates, c) {
         const m = macd(c);
-        drawChart("chartMACD", {
-          tooltip: tip(),
-          grid: { left: 50, right: 15, top: 25, bottom: 20 },
-          legend: {
-            data: ["MACD", "Signal", "Hist"],
-            top: 0,
-            textStyle: { color: TH.axis },
-          },
-          xAxis: Object.assign(
-            { type: "category", data: dates.map(fmtDate) },
-            ax(),
-            { show: false }
-          ),
-          yAxis: Object.assign({}, ax()),
-          series: [
-            {
-              name: "Hist",
-              type: "bar",
-              data: m.hist,
-              itemStyle: {
-                color: m.hist.map((h) => (h >= 0 ? TH.upFill : TH.downFill)),
-              },
-            },
-            {
-              name: "MACD",
-              type: "line",
-              data: m.line,
-              lineStyle: { width: 1.2, color: TH.accent },
-              showSymbol: false,
-            },
-            {
-              name: "Signal",
-              type: "line",
-              data: m.sig,
-              lineStyle: { width: 1.2, color: TH.ma[0] },
-              showSymbol: false,
-            },
-          ],
-          dataZoom: [{ type: "inside" }],
-        });
+        drawChart("chartMACD", { tooltip: tip(), grid: { left: 50, right: 15, top: 25, bottom: 20 }, legend: { data: ["MACD", "Signal", "Hist"], top: 0, textStyle: { color: TH.axis } }, xAxis: Object.assign({ type: "category", data: dates.map(fmtDate) }, ax(), { show: false }), yAxis: Object.assign({}, ax()), series: [{ name: "Hist", type: "bar", data: m.hist, itemStyle: { color: m.hist.map((h) => (h >= 0 ? TH.upFill : TH.downFill)) } }, { name: "MACD", type: "line", data: m.line, lineStyle: { width: 1.2, color: TH.accent }, showSymbol: false }, { name: "Signal", type: "line", data: m.sig, lineStyle: { width: 1.2, color: TH.ma[0] }, showSymbol: false }], dataZoom: [{ type: "inside" }] });
       }
       function renderDD(dates, c) {
-        let p = c[0];
-        const ddv = c.map((x) => {
-          p = Math.max(p, x);
-          return x / p - 1;
-        });
-        drawChart("chartDD", {
-          tooltip: tip({ valueFormatter: (v) => (v * 100).toFixed(1) + "%" }),
-          grid: { left: 50, right: 15, top: 10, bottom: 20 },
-          xAxis: Object.assign(
-            { type: "category", data: dates.map(fmtDate) },
-            ax(),
-            { show: false }
-          ),
-          yAxis: Object.assign({}, ax(), {
-            axisLabel: {
-              formatter: (v) => (v * 100).toFixed(0) + "%",
-              color: TH.axis,
-            },
-          }),
-          series: [
-            {
-              type: "line",
-              data: ddv,
-              lineStyle: { width: 1, color: TH.down },
-              areaStyle: { color: TH.downFill },
-              showSymbol: false,
-            },
-          ],
-          dataZoom: [{ type: "inside" }],
-        });
+        let p = c[0]; const ddv = c.map((x) => { p = Math.max(p, x); return x / p - 1; });
+        drawChart("chartDD", { tooltip: tip({ valueFormatter: (v) => (v * 100).toFixed(1) + "%" }), grid: { left: 50, right: 15, top: 10, bottom: 20 }, xAxis: Object.assign({ type: "category", data: dates.map(fmtDate) }, ax(), { show: false }), yAxis: Object.assign({}, ax(), { axisLabel: { formatter: (v) => (v * 100).toFixed(0) + "%", color: TH.axis } }), series: [{ type: "line", data: ddv, lineStyle: { width: 1, color: TH.down }, areaStyle: { color: TH.downFill }, showSymbol: false }], dataZoom: [{ type: "inside" }] });
       }
 
       /* ================================================================
@@ -2191,12 +1520,12 @@
    ================================================================ */
       function renderOverviewTab(full) {
         const rows = subset(full);
-        const dates = rows.map((r) => r.date),
-          c = rows.map((r) => r.c),
-          v = rows.map((r) => r.v);
+        const dates = rows.map((r) => r.date), c = rows.map((r) => r.c), v = rows.map((r) => r.v);
         renderOverviewCharts(dates, c, v);
       }
+      
       function renderOverviewCharts(dates, c, v) {
+        // --- 1. VOLATILITY CHART ---
         const r30 = [];
         for (let i = 5; i < c.length; i++) {
           const w = c.slice(Math.max(0, i - 29), i + 1);
@@ -2205,7 +1534,7 @@
         }
         drawChart("chartVol", {
           tooltip: tip({ valueFormatter: (v) => (v * 100).toFixed(1) + "%" }),
-          grid: { left: 50, right: 15, top: 10, bottom: 25 },
+          grid: { left: 50, right: 15, top: 10, bottom: 50 },
           xAxis: Object.assign(
             { type: "category", data: dates.slice(5).map(fmtDate) },
             ax(),
@@ -2217,6 +1546,10 @@
               color: TH.axis,
             },
           }),
+          dataZoom: [
+            { type: "inside" },
+            { type: "slider", bottom: 5, height: 18 }
+          ],
           series: [
             {
               type: "line",
@@ -2226,39 +1559,77 @@
               showSymbol: false,
             },
           ],
-          dataZoom: [{ type: "inside" }],
         });
+
+        // --- 2. DAILY RETURN DISTRIBUTION (HISTOGRAM WITH TIMELINE) ---
+        const chHist = getChart("chartHist");
+        chHist.off("datazoom"); // Clear old listeners on re-render
+
         const rr = rets(c);
-        const bins = [];
-        const min = Math.min(...rr),
-          max = Math.max(...rr);
+        const min = Math.min(...rr), max = Math.max(...rr);
         const step = (max - min) / 40 || 1;
+        
+        // Define stable X-Axis categories
+        const catLabels = [];
         for (let i = 0; i < 40; i++) {
-          const lo = min + i * step;
-          bins.push({
-            lo,
-            count: rr.filter((r) => r >= lo && r < lo + step).length,
-          });
+          catLabels.push(((min + i * step) * 100).toFixed(1) + "%");
         }
+
+        // Helper to dynamically slice and bin returns
+        function getBins(retArray) {
+          const counts = new Array(40).fill(0);
+          for(let r of retArray) {
+            let idx = Math.floor((r - min) / step);
+            if(idx >= 40) idx = 39;
+            if(idx < 0) idx = 0;
+            counts[idx]++;
+          }
+          return counts;
+        }
+
+        const dts = dates.slice(1).map(fmtDate);
+
         drawChart("chartHist", {
           tooltip: tip(),
-          grid: { left: 50, right: 15, top: 10, bottom: 25 },
-          xAxis: Object.assign(
-            {
-              type: "category",
-              data: bins.map((b) => (b.lo * 100).toFixed(1) + "%"),
-            },
-            ax()
-          ),
+          grid: { left: 50, right: 15, top: 10, bottom: 50 },
+          xAxis: [
+            Object.assign({ type: "category", data: catLabels }, ax()),
+            { type: "category", data: dts, show: false } // Dummy time axis for slider
+          ],
           yAxis: Object.assign({}, ax()),
+          dataZoom: [
+            { type: "inside", xAxisIndex: 1 },
+            { 
+              type: "slider", 
+              xAxisIndex: 1, 
+              bottom: 5, 
+              height: 18,
+              labelFormatter: function (val, str) { return dts[val] || str; }
+            }
+          ],
           series: [
             {
               type: "bar",
-              data: bins.map((b) => b.count),
+              data: getBins(rr), // Start with all data
               itemStyle: { color: TH.accent2 },
             },
           ],
         });
+
+        // Evolve bins dynamically based on slider selection
+        chHist.on("datazoom", function () {
+          const opt = chHist.getOption();
+          if(!opt.dataZoom || !opt.dataZoom[0]) return;
+          const dz = opt.dataZoom[0];
+          const sv = dz.startValue;
+          const ev = dz.endValue;
+          const subRr = rr.slice(sv, ev + 1);
+          chHist.setOption({
+            series: [{ data: getBins(subRr) }]
+          });
+        });
+
+        // --- 3. BOLLINGER BANDS ---
         const bb = boll(c);
         drawChart("chartBB", {
           tooltip: tip(),
@@ -2318,477 +1689,143 @@
         const dates = full.map((r) => r.date);
         const c = full.map((r) => r.c);
         const periods = [
-          ["1W", 5],
-          ["1M", 21],
-          ["3M", 63],
-          ["6M", 126],
-          ["YTD", "ytd"],
-          ["1Y", 252],
-          ["3Y", 756],
-          ["5Y", 1260],
-          ["All", 0],
+          ["1W", 5], ["1M", 21], ["3M", 63], ["6M", 126], ["YTD", "ytd"], ["1Y", 252], ["3Y", 756], ["5Y", 1260], ["All", 0],
         ];
-        const card = (k, val, cls) =>
-          '<div class="card"><div class="k">' +
-          k +
-          '</div><div class="v ' +
-          (cls || "") +
-          '">' +
-          val +
-          "</div></div>";
-        $("perfCards").innerHTML = periods
-          .map(([l, d]) => {
-            const r =
-              d === 0
-                ? c[c.length - 1] / c[0] - 1
-                : d === "ytd"
-                ? ytdRet(c, dates)
-                : retOver(c, d);
-            return card(l, pct(r), r >= 0 ? "up" : "dn");
-          })
-          .join("");
+        const card = (k, val, cls) => '<div class="card"><div class="k">' + k + '</div><div class="v ' + (cls || "") + '">' + val + "</div></div>";
+        $("perfCards").innerHTML = periods.map(([l, d]) => { const r = d === 0 ? c[c.length - 1] / c[0] - 1 : d === "ytd" ? ytdRet(c, dates) : retOver(c, d); return card(l, pct(r), r >= 0 ? "up" : "dn"); }).join("");
 
-        const yr = {};
-        for (let i = 1; i < full.length; i++) {
-          const y = full[i].date.getFullYear();
-          (yr[y] = yr[y] || []).push(full[i].c / full[i - 1].c - 1);
-        }
-        const years = Object.keys(yr).sort();
-        const yrRet = years.map((y) =>
-          yr[y].reduce((a, b) => (1 + a) * (1 + b) - 1, 0)
-        );
-        drawChart("chartYearly", {
-          tooltip: tip({ valueFormatter: (v) => (v * 100).toFixed(2) + "%" }),
-          grid: { left: 50, right: 15, top: 10, bottom: 25 },
-          xAxis: Object.assign({ type: "category", data: years }, ax()),
-          yAxis: Object.assign({}, ax(), {
-            axisLabel: {
-              formatter: (v) => (v * 100).toFixed(0) + "%",
-              color: TH.axis,
-            },
-          }),
-          series: [
-            {
-              type: "bar",
-              data: yrRet,
-              itemStyle: {
-                color: yrRet.map((r) => (r >= 0 ? TH.up : TH.down)),
-              },
-            },
-          ],
-        });
+        const yr = {}; for (let i = 1; i < full.length; i++) { const y = full[i].date.getFullYear(); (yr[y] = yr[y] || []).push(full[i].c / full[i - 1].c - 1); }
+        const years = Object.keys(yr).sort(), yrRet = years.map((y) => yr[y].reduce((a, b) => (1 + a) * (1 + b) - 1, 0));
+        drawChart("chartYearly", { tooltip: tip({ valueFormatter: (v) => (v * 100).toFixed(2) + "%" }), grid: { left: 50, right: 15, top: 10, bottom: 25 }, xAxis: Object.assign({ type: "category", data: years }, ax()), yAxis: Object.assign({}, ax(), { axisLabel: { formatter: (v) => (v * 100).toFixed(0) + "%", color: TH.axis } }), series: [{ type: "bar", data: yrRet, itemStyle: { color: yrRet.map((r) => (r >= 0 ? TH.up : TH.down)) } }] });
 
-        const heat = {};
-        for (let i = 1; i < full.length; i++) {
-          const y = full[i].date.getFullYear(),
-            m = full[i].date.getMonth();
-          const k = y + "-" + m;
-          heat[k] = (heat[k] || 1) * (full[i].c / full[i - 1].c);
-        }
-        const ms = [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ];
-        const z = years.map((y) =>
-          ms.map((_, m) => {
-            const k = y + "-" + m;
-            return heat[k] != null ? (heat[k] - 1) * 100 : null;
-          })
-        );
-        drawChart("chartHeat", {
-          tooltip: {
-            position: "top",
-            backgroundColor: TH.tipBg,
-            borderColor: TH.border,
-            textStyle: { color: TH.tipText },
-          },
-          grid: { left: 50, right: 20, top: 10, bottom: 34 },
-          xAxis: Object.assign({ type: "category", data: ms }, ax()),
-          yAxis: Object.assign({ type: "category", data: years }, ax()),
-          visualMap: {
-            min: -15,
-            max: 15,
-            calculable: true,
-            orient: "horizontal",
-            left: "center",
-            bottom: 0,
-            textStyle: { color: TH.axis },
-            inRange: { color: [TH.down, TH.heatMid, TH.up] },
-          },
-          series: [
-            {
-              type: "heatmap",
-              data: years.flatMap((y, yi) =>
-                ms.map((m, mi) => [mi, yi, z[yi][mi]])
-              ),
-              label: {
-                show: true,
-                color: TH.text,
-                fontSize: 10.5,
-                formatter: (p) =>
-                  p.value[2] != null ? p.value[2].toFixed(1) + "%" : "-",
-              },
-            },
-          ],
-        });
-
+        const heat = {}; for (let i = 1; i < full.length; i++) { const y = full[i].date.getFullYear(), m = full[i].date.getMonth(), k = y + "-" + m; heat[k] = (heat[k] || 1) * (full[i].c / full[i - 1].c); }
+        const ms = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const z = years.map((y) => ms.map((_, m) => { const k = y + "-" + m; return heat[k] != null ? (heat[k] - 1) * 100 : null; }));
+        drawChart("chartHeat", { tooltip: { position: "top", backgroundColor: TH.tipBg, borderColor: TH.border, textStyle: { color: TH.tipText } }, grid: { left: 50, right: 20, top: 10, bottom: 34 }, xAxis: Object.assign({ type: "category", data: ms }, ax()), yAxis: Object.assign({ type: "category", data: years }, ax()), visualMap: { min: -15, max: 15, calculable: true, orient: "horizontal", left: "center", bottom: 0, textStyle: { color: TH.axis }, inRange: { color: [TH.down, TH.heatMid, TH.up] } }, series: [{ type: "heatmap", data: years.flatMap((y, yi) => ms.map((m, mi) => [mi, yi, z[yi][mi]])), label: { show: true, color: TH.text, fontSize: 10.5, formatter: (p) => p.value[2] != null ? p.value[2].toFixed(1) + "%" : "-" } }] });
         if (sparkDirty) buildSparkList();
       }
 
-      /* Sparklines are inline SVG — instant to render, no chart instances. */
       function sparkSVG(values, color) {
-        const n = values.length;
-        if (n < 2) return "";
-        let min = values[0],
-          max = values[0];
-        for (let i = 1; i < n; i++) {
-          const v = values[i];
-          if (v < min) min = v;
-          if (v > max) max = v;
-        }
-        const span = max - min || 1;
-        const W = 100,
-          H = 22;
-        let line = "";
-        for (let i = 0; i < n; i++) {
-          const x = (i / (n - 1)) * W;
-          const y = H - ((values[i] - min) / span) * (H - 2) - 1;
-          line += (i ? " " : "") + x.toFixed(1) + "," + y.toFixed(1);
-        }
+        const n = values.length; if (n < 2) return "";
+        let min = values[0], max = values[0];
+        for (let i = 1; i < n; i++) { const v = values[i]; if (v < min) min = v; if (v > max) max = v; }
+        const span = max - min || 1, W = 100, H = 22; let line = "";
+        for (let i = 0; i < n; i++) { const x = (i / (n - 1)) * W, y = H - ((values[i] - min) / span) * (H - 2) - 1; line += (i ? " " : "") + x.toFixed(1) + "," + y.toFixed(1); }
         const area = "0," + H + " " + line + " " + W + "," + H;
-        return (
-          '<svg viewBox="0 0 ' +
-          W +
-          " " +
-          H +
-          '" preserveAspectRatio="none" style="width:100%;height:100%;display:block" aria-hidden="true">' +
-          '<polygon points="' +
-          area +
-          '" fill="' +
-          color +
-          '" opacity="0.14"/>' +
-          '<polyline points="' +
-          line +
-          '" fill="none" stroke="' +
-          color +
-          '" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>' +
-          "</svg>"
-        );
+        return '<svg viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="none" style="width:100%;height:100%;display:block" aria-hidden="true"><polygon points="' + area + '" fill="' + color + '" opacity="0.14"/><polyline points="' + line + '" fill="none" stroke="' + color + '" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>';
       }
 
       function buildSparkList() {
-        const el = $("sparklist");
-        if (!el) return;
-        const ts = TICKER_LIST.filter(
-          (t) => DATA.has(t) && !isIndex(t) && !t.startsWith("TB")
-        ).sort();
-
-        if (!ts.length) {
-          el.innerHTML =
-            '<div class="spark-empty" style="grid-column:1/-1">' +
-            "No tickers loaded yet.<br>Click <b>Load sample</b> above, or search any ticker to add it here." +
-            "</div>";
-          sparkDirty = false;
-          return;
-        }
-
+        const el = $("sparklist"); if (!el) return;
+        const ts = TICKER_LIST.filter((t) => DATA.has(t) && !isIndex(t) && !t.startsWith("TB")).sort();
+        if (!ts.length) { el.innerHTML = '<div class="spark-empty" style="grid-column:1/-1">No tickers loaded yet.<br>Click <b>Load sample</b> above, or search any ticker to add it here.</div>'; sparkDirty = false; return; }
         let html = "";
         for (const t of ts.slice(0, 200)) {
-          const m = META.get(t);
-          if (!m) continue;
-          const rows = DATA.get(t);
-          const closes = rows ? rows.slice(-30).map((r) => r.c) : [m.lastClose];
-          const col = m.lastChg >= 0 ? TH.up : TH.down;
-          html +=
-            '<div class="spark" data-t="' +
-            escapeHtml(t) +
-            '">' +
-            '<div class="t">' +
-            escapeHtml(t) +
-            "</div>" +
-            '<div class="c ' +
-            (m.lastChg >= 0 ? "up" : "dn") +
-            '">' +
-            fmt(m.lastClose) +
-            " <span>" +
-            pct(m.lastChg) +
-            "</span></div>" +
-            '<div class="p">' +
-            m.rows +
-            " sessions</div>" +
-            '<div class="mini">' +
-            sparkSVG(closes, col) +
-            "</div>" +
-            "</div>";
+          const m = META.get(t); if (!m) continue;
+          const rows = DATA.get(t), closes = rows ? rows.slice(-30).map((r) => r.c) : [m.lastClose], col = m.lastChg >= 0 ? TH.up : TH.down;
+          html += '<div class="spark" data-t="' + escapeHtml(t) + '"><div class="t">' + escapeHtml(t) + '</div><div class="c ' + (m.lastChg >= 0 ? "up" : "dn") + '">' + fmt(m.lastClose) + " <span>" + pct(m.lastChg) + '</span></div><div class="p">' + m.rows + ' sessions</div><div class="mini">' + sparkSVG(closes, col) + "</div></div>";
         }
         el.innerHTML = html;
-        el.onclick = (e) => {
-          const card = e.target.closest(".spark");
-          if (card && card.dataset.t) {
-            pick(card.dataset.t);
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }
-        };
+        el.onclick = (e) => { const card = e.target.closest(".spark"); if (card && card.dataset.t) { pick(card.dataset.t); window.scrollTo({ top: 0, behavior: "smooth" }); } };
         sparkDirty = false;
       }
 
-      /* Batch-load a small sample set with concurrency limit. */
       async function loadSampleTickers() {
-        const btn = $("loadSampleBtn");
-        const status = $("loadSampleStatus");
+        const btn = $("loadSampleBtn"), status = $("loadSampleStatus");
         const toFetch = SAMPLE_TICKERS.filter((t) => !DATA.has(t));
-        if (!toFetch.length) {
-          if (status) status.textContent = "all loaded";
-          return;
-        }
-        btn.disabled = true;
-        btn.textContent = "Loading…";
-        let done = 0,
-          failed = 0;
-        const update = () => {
-          if (status)
-            status.textContent =
-              done +
-              " / " +
-              toFetch.length +
-              (failed ? " (" + failed + " failed)" : "");
-        };
-        update();
-
-        let idx = 0;
-        const CONCURRENCY = 3;
+        if (!toFetch.length) { if (status) status.textContent = "all loaded"; return; }
+        btn.disabled = true; btn.textContent = "Loading…";
+        let done = 0, failed = 0;
+        const update = () => { if (status) status.textContent = done + " / " + toFetch.length + (failed ? " (" + failed + " failed)" : ""); }; update();
+        let idx = 0; const CONCURRENCY = 3;
         async function worker() {
           while (idx < toFetch.length) {
             const t = toFetch[idx++];
             try {
               const rows = await fetchTicker(t);
               if (rows && rows.length) {
-                DATA.set(t, rows);
-                const last = rows[rows.length - 1],
-                  prev = rows.length > 1 ? rows[rows.length - 2] : last;
-                META.set(t, {
-                  lastClose: last.c,
-                  lastChg: prev ? last.c / prev.c - 1 : 0,
-                  lastDate: last.date,
-                  rows: rows.length,
-                });
-                if (!TICKER_LIST.includes(t)) {
-                  TICKER_LIST.push(t);
-                  TICKER_LIST.sort();
-                  saveTickerListToStorage();
-                }
+                DATA.set(t, rows); const last = rows[rows.length - 1], prev = rows.length > 1 ? rows[rows.length - 2] : last;
+                META.set(t, { lastClose: last.c, lastChg: prev ? last.c / prev.c - 1 : 0, lastDate: last.date, rows: rows.length });
+                if (!TICKER_LIST.includes(t)) { TICKER_LIST.push(t); TICKER_LIST.sort(); saveTickerListToStorage(); }
               } else failed++;
-            } catch (e) {
-              failed++;
-            }
-            done++;
-            update();
+            } catch (e) { failed++; }
+            done++; update();
           }
         }
-        await Promise.all(
-          Array(CONCURRENCY)
-            .fill(0)
-            .map(() => worker())
-        );
-        btn.disabled = false;
-        btn.textContent = "Load more";
-        if (status) {
-          setTimeout(() => {
-            status.textContent = "";
-          }, 1500);
-        }
-        sparkDirty = true;
-        buildSparkList();
+        await Promise.all(Array(CONCURRENCY).fill(0).map(() => worker()));
+        btn.disabled = false; btn.textContent = "Load more";
+        if (status) setTimeout(() => { status.textContent = ""; }, 1500);
+        sparkDirty = true; buildSparkList();
       }
       $("loadSampleBtn").onclick = loadSampleTickers;
 
       /* ================================================================
    HISTORY TAB
    ================================================================ */
-      function renderHistTab(full) {
-        renderHist(subset(full));
-      }
+      function renderHistTab(full) { renderHist(subset(full)); }
       function renderHist(rows) {
-        const t = $("histTable");
-        if (!t) return;
-        const h = t.querySelector("thead"),
-          b = t.querySelector("tbody");
-        if (!h || !b) return;
-        h.innerHTML =
-          "<tr><th>Date</th><th>Open</th><th>High</th><th>Low</th><th>Close</th><th>Chg%</th><th>Volume</th></tr>";
+        const t = $("histTable"); if (!t) return;
+        const h = t.querySelector("thead"), b = t.querySelector("tbody"); if (!h || !b) return;
+        h.innerHTML = "<tr><th>Date</th><th>Open</th><th>High</th><th>Low</th><th>Close</th><th>Chg%</th><th>Volume</th></tr>";
         let html = "";
         for (let i = rows.length - 1; i >= 0; i--) {
-          const r = rows[i],
-            p = rows[i - 1],
-            ch = p ? r.c / p.c - 1 : null;
-          html +=
-            "<tr><td>" +
-            fmtDate(r.date) +
-            "</td><td>" +
-            fmt(r.o) +
-            "</td><td>" +
-            fmt(r.h) +
-            "</td><td>" +
-            fmt(r.l) +
-            "</td><td>" +
-            fmt(r.c) +
-            '</td><td class="' +
-            (ch == null ? "" : ch >= 0 ? "up" : "dn") +
-            '">' +
-            (ch == null ? "—" : pct(ch)) +
-            "</td><td>" +
-            r.v.toLocaleString() +
-            "</td></tr>";
+          const r = rows[i], p = rows[i - 1], ch = p ? r.c / p.c - 1 : null;
+          html += "<tr><td>" + fmtDate(r.date) + "</td><td>" + fmt(r.o) + "</td><td>" + fmt(r.h) + "</td><td>" + fmt(r.l) + "</td><td>" + fmt(r.c) + '</td><td class="' + (ch == null ? "" : ch >= 0 ? "up" : "dn") + '">' + (ch == null ? "—" : pct(ch)) + "</td><td>" + r.v.toLocaleString() + "</td></tr>";
         }
         b.innerHTML = html;
       }
 
       $("dlBtn").onclick = () => {
-        if (!CUR) return;
-        const rows = subset(DATA.get(CUR));
-        const csv =
-          "Date,Open,High,Low,Close,Volume\n" +
-          rows
-            .map((r) => [fmtDate(r.date), r.o, r.h, r.l, r.c, r.v].join(","))
-            .join("\n");
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
-        a.download = CUR + ".csv";
-        a.click();
+        if (!CUR) return; const rows = subset(DATA.get(CUR));
+        const csv = "Date,Open,High,Low,Close,Volume\n" + rows.map((r) => [fmtDate(r.date), r.o, r.h, r.l, r.c, r.v].join(",")).join("\n");
+        const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" })); a.download = CUR + ".csv"; a.click();
       };
 
       /* ================================================================
    TABS
    ================================================================ */
-      document.querySelectorAll(".tabs button").forEach(
-        (b) =>
-          (b.onclick = () => {
-            document
-              .querySelectorAll(".tabs button")
-              .forEach((x) => x.classList.remove("on"));
-            document
-              .querySelectorAll(".panel")
-              .forEach((x) => x.classList.remove("on"));
-            b.classList.add("on");
-            $("tab-" + b.dataset.tab).classList.add("on");
-            CURRENT_TAB = b.dataset.tab;
-            if (CUR) renderActiveTab();
-            requestAnimationFrame(() => {
-              (TAB_CHARTS[CURRENT_TAB] || []).forEach((id) => {
-                if (charts[id]) charts[id].resize();
-              });
-            });
-          })
-      );
+      document.querySelectorAll(".tabs button").forEach((b) => b.onclick = () => {
+        document.querySelectorAll(".tabs button").forEach((x) => x.classList.remove("on"));
+        document.querySelectorAll(".panel").forEach((x) => x.classList.remove("on"));
+        b.classList.add("on"); $("tab-" + b.dataset.tab).classList.add("on");
+        CURRENT_TAB = b.dataset.tab; if (CUR) renderActiveTab();
+        requestAnimationFrame(() => { (TAB_CHARTS[CURRENT_TAB] || []).forEach((id) => { if (charts[id]) charts[id].resize(); }); });
+      });
 
       /* ================================================================
    INDICATORS
    ================================================================ */
-      const sma = (a, n) =>
-        a.map((_, i) =>
-          i < n - 1
-            ? null
-            : a.slice(i - n + 1, i + 1).reduce((x, y) => x + y, 0) / n
-        );
-      const ema = (a, n) => {
-        const k = 2 / (n + 1);
-        let e = a[0];
-        return a.map((v, i) => (i === 0 ? v : (e = v * k + e * (1 - k))));
-      };
+      const sma = (a, n) => a.map((_, i) => i < n - 1 ? null : a.slice(i - n + 1, i + 1).reduce((x, y) => x + y, 0) / n);
+      const ema = (a, n) => { const k = 2 / (n + 1); let e = a[0]; return a.map((v, i) => (i === 0 ? v : (e = v * k + e * (1 - k)))); };
       function rsi(c, n = 14) {
-        const o = new Array(c.length).fill(null);
-        let g = 0,
-          l = 0;
+        const o = new Array(c.length).fill(null); let g = 0, l = 0;
         for (let i = 1; i < c.length; i++) {
-          const ch = c[i] - c[i - 1],
-            u = Math.max(ch, 0),
-            d = Math.max(-ch, 0);
-          if (i <= n) {
-            g += u / n;
-            l += d / n;
-            if (i === n) o[i] = l === 0 ? 100 : 100 - 100 / (1 + g / l);
-          } else {
-            g = (g * (n - 1) + u) / n;
-            l = (l * (n - 1) + d) / n;
-            o[i] = l === 0 ? 100 : 100 - 100 / (1 + g / l);
-          }
+          const ch = c[i] - c[i - 1], u = Math.max(ch, 0), d = Math.max(-ch, 0);
+          if (i <= n) { g += u / n; l += d / n; if (i === n) o[i] = l === 0 ? 100 : 100 - 100 / (1 + g / l); } 
+          else { g = (g * (n - 1) + u) / n; l = (l * (n - 1) + d) / n; o[i] = l === 0 ? 100 : 100 - 100 / (1 + g / l); }
         }
         return o;
       }
-      function macd(c) {
-        const f = ema(c, 12),
-          s = ema(c, 26);
-        const line = c.map((_, i) => f[i] - s[i]);
-        const sig = ema(line, 9);
-        return { line, sig, hist: line.map((v, i) => v - sig[i]) };
-      }
+      function macd(c) { const f = ema(c, 12), s = ema(c, 26); const line = c.map((_, i) => f[i] - s[i]); const sig = ema(line, 9); return { line, sig, hist: line.map((v, i) => v - sig[i]) }; }
       function boll(c, n = 20, m = 2) {
         const mid = sma(c, n);
-        const up = c.map((_, i) => {
-          if (mid[i] == null) return null;
-          const sd = Math.sqrt(
-            c
-              .slice(i - n + 1, i + 1)
-              .reduce((s, x) => s + (x - mid[i]) ** 2, 0) / n
-          );
-          return mid[i] + m * sd;
-        });
+        const up = c.map((_, i) => { if (mid[i] == null) return null; const sd = Math.sqrt(c.slice(i - n + 1, i + 1).reduce((s, x) => s + (x - mid[i]) ** 2, 0) / n); return mid[i] + m * sd; });
         const lo = up.map((u, i) => (u == null ? null : mid[i] - (u - mid[i])));
         return { mid, up, lo };
       }
-      function rets(c) {
-        const r = [];
-        for (let i = 1; i < c.length; i++) r.push(c[i] / c[i - 1] - 1);
-        return r;
-      }
-      function maxDD(c) {
-        let p = c[0],
-          m = 0;
-        for (const v of c) {
-          p = Math.max(p, v);
-          m = Math.min(m, v / p - 1);
-        }
-        return m;
-      }
+      function rets(c) { const r = []; for (let i = 1; i < c.length; i++) r.push(c[i] / c[i - 1] - 1); return r; }
+      function maxDD(c) { let p = c[0], m = 0; for (const v of c) { p = Math.max(p, v); m = Math.min(m, v / p - 1); } return m; }
       function annVol(c) {
-        const r = rets(c);
-        if (r.length < 2) return null;
+        const r = rets(c); if (r.length < 2) return null;
         const m = r.reduce((a, b) => a + b) / r.length;
-        return Math.sqrt(
-          (r.reduce((a, b) => a + (b - m) ** 2, 0) / (r.length - 1)) * 252
-        );
+        return Math.sqrt((r.reduce((a, b) => a + (b - m) ** 2, 0) / (r.length - 1)) * 252);
       }
-      function annRet(c) {
-        if (c.length < 2) return null;
-        return Math.pow(c[c.length - 1] / c[0], 252 / (c.length - 1)) - 1;
-      }
-      function retOver(c, d) {
-        if (c.length < 2) return null;
-        const i = Math.max(0, c.length - 1 - d);
-        return c[c.length - 1] / c[i] - 1;
-      }
+      function annRet(c) { if (c.length < 2) return null; return Math.pow(c[c.length - 1] / c[0], 252 / (c.length - 1)) - 1; }
+      function retOver(c, d) { if (c.length < 2) return null; const i = Math.max(0, c.length - 1 - d); return c[c.length - 1] / c[i] - 1; }
       function ytdRet(c, d) {
-        const y = d[d.length - 1].getFullYear();
-        let b = null;
-        for (let i = d.length - 1; i >= 0; i--) {
-          if (d[i].getFullYear() < y) {
-            b = i;
-            break;
-          }
-        }
-        return b == null
-          ? c[c.length - 1] / c[0] - 1
-          : c[c.length - 1] / c[b] - 1;
+        const y = d[d.length - 1].getFullYear(); let b = null;
+        for (let i = d.length - 1; i >= 0; i--) { if (d[i].getFullYear() < y) { b = i; break; } }
+        return b == null ? c[c.length - 1] / c[0] - 1 : c[c.length - 1] / c[b] - 1;
       }
 
       /* ================================================================
