@@ -669,7 +669,6 @@
         display: block;
       }
 
-      /* Popover dropdown for seamless indicator / panel toggles */
       .pop-wrap {
         position: relative;
         display: inline-block;
@@ -1080,7 +1079,7 @@
               id="apiSaveBtn"
               style="margin-top: 10px; width: 100%"
             >
-              Save &amp; reload
+              Save & reload
             </button>
           </div>
         </div>
@@ -1154,7 +1153,7 @@
           title="Clear search"
           aria-label="Clear search"
         >
-          &#215;
+          ×
         </button>
         <div id="dropdown"></div>
       </div>
@@ -1180,7 +1179,10 @@
           </div>
           <div class="subline" id="tSub">—</div>
         </div>
-        <label class="adv-toggle-wrap" title="Switch between standard metrics and elaborated quantitative &amp; sentiment metrics">
+        <label
+          class="adv-toggle-wrap"
+          title="Switch between standard metrics and strict quantitative & sentiment metrics"
+        >
           <input type="checkbox" id="advMetricsToggle" />
           <span class="adv-switch"></span>
           <span class="adv-label">Advanced Metrics Enabled</span>
@@ -1190,7 +1192,7 @@
 
       <div class="metrics">
         <div class="metric-group">
-          <div class="group-label" id="groupLabel1">Price &amp; Range</div>
+          <div class="group-label" id="groupLabel1">Price & Range</div>
           <div class="group-cards" id="cardsPrice"></div>
         </div>
         <div class="metric-group">
@@ -1198,7 +1200,7 @@
           <div class="group-cards" id="cardsReturns"></div>
         </div>
         <div class="metric-group">
-          <div class="group-label" id="groupLabel3">Risk &amp; Drawdown</div>
+          <div class="group-label" id="groupLabel3">Risk & Drawdown</div>
           <div class="group-cards" id="cardsRisk"></div>
         </div>
       </div>
@@ -1214,7 +1216,7 @@
         <!-- Seamless Overview Panel Settings Popover (only shown on Overview tab) -->
         <div class="pop-wrap" id="ovSettingsWrap" style="display: none">
           <button class="btn sm" id="ovSettingsBtn" type="button">
-            Overview Panels &#9662;
+            Overview Panels ▾
           </button>
           <div class="pop-menu" id="ovSettingsMenu">
             <div class="pop-sec-title">Toggle Overview Graphs</div>
@@ -1231,7 +1233,7 @@
               <input type="checkbox" data-ov-panel="boxBB" checked />
             </label>
             <div class="pop-divider"></div>
-            <div class="pop-sec-title">Technical &amp; Drawdown</div>
+            <div class="pop-sec-title">Technical & Drawdown</div>
             <label class="pop-item">
               <span>RSI (14)</span>
               <input type="checkbox" data-ov-panel="boxRSI_ov" checked />
@@ -1273,7 +1275,7 @@
             <!-- Seamless Chart Indicators Popover -->
             <div class="pop-wrap" id="chartIndWrap">
               <button class="btn sm" id="chartIndBtn" type="button">
-                Indicators <span id="indCountBadge">1</span> &#9662;
+                Indicators <span id="indCountBadge">1</span> ▾
               </button>
               <div class="pop-menu" id="chartIndMenu">
                 <div class="pop-sec-title">Price Overlays</div>
@@ -1303,7 +1305,12 @@
                 <div class="pop-sec-title">Indicator Layout Mode</div>
                 <label class="pop-item">
                   <span>Overlap on Main Canvas</span>
-                  <input type="radio" name="indLayout" value="overlap" checked />
+                  <input
+                    type="radio"
+                    name="indLayout"
+                    value="overlap"
+                    checked
+                  />
                 </label>
                 <label class="pop-item">
                   <span>Stacked Panes</span>
@@ -1329,7 +1336,7 @@
                 data-chart="chartHist"
                 type="button"
               >
-                &#10530; Expand
+                ⤢ Expand
               </button>
             </div>
             <div class="dist-hud">
@@ -1350,12 +1357,28 @@
                 </div>
                 <div class="dist-win-btns">
                   <span>Window Size:</span>
-                  <button class="btn xs dist-preset" data-w="21" type="button">1M</button>
-                  <button class="btn xs dist-preset" data-w="63" type="button">3M</button>
-                  <button class="btn xs dist-preset" data-w="126" type="button">6M</button>
-                  <button class="btn xs dist-preset" data-w="252" type="button">1Y</button>
-                  <button class="btn xs dist-preset" data-w="756" type="button">3Y</button>
-                  <button class="btn xs dist-preset primary" data-w="0" type="button">All</button>
+                  <button class="btn xs dist-preset" data-w="21" type="button">
+                    1M
+                  </button>
+                  <button class="btn xs dist-preset" data-w="63" type="button">
+                    3M
+                  </button>
+                  <button class="btn xs dist-preset" data-w="126" type="button">
+                    6M
+                  </button>
+                  <button class="btn xs dist-preset" data-w="252" type="button">
+                    1Y
+                  </button>
+                  <button class="btn xs dist-preset" data-w="756" type="button">
+                    3Y
+                  </button>
+                  <button
+                    class="btn xs dist-preset primary"
+                    data-w="0"
+                    type="button"
+                  >
+                    All
+                  </button>
                 </div>
               </div>
               <div class="dist-stats-row" id="distStatsRow">
@@ -1363,7 +1386,7 @@
                 <span>Ann. Vol: <strong>—</strong></span>
                 <span>Skewness: <strong>—</strong></span>
                 <span>Kurtosis: <strong>—</strong></span>
-                <span>Positive Days: <strong>—</strong></span>
+                <span>Active Win Rate: <strong>—</strong></span>
               </div>
             </div>
             <div id="chartHist" class="chart" style="height: 310px"></div>
@@ -1379,7 +1402,7 @@
                 data-chart="chartVol"
                 type="button"
               >
-                &#10530; Expand
+                ⤢ Expand
               </button>
             </div>
             <div id="chartVol" class="chart" style="height: 398px"></div>
@@ -1395,7 +1418,7 @@
                 data-chart="chartBB"
                 type="button"
               >
-                &#10530; Expand
+                ⤢ Expand
               </button>
             </div>
             <div id="chartBB" class="chart" style="height: 340px"></div>
@@ -1411,7 +1434,7 @@
                 data-chart="chartRSI_ov"
                 type="button"
               >
-                &#10530; Expand
+                ⤢ Expand
               </button>
             </div>
             <div id="chartRSI_ov" class="chart" style="height: 270px"></div>
@@ -1427,7 +1450,7 @@
                 data-chart="chartMACD_ov"
                 type="button"
               >
-                &#10530; Expand
+                ⤢ Expand
               </button>
             </div>
             <div id="chartMACD_ov" class="chart" style="height: 270px"></div>
@@ -1443,7 +1466,7 @@
                 data-chart="chartDD_ov"
                 type="button"
               >
-                &#10530; Expand
+                ⤢ Expand
               </button>
             </div>
             <div id="chartDD_ov" class="chart" style="height: 270px"></div>
@@ -1642,8 +1665,6 @@
       let ADV_METRICS = false;
       let sparkDirty = true;
       const charts = {};
-
-      // Return distribution state for zero-lag sliding window
       let HIST_STATE = null;
 
       const $ = (id) => document.getElementById(id);
@@ -1733,7 +1754,6 @@
         );
       }
 
-      // High-visibility, opaque slider with clear dates and handles
       function makeSlider(opts) {
         opts = opts || {};
         return {
@@ -1839,8 +1859,6 @@
           ovSettingsBtn = $("ovSettingsBtn"),
           ovSettingsMenu = $("ovSettingsMenu");
 
-        const allMenus = [themeMenu, apiMenu, chartIndMenu, ovSettingsMenu];
-
         themeBtn.addEventListener("click", (e) => {
           e.stopPropagation();
           openMenu(themeMenu, [apiMenu, chartIndMenu, ovSettingsMenu]);
@@ -1929,7 +1947,6 @@
    EXPAND BUTTONS & OVERVIEW PANEL VISIBILITY WIRING
    ================================================================ */
       (function wireOverviewControls() {
-        // Expand / Collapse buttons on Overview boxes
         document.querySelectorAll(".expand-btn").forEach((btn) => {
           btn.addEventListener("click", () => {
             const box = $(btn.dataset.target);
@@ -1954,14 +1971,13 @@
               chartEl.style.height = isExpanded ? "400px" : "270px";
             }
 
-            btn.innerHTML = isExpanded ? "&#10529; Collapse" : "&#10530; Expand";
+            btn.textContent = isExpanded ? "⤡ Collapse" : "⤢ Expand";
             requestAnimationFrame(() => {
               if (charts[chartId]) charts[chartId].resize();
             });
           });
         });
 
-        // Overview Panel Checkboxes
         document
           .querySelectorAll("#ovSettingsMenu input[type='checkbox']")
           .forEach((chk) => {
@@ -1978,7 +1994,6 @@
             });
           });
 
-        // Return Distribution Window Preset Buttons
         document.querySelectorAll(".dist-preset").forEach((btn) => {
           btn.addEventListener("click", () => {
             document
@@ -2197,7 +2212,7 @@
         dd = $("dropdown");
 
       function syncClearBtn() {
-        qClear.style.display = q.value.length > 0 ? " inline-flex" : "none";
+        qClear.style.display = q.value.length > 0 ? "inline-flex" : "none";
       }
 
       q.addEventListener("input", () => {
@@ -2308,7 +2323,7 @@
       };
 
       /* ================================================================
-   RENDER MASTER & METRIC CARDS (STANDARD + ADVANCED)
+   RENDER MASTER & METRIC CARDS (STANDARD + STRICT QUANT)
    ================================================================ */
       function subset(rows) {
         if (!RANGE_DAYS || RANGE_DAYS >= rows.length) return rows;
@@ -2381,12 +2396,11 @@
           "</div>";
 
         if (!ADV_METRICS) {
-          // STANDARD METRICS
           $("groupLabel1").textContent = "Price & Range";
           $("groupLabel2").textContent = "Returns";
           $("groupLabel3").textContent = "Risk & Drawdown";
 
-          const ar = annRet(c),
+          const ar = annRet(c, d),
             av = annVol(c),
             mdd = maxDD(c);
           const r1w = retOver(c, 5),
@@ -2435,7 +2449,7 @@
             card("1Y Return", pct(r1y), "252 sessions", r1y >= 0 ? "up" : "dn");
 
           $("cardsRisk").innerHTML =
-            card("CAGR", pct(ar), "Annualized return", ar >= 0 ? "up" : "dn") +
+            card("CAGR", pct(ar), "Calendar annualized", ar >= 0 ? "up" : "dn") +
             card("Volatility", pct(av), "Annualized σ") +
             card(
               "Sharpe Ratio",
@@ -2445,12 +2459,12 @@
             ) +
             card("Max Drawdown", pct(mdd), "Peak to trough", "dn");
         } else {
-          // ADVANCED QUANTITATIVE & SENTIMENT METRICS
+          // STRICT QUANTITATIVE & SENTIMENT METRICS
           $("groupLabel1").textContent = "Sentiment & Regime";
           $("groupLabel2").textContent = "Tail Risk & Efficiency";
           $("groupLabel3").textContent = "Momentum & Extremes";
 
-          const adv = computeAdvancedMetrics(full, c, v, last, ath);
+          const adv = computeAdvancedMetrics(full, c, v, d, last, ath);
 
           $("cardsPrice").innerHTML =
             card(
@@ -2460,7 +2474,7 @@
               adv.regimeCls
             ) +
             card(
-              "Bull vs Bear Vol",
+              "Bull vs Bear Semi-Vol",
               fmt(adv.bullBearVolRatio, 2) + "x",
               "σ+ " + pct(adv.upVol) + " vs σ- " + pct(adv.dnVol),
               adv.bullBearVolRatio >= 1 ? "up" : "dn"
@@ -2472,31 +2486,33 @@
               adv.upDnVolRatio >= 1 ? "up" : "dn"
             ) +
             card(
-              "Win Rate & Profit Factor",
+              "Active Win Rate & PF",
               fmt(adv.winRate * 100, 1) + "%",
-              "Profit Factor: " +
+              "PF: " +
                 fmt(adv.profitFactor, 2) +
                 " · Payoff: " +
                 fmt(adv.payoffRatio, 2) +
-                "x",
+                "x (" +
+                adv.flatDays +
+                " flat)",
               adv.profitFactor >= 1 ? "up" : "dn"
             ) +
             card(
-              "Buying Pressure (20d CLV)",
-              (adv.clv20 >= 0 ? "+" : "") + fmt(adv.clv20 * 100, 1) + "%",
-              adv.clv20 >= 0.05
-                ? "Closes near session highs (Accum.)"
-                : adv.clv20 <= -0.05
-                ? "Closes near session lows (Distrib.)"
-                : "Balanced intraday closes",
-              adv.clv20 >= 0 ? "up" : "dn"
+              "Buying Pressure (20d CMF)",
+              (adv.cmf20 >= 0 ? "+" : "") + fmt(adv.cmf20 * 100, 1) + "%",
+              adv.cmf20 >= 0.05
+                ? "Vol-weighted high closes (Accum.)"
+                : adv.cmf20 <= -0.05
+                ? "Vol-weighted low closes (Distrib.)"
+                : "Balanced volume-weighted flow",
+              adv.cmf20 >= 0 ? "up" : "dn"
             );
 
           $("cardsReturns").innerHTML =
             card(
               "Sortino Ratio",
               fmt(adv.sortino, 2),
-              "Downside σ-: " + pct(adv.dnDev),
+              "CAGR " + pct(adv.ar) + " · σ- " + pct(adv.dnDev),
               adv.sortino != null && adv.sortino >= 0 ? "up" : "dn"
             ) +
             card(
@@ -2541,9 +2557,9 @@
               adv.lastRSI >= 50 ? "up" : "dn"
             ) +
             card(
-              "ATR (14d) Volatility",
+              "Wilder ATR (14d)",
               fmt(adv.atr14, 2) + " (" + fmt(adv.atrPct * 100, 2) + "%)",
-              "Avg daily true range swing"
+              "RMA smoothed daily true range"
             ) +
             card(
               "Drawdown & Recovery",
@@ -2574,14 +2590,15 @@
         }
       }
 
-      function computeAdvancedMetrics(full, c, v, last, ath) {
+      /* Strict Textbook Quantitative & Sentiment Calculations */
+      function computeAdvancedMetrics(full, c, v, d, last, ath) {
         const rr = rets(c);
         const n = rr.length;
-        const ar = annRet(c);
+        const ar = annRet(c, d);
         const histVol = annVol(c) || 0;
         const mdd = maxDD(c);
 
-        // 1. Regime (SMA50 & SMA200)
+        // 1. Complete 6-State Market Regime (SMA50 & SMA200)
         const sma50Arr = sma(c, 50),
           sma200Arr = sma(c, 200);
         const s50 = sma50Arr[c.length - 1] || last;
@@ -2596,92 +2613,98 @@
         } else if (last > s50 && last > s200) {
           regimeLabel = "Bullish";
           regimeCls = "up";
+        } else if (last > s50 && last <= s200) {
+          regimeLabel = "Recovery Rally";
+          regimeCls = "up";
         } else if (last < s50 && s50 < s200) {
           regimeLabel = "Strong Bear";
           regimeCls = "dn";
-        } else if (last < s50) {
-          regimeLabel = "Bearish Pullback";
+        } else if (last < s50 && last < s200) {
+          regimeLabel = "Bearish";
+          regimeCls = "dn";
+        } else if (last < s50 && last >= s200) {
+          regimeLabel = "Bull Pullback";
           regimeCls = "dn";
         }
         const regimeSub =
           "vs SMA50: " + pct(d50) + " · SMA200: " + pct(d200);
 
-        // 2. Bull vs Bear Volatility & Win/Loss Asymmetry
-        const posRets = [],
-          negRets = [];
+        // 2. Unconditional Upside vs Downside Semivolatility (around 0 across all N) & Active Win Rate
+        let posCnt = 0,
+          negCnt = 0,
+          flatDays = 0;
         let sumPos = 0,
-          sumNeg = 0;
+          sumNeg = 0,
+          sumUpSq = 0,
+          sumDnSq0 = 0;
         for (let i = 0; i < n; i++) {
-          if (rr[i] > 0) {
-            posRets.push(rr[i]);
-            sumPos += rr[i];
-          } else if (rr[i] < 0) {
-            negRets.push(rr[i]);
-            sumNeg += Math.abs(rr[i]);
+          const r = rr[i];
+          if (r > 0) {
+            posCnt++;
+            sumPos += r;
+            sumUpSq += r * r;
+          } else if (r < 0) {
+            negCnt++;
+            sumNeg += Math.abs(r);
+            sumDnSq0 += r * r;
+          } else {
+            flatDays++;
           }
         }
-        const calcStdAnn = (arr) => {
-          if (arr.length < 2) return 0;
-          const m = arr.reduce((a, b) => a + b, 0) / arr.length;
-          return Math.sqrt(
-            (arr.reduce((a, b) => a + (b - m) ** 2, 0) / (arr.length - 1)) * 252
-          );
-        };
-        const upVol = calcStdAnn(posRets);
-        const dnVol = calcStdAnn(negRets);
+        const upVol = n > 0 ? Math.sqrt((sumUpSq / n) * 252) : 0;
+        const dnVol = n > 0 ? Math.sqrt((sumDnSq0 / n) * 252) : 0;
         const bullBearVolRatio = dnVol > 0 ? upVol / dnVol : 1;
 
-        const winRate = n > 0 ? posRets.length / n : 0;
-        const avgGain = posRets.length ? sumPos / posRets.length : 0;
-        const avgLoss = negRets.length ? sumNeg / negRets.length : 0;
+        const activeDays = posCnt + negCnt;
+        const winRate = activeDays > 0 ? posCnt / activeDays : 0;
+        const avgGain = posCnt > 0 ? sumPos / posCnt : 0;
+        const avgLoss = negCnt > 0 ? sumNeg / negCnt : 0;
         const payoffRatio = avgLoss > 0 ? avgGain / avgLoss : 1;
         const profitFactor = sumNeg > 0 ? sumPos / sumNeg : 1;
 
-        // 3. Volume Sentiment (30d Up Vol vs Down Vol)
+        // 3. Volume Sentiment (30d Cumulative Up Volume / Cumulative Down Volume)
         const win30 = Math.min(30, full.length - 1);
         let upVolSum = 0,
-          upVolCnt = 0,
-          dnVolSum = 0,
-          dnVolCnt = 0;
+          dnVolSum = 0;
         for (let i = full.length - win30; i < full.length; i++) {
           if (i <= 0) continue;
           if (full[i].c > full[i - 1].c) {
             upVolSum += full[i].v;
-            upVolCnt++;
           } else if (full[i].c < full[i - 1].c) {
             dnVolSum += full[i].v;
-            dnVolCnt++;
           }
         }
-        const avgUpV = upVolCnt ? upVolSum / upVolCnt : 0;
-        const avgDnV = dnVolCnt ? dnVolSum / dnVolCnt : 0;
         const upDnVolRatio =
-          avgDnV > 0 ? avgUpV / avgDnV : avgUpV > 0 ? 2.0 : 1.0;
+          dnVolSum > 0 ? upVolSum / dnVolSum : upVolSum > 0 ? 2.0 : 1.0;
         const upDnVolSub =
           upDnVolRatio >= 1.15
-            ? "Net Accumulation (Strong buying vol)"
+            ? "Net Accumulation (Cum. Up/Dn Vol)"
             : upDnVolRatio <= 0.85
-            ? "Net Distribution (Heavy sell vol)"
-            : "Neutral volume balance";
+            ? "Net Distribution (Cum. Up/Dn Vol)"
+            : "Neutral 30d volume balance";
 
-        // 4. Buying Pressure (20d Close Location Value)
+        // 4. Buying Pressure: 20d Volume-Weighted Chaikin Money Flow (CMF)
         const w20 = full.slice(-Math.min(20, full.length));
-        let clvSum = 0;
+        let mfvSum = 0,
+          vol20Sum = 0;
         for (const r of w20) {
           const span = r.h - r.l;
-          clvSum += span > 0 ? (r.c - r.l - (r.h - r.c)) / span : 0;
+          const clv = span > 0 ? (r.c - r.l - (r.h - r.c)) / span : 0;
+          mfvSum += clv * r.v;
+          vol20Sum += r.v;
         }
-        const clv20 = w20.length ? clvSum / w20.length : 0;
+        const cmf20 = vol20Sum > 0 ? mfvSum / vol20Sum : 0;
 
-        // 5. Sortino, Calmar, Ulcer Index
-        let sumDownSq = 0;
+        // 5. Textbook Sortino Ratio (vs daily risk-free MAR), Calmar, Ulcer Index
+        const rfDaily = Math.pow(1 + 0.065, 1 / 252) - 1;
+        let sumDownMarSq = 0;
         for (let i = 0; i < n; i++) {
-          if (rr[i] < 0) sumDownSq += rr[i] * rr[i];
+          const diff = Math.min(0, rr[i] - rfDaily);
+          sumDownMarSq += diff * diff;
         }
-        const dnDev = n > 1 ? Math.sqrt((sumDownSq / n) * 252) : 0;
+        const dnDev = n > 1 ? Math.sqrt((sumDownMarSq / n) * 252) : 0;
         const sortino = ar != null && dnDev > 0 ? (ar - 0.065) / dnDev : null;
-        const calmar =
-          ar != null && mdd < 0 ? ar / Math.abs(mdd) : null;
+        const calmar = ar != null && mdd < 0 ? ar / Math.abs(mdd) : null;
 
         let pk = c[0],
           ddSqSum = 0,
@@ -2694,54 +2717,74 @@
         }
         const ulcer = Math.sqrt(ddSqSum / c.length);
 
-        // 6. VaR (95%), CVaR (95%), Skewness, Kurtosis
+        // 6. Exact Linear-Interpolated VaR (95%), CVaR (95%), Sample Skewness & Kurtosis
         const sortedR = [...rr].sort((a, b) => a - b);
-        const varIdx = Math.max(0, Math.floor(sortedR.length * 0.05));
-        const var95 = sortedR.length ? sortedR[varIdx] : 0;
-        const tailSlice = sortedR.slice(0, varIdx + 1);
-        const cvar95 = tailSlice.length
-          ? tailSlice.reduce((a, b) => a + b, 0) / tailSlice.length
-          : 0;
+        let var95 = 0,
+          cvar95 = 0;
+        if (sortedR.length > 0) {
+          const pos5 = 0.05 * (sortedR.length - 1);
+          const loIdx = Math.floor(pos5),
+            hiIdx = Math.ceil(pos5);
+          const frac = pos5 - loIdx;
+          var95 =
+            sortedR[loIdx] + frac * (sortedR[hiIdx] - sortedR[loIdx]);
+          const tail = sortedR.filter((x) => x <= var95);
+          cvar95 = tail.length
+            ? tail.reduce((a, b) => a + b, 0) / tail.length
+            : var95;
+        }
 
         const stats = calcMoments(rr);
 
-        // 7. RSI, 20d Z-Score, ATR(14), Streaks
+        // 7. Wilder's RSI(14), Sample 20d Z-Score (ddof=1), Wilder's RMA ATR(14), Strict Streaks
         const rsiArr = rsi(c, 14);
         const lastRSI = rsiArr[rsiArr.length - 1] || 50;
         const c20 = c.slice(-Math.min(20, c.length));
         const m20 = c20.reduce((a, b) => a + b, 0) / c20.length;
         const sd20 =
-          Math.sqrt(c20.reduce((a, b) => a + (b - m20) ** 2, 0) / c20.length) ||
-          1;
+          c20.length > 1
+            ? Math.sqrt(
+                c20.reduce((a, b) => a + (b - m20) ** 2, 0) /
+                  (c20.length - 1)
+              ) || 1
+            : 1;
         const zScore20 = (last - m20) / sd20;
         const rsiState =
           lastRSI >= 70
-            ? "Overbought regime (>70)"
+            ? "Overbought regime (≥70)"
             : lastRSI <= 30
-            ? "Oversold regime (<30)"
+            ? "Oversold regime (≤30)"
             : "Neutral momentum zone";
 
-        const atrSlice = full.slice(-Math.min(15, full.length));
-        let trSum = 0,
-          trCnt = 0;
-        for (let i = 1; i < atrSlice.length; i++) {
-          const cur = atrSlice[i],
-            prv = atrSlice[i - 1];
-          const tr = Math.max(
-            cur.h - cur.l,
-            Math.abs(cur.h - prv.c),
-            Math.abs(cur.l - prv.c)
-          );
-          trSum += tr;
-          trCnt++;
+        // Wilder's RMA ATR(14) across full series
+        let atr14 = 0;
+        if (full.length > 1) {
+          const trs = [];
+          for (let i = 1; i < full.length; i++) {
+            const cur = full[i],
+              prv = full[i - 1];
+            trs.push(
+              Math.max(
+                cur.h - cur.l,
+                Math.abs(cur.h - prv.c),
+                Math.abs(cur.l - prv.c)
+              )
+            );
+          }
+          const period = Math.min(14, trs.length);
+          atr14 =
+            trs.slice(0, period).reduce((a, b) => a + b, 0) / period;
+          for (let i = period; i < trs.length; i++) {
+            atr14 = (atr14 * 13 + trs[i]) / 14;
+          }
         }
-        const atr14 = trCnt ? trSum / trCnt : 0;
         const atrPct = last > 0 ? atr14 / last : 0;
 
         const curDD = last / ath - 1;
         const reqGain = last > 0 ? ath / last - 1 : 0;
         const daysSinceATH = c.length - 1 - athIdx;
 
+        // Strict consecutive streaks (flat 0% days reset consecutive counter)
         let maxWinStreak = 0,
           maxLossStreak = 0,
           curW = 0,
@@ -2758,6 +2801,10 @@
             curW = 0;
             if (curL > maxLossStreak) maxLossStreak = curL;
             curStreak = -curL;
+          } else {
+            curW = 0;
+            curL = 0;
+            curStreak = 0;
           }
         }
         const curStreakTxt =
@@ -2765,7 +2812,7 @@
             ? "+" + curStreak + "d Win Streak"
             : curStreak < 0
             ? Math.abs(curStreak) + "d Loss Streak"
-            : "Flat Today";
+            : "Flat (0.00%) Today";
 
         const vol30 = annVol(c.slice(-Math.min(31, c.length))) || histVol;
         const volRatio = histVol > 0 ? vol30 / histVol : 1;
@@ -2777,6 +2824,7 @@
             : "Normal Vol (" + fmt(volRatio, 2) + "x hist)";
 
         return {
+          ar,
           regimeLabel,
           regimeSub,
           regimeCls,
@@ -2784,11 +2832,12 @@
           dnVol,
           bullBearVolRatio,
           winRate,
+          flatDays,
           payoffRatio,
           profitFactor,
           upDnVolRatio,
           upDnVolSub,
-          clv20,
+          cmf20,
           sortino,
           dnDev,
           calmar,
@@ -2815,14 +2864,17 @@
         };
       }
 
+      /* Unbiased Sample Moments (Fisher-Pearson G1 Skewness & G2 Excess Kurtosis) */
       function calcMoments(arr) {
         const n = arr.length;
-        if (n < 3) return { mean: 0, sd: 0, skew: 0, kurt: 0, posPct: 0 };
+        if (n < 4) return { mean: 0, sd: 0, skew: 0, kurt: 0, activeWinPct: 0 };
         let sum = 0,
-          pos = 0;
+          pos = 0,
+          neg = 0;
         for (let i = 0; i < n; i++) {
           sum += arr[i];
           if (arr[i] > 0) pos++;
+          else if (arr[i] < 0) neg++;
         }
         const mean = sum / n;
         let m2 = 0,
@@ -2835,13 +2887,20 @@
           m3 += d2 * d;
           m4 += d2 * d2;
         }
-        const variance = m2 / n;
-        const sd = Math.sqrt(variance);
+        const sampleVar = m2 / (n - 1);
+        const sd = Math.sqrt(sampleVar);
+        const active = pos + neg;
+        const activeWinPct = active > 0 ? pos / active : 0;
         if (sd === 0)
-          return { mean, sd: 0, skew: 0, kurt: 0, posPct: pos / n };
-        const skew = m3 / n / Math.pow(sd, 3);
-        const kurt = m4 / n / (variance * variance) - 3;
-        return { mean, sd, skew, kurt, posPct: pos / n };
+          return { mean, sd: 0, skew: 0, kurt: 0, activeWinPct };
+
+        const skew =
+          (n / ((n - 1) * (n - 2))) * (m3 / Math.pow(sd, 3));
+        const kurt =
+          ((n * (n + 1)) / ((n - 1) * (n - 2) * (n - 3))) *
+            (m4 / (sampleVar * sampleVar)) -
+          (3 * (n - 1) * (n - 1)) / ((n - 2) * (n - 3));
+        return { mean, sd, skew, kurt, activeWinPct };
       }
 
       /* ================================================================
@@ -2871,7 +2930,6 @@
           document.querySelector("input[name='indLayout']:checked")?.value ||
           "overlap";
 
-        // Update active indicator count badge
         const activeCnt =
           (showSMA ? 1 : 0) +
           (showBB ? 1 : 0) +
@@ -2896,7 +2954,6 @@
           if (showDD) subPanes.push("dd");
         }
 
-        // Dynamic chart height when stacked panes are active
         const mainEl = $("chartMain");
         const targetH = 580 + subPanes.length * 140;
         if (mainEl && mainEl.style.height !== targetH + "px") {
@@ -2992,7 +3049,6 @@
         let yAxes = [];
         let allXIndices = [];
 
-        // Build main price + volume grids
         const hasSepVol = volMode === "separate";
         const totalSub = (hasSepVol ? 1 : 0) + subPanes.length;
 
@@ -3041,7 +3097,6 @@
             legendData.push("Volume");
           }
         } else {
-          // Multi-grid stacked layout
           const mainH = Math.max(38, 74 - totalSub * 14);
           const paneH = Math.floor((80 - mainH) / totalSub) - 3;
           grids.push({ left: 62, right: 68, top: "6%", height: mainH + "%" });
@@ -3226,7 +3281,6 @@
           }
         }
 
-        // If Overlap Mode is chosen, overlay RSI / MACD / Drawdown directly onto the Main Canvas (gridIndex 0)
         if (indLayout === "overlap") {
           if (showRSI) {
             const yIdx = yAxes.length;
@@ -3411,55 +3465,44 @@
           weeks +
           " wks)";
 
-        // Fast O(W) single-pass integer re-binning + moment calculation
         const counts = new Array(numBins).fill(0);
-        let sum = 0,
-          pos = 0;
+        const subR = new Array(sessions);
+        let pos = 0,
+          neg = 0;
         for (let i = sv; i <= ev; i++) {
           counts[binIdxOfDay[i]]++;
           const r = rr[i];
-          sum += r;
+          subR[i - sv] = r;
           if (r > 0) pos++;
+          else if (r < 0) neg++;
         }
-        const mean = sum / sessions;
-        let m2 = 0,
-          m3 = 0,
-          m4 = 0;
-        for (let i = sv; i <= ev; i++) {
-          const d = rr[i] - mean;
-          const d2 = d * d;
-          m2 += d2;
-          m3 += d2 * d;
-          m4 += d2 * d2;
-        }
-        const variance = m2 / sessions;
-        const sd = Math.sqrt(variance);
-        const annV = sd * Math.sqrt(252);
-        const skew = sd > 0 ? m3 / sessions / Math.pow(sd, 3) : 0;
-        const kurt = sd > 0 ? m4 / sessions / (variance * variance) - 3 : 0;
-        const posPct = (pos / sessions) * 100;
+
+        const m = calcMoments(subR);
+        const annV = m.sd * Math.sqrt(252);
+        const active = pos + neg;
+        const activeWinPct = active > 0 ? (pos / active) * 100 : 0;
 
         $("distStatsRow").innerHTML =
           "<span>Mean: <strong>" +
-          pct(mean) +
+          pct(m.mean) +
           "</strong></span>" +
           "<span>Ann. Vol: <strong>" +
           pct(annV) +
           "</strong></span>" +
           "<span>Skewness: <strong>" +
-          (skew >= 0 ? "+" : "") +
-          fmt(skew, 2) +
+          (m.skew >= 0 ? "+" : "") +
+          fmt(m.skew, 2) +
           "</strong></span>" +
           "<span>Kurtosis: <strong>" +
-          (kurt >= 0 ? "+" : "") +
-          fmt(kurt, 2) +
+          (m.kurt >= 0 ? "+" : "") +
+          fmt(m.kurt, 2) +
           "</strong></span>" +
-          "<span>Positive Days: <strong>" +
-          fmt(posPct, 1) +
+          "<span>Active Win Rate: <strong>" +
+          fmt(activeWinPct, 1) +
           "% (" +
           pos +
           "/" +
-          sessions +
+          active +
           ")</strong></span>";
 
         return counts;
@@ -3471,10 +3514,12 @@
         const n = HIST_STATE.rr.length;
         if (!n) return;
 
-        // Anchor the right side of the current window so the user can resize and drag smoothly
         const opt = chHist.getOption();
         let curEnd =
-          opt && opt.dataZoom && opt.dataZoom[1] && opt.dataZoom[1].endValue != null
+          opt &&
+          opt.dataZoom &&
+          opt.dataZoom[1] &&
+          opt.dataZoom[1].endValue != null
             ? opt.dataZoom[1].endValue
             : n - 1;
         if (curEnd >= n || curEnd < 0) curEnd = n - 1;
@@ -3518,7 +3563,6 @@
           binColors.push(midVal >= 0 ? TH.up : TH.down);
         }
 
-        // Pre-compute bin index for each session once -> O(1) lookup during slider drag
         const binIdxOfDay = new Uint8Array(rr.length);
         for (let i = 0; i < rr.length; i++) {
           let idx = Math.floor((rr[i] - min) / step);
@@ -3571,7 +3615,13 @@
             { type: "category", data: dts, show: false },
           ],
           yAxis: [
-            Object.assign({ name: "Sessions", nameTextStyle: { color: TH.axis, fontSize: 11 } }, ax()),
+            Object.assign(
+              {
+                name: "Sessions",
+                nameTextStyle: { color: TH.axis, fontSize: 11 },
+              },
+              ax()
+            ),
             { type: "value", show: false, scale: true },
           ],
           dataZoom: [
@@ -3601,7 +3651,6 @@
                 borderRadius: [2, 2, 0, 0],
               },
             },
-            // Hidden price shadow series on xAxisIndex 1 so the bottom slider displays the price curve inside the slider track!
             {
               id: "histShadow",
               type: "line",
@@ -3618,7 +3667,6 @@
           ],
         });
 
-        // Ultra-fast RAF-throttled listener using event percentages directly
         let histRaf = null;
         chHist.on("datazoom", function (evt) {
           if (histRaf) cancelAnimationFrame(histRaf);
@@ -3662,7 +3710,11 @@
           tooltip: tip({ valueFormatter: (v) => (v * 100).toFixed(1) + "%" }),
           grid: { left: 54, right: 24, top: 14, bottom: 76 },
           xAxis: Object.assign(
-            { type: "category", data: dates.slice(5).map(fmtDate), boundaryGap: false },
+            {
+              type: "category",
+              data: dates.slice(5).map(fmtDate),
+              boundaryGap: false,
+            },
             ax()
           ),
           yAxis: Object.assign({}, ax(), {
@@ -3741,7 +3793,9 @@
 
         // --- 4. RSI (14) IN OVERVIEW ---
         drawChart("chartRSI_ov", {
-          tooltip: tip({ valueFormatter: (v) => (v != null ? v.toFixed(1) : "—") }),
+          tooltip: tip({
+            valueFormatter: (v) => (v != null ? v.toFixed(1) : "—"),
+          }),
           grid: { left: 52, right: 24, top: 14, bottom: 76 },
           xAxis: Object.assign(
             { type: "category", data: dtsAll, boundaryGap: false },
@@ -3780,7 +3834,9 @@
         // --- 5. MACD (12, 26, 9) IN OVERVIEW ---
         const m = macd(c);
         drawChart("chartMACD_ov", {
-          tooltip: tip({ valueFormatter: (v) => (v != null ? v.toFixed(2) : "—") }),
+          tooltip: tip({
+            valueFormatter: (v) => (v != null ? v.toFixed(2) : "—"),
+          }),
           legend: {
             data: ["MACD", "Signal", "Hist"],
             top: 0,
@@ -4215,7 +4271,7 @@
       );
 
       /* ================================================================
-   INDICATORS
+   INDICATORS (STRICT QUANT FORMULAS)
    ================================================================ */
       const sma = (a, n) =>
         a.map((_, i) =>
@@ -4291,8 +4347,12 @@
           (r.reduce((a, b) => a + (b - m) ** 2, 0) / (r.length - 1)) * 252
         );
       }
-      function annRet(c) {
+      function annRet(c, d) {
         if (c.length < 2) return null;
+        if (d && d.length === c.length) {
+          const calYears = (d[d.length - 1] - d[0]) / (365.25 * 86400000);
+          if (calYears > 0) return Math.pow(c[c.length - 1] / c[0], 1 / calYears) - 1;
+        }
         return Math.pow(c[c.length - 1] / c[0], 252 / (c.length - 1)) - 1;
       }
       function retOver(c, d) {
