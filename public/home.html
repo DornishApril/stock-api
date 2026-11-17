@@ -7,36 +7,36 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Karla:wght@400;500;700&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
       rel="stylesheet"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
     <style>
       /* ============ THEMES ============ */
       :root {
-        --font-display: "Fraunces", Georgia, serif;
-        --font-body: "Karla", system-ui, -apple-system, sans-serif;
+        --font-display: "Figtree", system-ui, -apple-system, sans-serif;
+        --font-body: "Figtree", system-ui, -apple-system, sans-serif;
         --bg: #f1f2eb;
         --panel: #fafbf6;
         --panel2: #e9ebe1;
         --border: #d8dad3;
         --text: #2b2f26;
-        --muted: #6b7261;
+        --muted: #5c6353;
         --accent: #566246;
-        --accent2: #a4c2a5;
+        --accent2: #7d9471;
         --on-accent: #f1f2eb;
-        --up: #4a6b3f;
-        --down: #9c4a35;
+        --up: #3b662e;
+        --down: #a63d26;
       }
       [data-theme="ocean"] {
-        --font-display: "Instrument Serif", Georgia, serif;
-        --font-body: "Outfit", system-ui, -apple-system, sans-serif;
+        --font-display: "Figtree", system-ui, -apple-system, sans-serif;
+        --font-body: "Figtree", system-ui, -apple-system, sans-serif;
         --bg: #01161e;
         --panel: #0b2833;
         --panel2: #123b47;
         --border: #1d4b58;
         --text: #eff6e0;
-        --muted: #8fb0ae;
+        --muted: #9abcb9;
         --accent: #598392;
         --accent2: #aec3b0;
         --on-accent: #01161e;
@@ -44,19 +44,19 @@
         --down: #ff8577;
       }
       [data-theme="sunny"] {
-        --font-display: "Bricolage Grotesque", system-ui, sans-serif;
-        --font-body: "Outfit", system-ui, -apple-system, sans-serif;
+        --font-display: "Figtree", system-ui, -apple-system, sans-serif;
+        --font-body: "Figtree", system-ui, -apple-system, sans-serif;
         --bg: #ffecd1;
         --panel: #fff9ef;
         --panel2: #ffe3c2;
         --border: #f3cf9f;
         --text: #001524;
-        --muted: #8a5a34;
+        --muted: #7a4b26;
         --accent: #ff7d00;
         --accent2: #15616d;
         --on-accent: #001524;
         --up: #15616d;
-        --down: #78290f;
+        --down: #9b2915;
       }
 
       /* ============ BASE ============ */
@@ -69,7 +69,7 @@
         background: var(--bg);
         color: var(--text);
         font-family: var(--font-body);
-        font-size: 14px;
+        font-size: 14.5px;
         line-height: 1.45;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -90,7 +90,7 @@
         display: flex;
         align-items: center;
         gap: 14px;
-        padding: 12px 64px 12px 22px;
+        padding: 12px 100px 12px 22px;
         background: var(--panel);
         border-bottom: 2px solid var(--accent);
         position: sticky;
@@ -101,7 +101,7 @@
       }
       .logo {
         font-family: var(--font-display);
-        font-size: 21px;
+        font-size: 22px;
         font-weight: 800;
         letter-spacing: -0.025em;
         line-height: 1;
@@ -113,28 +113,29 @@
       .logo small {
         display: block;
         font-family: var(--font-body);
-        font-size: 8.5px;
+        font-size: 9px;
         color: var(--muted);
         font-weight: 700;
-        letter-spacing: 0.2em;
+        letter-spacing: 0.18em;
         margin-top: 4px;
       }
 
       .searchwrap {
         position: relative;
         flex: 1;
-        max-width: 420px;
-        min-width: 180px;
+        max-width: 440px;
+        min-width: 200px;
       }
       .searchwrap input {
         width: 100%;
-        padding: 8px 12px 8px 34px;
+        padding: 8px 34px 8px 34px;
         background: var(--bg);
         border: 1px solid var(--border);
-        border-radius: 3px;
+        border-radius: 4px;
         color: var(--text);
         font-family: var(--font-body);
-        font-size: 13.5px;
+        font-size: 14px;
+        font-weight: 500;
         outline: none;
         transition: border-color 0.15s ease;
       }
@@ -145,28 +146,54 @@
       .searchwrap input:focus {
         border-color: var(--accent);
       }
-      .searchwrap svg {
+      .searchwrap svg.search-ic {
         position: absolute;
         left: 10px;
-        top: 10px;
+        top: 50%;
+        transform: translateY(-50%);
         color: var(--muted);
+        pointer-events: none;
+      }
+      .search-clear {
+        position: absolute;
+        right: 7px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 22px;
+        height: 22px;
+        border: none;
+        border-radius: 50%;
+        background: var(--panel2);
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1;
+        font-weight: 700;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s ease;
+      }
+      .search-clear:hover {
+        background: var(--accent);
+        color: var(--on-accent);
       }
       #dropdown {
         position: absolute;
-        top: 40px;
+        top: 42px;
         left: 0;
         right: 0;
         background: var(--panel);
         border: 1px solid var(--border);
-        border-radius: 3px;
-        max-height: 320px;
+        border-radius: 4px;
+        max-height: 340px;
         overflow: auto;
         display: none;
         z-index: 100;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
       }
       #dropdown div {
-        padding: 8px 12px;
+        padding: 9px 13px;
         cursor: pointer;
         border-bottom: 1px solid var(--border);
         display: flex;
@@ -182,27 +209,30 @@
       }
       #dropdown .sym {
         font-weight: 700;
-        font-size: 12.5px;
-        letter-spacing: 0.03em;
+        font-size: 13.5px;
+        letter-spacing: 0.02em;
       }
       #dropdown .nm {
         color: var(--muted);
-        font-size: 11.5px;
+        font-size: 12.5px;
         font-variant-numeric: tabular-nums;
       }
 
       .btn {
-        padding: 7px 13px;
-        border-radius: 3px;
+        padding: 7px 14px;
+        border-radius: 4px;
         border: 1px solid var(--border);
         background: transparent;
         color: var(--text);
         cursor: pointer;
         font-family: var(--font-body);
-        font-size: 12.5px;
+        font-size: 13px;
         font-weight: 600;
         letter-spacing: 0.01em;
         transition: all 0.15s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
       }
       .btn:hover {
         border-color: var(--accent);
@@ -214,11 +244,15 @@
         color: var(--on-accent);
       }
       .btn.primary:hover {
-        opacity: 0.88;
+        opacity: 0.9;
         color: var(--on-accent);
       }
       .btn.sm {
-        padding: 4px 10px;
+        padding: 5px 11px;
+        font-size: 12px;
+      }
+      .btn.xs {
+        padding: 3px 8px;
         font-size: 11.5px;
       }
       .btn[disabled] {
@@ -227,11 +261,11 @@
       }
 
       .badge {
-        font-size: 11.5px;
+        font-size: 12px;
         color: var(--muted);
         border: 1px solid var(--border);
-        padding: 4px 9px;
-        border-radius: 3px;
+        padding: 5px 10px;
+        border-radius: 4px;
         background: var(--bg);
         font-variant-numeric: tabular-nums;
         white-space: nowrap;
@@ -250,7 +284,7 @@
       /* ============ TOP-RIGHT WIDGETS ============ */
       .top-widgets {
         position: fixed;
-        top: 14px;
+        top: 13px;
         right: 14px;
         z-index: 200;
         display: flex;
@@ -291,8 +325,8 @@
         background: var(--panel);
         border: 1px solid var(--border);
         border-radius: 4px;
-        min-width: 180px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+        min-width: 190px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
         display: none;
         overflow: hidden;
       }
@@ -308,7 +342,7 @@
         border-bottom: 1px solid var(--border);
         color: var(--text);
         font-family: var(--font-body);
-        font-size: 12.5px;
+        font-size: 13px;
         cursor: pointer;
         transition: background-color 0.12s ease;
         display: flex;
@@ -348,21 +382,21 @@
       }
       #apiMenu label {
         display: block;
-        font-size: 10px;
+        font-size: 11px;
         text-transform: uppercase;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.08em;
         font-weight: 700;
         color: var(--muted);
         margin-bottom: 6px;
       }
       #apiMenu input {
         width: 100%;
-        padding: 6px 8px;
+        padding: 7px 9px;
         background: var(--bg);
         border: 1px solid var(--border);
-        border-radius: 3px;
+        border-radius: 4px;
         font-family: var(--font-body);
-        font-size: 12px;
+        font-size: 12.5px;
         color: var(--text);
         outline: none;
       }
@@ -371,7 +405,7 @@
       }
       #apiMenu .hintline {
         margin-top: 8px;
-        font-size: 10.5px;
+        font-size: 11px;
         color: var(--muted);
         line-height: 1.5;
       }
@@ -381,158 +415,240 @@
         background: var(--panel2);
         padding: 1px 5px;
         border-radius: 3px;
-        font-size: 10.5px;
+        font-size: 11px;
       }
 
       /* ============ LAYOUT ============ */
       .wrap {
-        padding: 34px 24px 20px;
-        max-width: 1500px;
+        padding: 28px 24px 24px;
+        max-width: 1540px;
         margin: 0 auto;
+      }
+      .quote-top-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
       }
       .quote-head {
         display: flex;
         align-items: baseline;
         gap: 14px;
         flex-wrap: wrap;
-        margin-bottom: 3px;
+        margin-bottom: 4px;
       }
       .quote-head h1 {
         font-family: var(--font-display);
-        font-size: 27px;
+        font-size: 32px;
         font-weight: 800;
         letter-spacing: -0.025em;
-        line-height: 1.1;
+        line-height: 1.05;
       }
       .px {
         font-family: var(--font-display);
-        font-size: 27px;
+        font-size: 32px;
         font-weight: 800;
         font-variant-numeric: tabular-nums;
-        line-height: 1.1;
+        line-height: 1.05;
       }
       .chg {
-        font-size: 13px;
+        font-size: 15px;
         font-weight: 700;
         font-variant-numeric: tabular-nums;
         letter-spacing: 0.01em;
       }
       .subline {
         color: var(--muted);
-        font-size: 12px;
-        margin-bottom: 20px;
+        font-size: 13.5px;
+        font-weight: 500;
         font-variant-numeric: tabular-nums;
       }
 
-      /* ============ METRIC GROUPS ============ */
+      /* ============ ADVANCED METRICS TOGGLE SWITCH ============ */
+      .adv-toggle-wrap {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        padding: 7px 13px;
+        border-radius: 6px;
+        cursor: pointer;
+        user-select: none;
+        transition: border-color 0.15s ease, background-color 0.15s ease;
+      }
+      .adv-toggle-wrap:hover {
+        border-color: var(--accent);
+      }
+      .adv-toggle-wrap input {
+        display: none;
+      }
+      .adv-switch {
+        width: 36px;
+        height: 20px;
+        background: var(--panel2);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        position: relative;
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+      }
+      .adv-switch::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--muted);
+        transition: transform 0.2s ease, background-color 0.2s ease;
+      }
+      .adv-toggle-wrap input:checked + .adv-switch {
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+      .adv-toggle-wrap input:checked + .adv-switch::after {
+        transform: translateX(16px);
+        background: var(--on-accent);
+      }
+      .adv-label {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text);
+        letter-spacing: 0.01em;
+      }
+      .adv-tag {
+        font-size: 10.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding: 2px 6px;
+        border-radius: 3px;
+        background: var(--panel2);
+        color: var(--accent);
+      }
+
+      /* ============ METRIC GROUPS (LARGER & CLEARER) ============ */
       .metrics {
         display: flex;
         flex-direction: column;
-        gap: 10px;
-        margin-bottom: 20px;
+        gap: 12px;
+        margin-bottom: 22px;
       }
       .metric-group {
         display: grid;
-        grid-template-columns: 148px 1fr;
+        grid-template-columns: 176px 1fr;
         align-items: stretch;
         background: var(--panel);
         border: 1px solid var(--border);
-        border-radius: 4px;
+        border-radius: 5px;
         overflow: hidden;
         transition: background-color 0.25s ease, border-color 0.25s ease;
       }
       .metric-group .group-label {
-        padding: 12px 16px;
+        padding: 14px 16px;
         background: var(--panel2);
         border-right: 1px solid var(--border);
         display: flex;
         align-items: center;
-        gap: 9px;
-        font-size: 10px;
+        gap: 10px;
+        font-size: 12px;
         text-transform: uppercase;
-        letter-spacing: 0.12em;
-        font-weight: 700;
+        letter-spacing: 0.09em;
+        font-weight: 800;
         color: var(--text);
+        line-height: 1.3;
       }
       .metric-group .group-label::before {
         content: "";
         display: inline-block;
-        width: 6px;
-        height: 6px;
+        width: 8px;
+        height: 8px;
         border-radius: 50%;
         background: var(--accent);
         flex-shrink: 0;
       }
       .group-cards {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
         gap: 1px;
         background: var(--border);
       }
       .group-cards .card {
         background: var(--panel);
-        padding: 9px 13px 10px;
+        padding: 13px 16px 14px;
         transition: background-color 0.2s ease;
       }
       .group-cards .card:hover {
         background: var(--panel2);
       }
       .group-cards .card .k {
-        font-size: 9px;
+        font-size: 11.5px;
         color: var(--muted);
         text-transform: uppercase;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.07em;
         font-weight: 700;
-        margin-bottom: 4px;
+        margin-bottom: 6px;
       }
       .group-cards .card .v {
         font-family: var(--font-display);
-        font-size: 16.5px;
-        font-weight: 700;
+        font-size: 22px;
+        font-weight: 800;
         line-height: 1.15;
         font-variant-numeric: tabular-nums;
-        letter-spacing: -0.01em;
+        letter-spacing: -0.015em;
       }
       .group-cards .card .s {
-        font-size: 10.5px;
+        font-size: 13px;
         color: var(--muted);
-        margin-top: 3px;
+        font-weight: 500;
+        margin-top: 6px;
         font-variant-numeric: tabular-nums;
+        line-height: 1.35;
       }
 
-      @media (max-width: 820px) {
+      @media (max-width: 860px) {
         .metric-group {
           grid-template-columns: 1fr;
         }
         .metric-group .group-label {
           border-right: none;
           border-bottom: 1px solid var(--border);
-          padding: 9px 14px;
+          padding: 10px 14px;
         }
         .wrap {
-          padding: 28px 16px 16px;
+          padding: 24px 14px 16px;
         }
         header {
-          padding: 10px 100px 10px 16px;
+          padding: 10px 96px 10px 16px;
           gap: 10px;
         }
       }
 
-      /* ============ TABS ============ */
+      /* ============ TABS & SEAMLESS POPOVER MENUS ============ */
+      .tabs-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--border);
+        margin: 8px 0 16px;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
       .tabs {
         display: flex;
-        gap: 0;
-        border-bottom: 1px solid var(--border);
-        margin: 6px 0 16px;
+        gap: 2px;
       }
       .tabs button {
         background: none;
         border: none;
         color: var(--muted);
         font-family: var(--font-display);
-        padding: 8px 16px 9px;
-        font-size: 14px;
-        font-weight: 600;
+        padding: 9px 18px 10px;
+        font-size: 15px;
+        font-weight: 700;
         cursor: pointer;
         border-bottom: 2px solid transparent;
         margin-bottom: -1px;
@@ -553,58 +669,210 @@
         display: block;
       }
 
-      /* ============ BOXES ============ */
+      /* Popover dropdown for seamless indicator / panel toggles */
+      .pop-wrap {
+        position: relative;
+        display: inline-block;
+      }
+      .pop-menu {
+        position: absolute;
+        top: calc(100% + 6px);
+        right: 0;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        padding: 8px 0;
+        min-width: 235px;
+        z-index: 120;
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+        display: none;
+      }
+      .pop-menu.open {
+        display: block;
+      }
+      .pop-sec-title {
+        font-size: 10.5px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        padding: 6px 14px 4px;
+      }
+      .pop-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 7px 14px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text);
+        cursor: pointer;
+        user-select: none;
+        transition: background-color 0.12s ease;
+      }
+      .pop-item:hover {
+        background: var(--panel2);
+      }
+      .pop-item input[type="checkbox"],
+      .pop-item input[type="radio"] {
+        accent-color: var(--accent);
+        width: 15px;
+        height: 15px;
+        cursor: pointer;
+      }
+      .pop-divider {
+        height: 1px;
+        background: var(--border);
+        margin: 6px 0;
+      }
+
+      /* ============ BOXES & EXPANDABLE PANELS ============ */
       .box {
         background: var(--panel);
         border: 1px solid var(--border);
-        border-radius: 3px;
-        padding: 10px 10px 8px;
-        margin-bottom: 12px;
+        border-radius: 5px;
+        padding: 12px 14px 10px;
+        margin-bottom: 14px;
         transition: background-color 0.25s ease, border-color 0.25s ease;
       }
-      .box h3 {
-        font-family: var(--font-display);
-        font-size: 11.5px;
-        color: var(--text);
-        font-weight: 700;
-        letter-spacing: 0.09em;
-        text-transform: uppercase;
-        padding: 2px 4px 8px;
+      .box.span-full {
+        grid-column: 1 / -1;
+      }
+      .box-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 0 2px 9px;
         border-bottom: 1px solid var(--border);
-        margin-bottom: 9px;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+      }
+      .box-head h3,
+      .box > h3 {
+        font-family: var(--font-display);
+        font-size: 13px;
+        color: var(--text);
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin: 0;
+        padding: 0;
+        border: none;
+      }
+      .box > h3 {
+        padding: 2px 4px 9px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 10px;
       }
       .chart {
         width: 100%;
       }
       .tfbar {
         display: flex;
-        gap: 5px;
+        gap: 6px;
         align-items: center;
         flex-wrap: wrap;
-        padding: 0 4px 8px;
+        padding: 0 2px 10px;
       }
       .tfbar select {
-        padding: 4px 6px;
-        font-size: 11.5px;
+        padding: 5px 8px;
+        font-size: 12.5px;
       }
       .grid2 {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 12px;
+        gap: 14px;
       }
-      @media (max-width: 900px) {
+      @media (max-width: 960px) {
         .grid2 {
           grid-template-columns: 1fr;
         }
+      }
+
+      /* ============ RETURN DISTRIBUTION TELEMETRY HUD ============ */
+      .dist-hud {
+        background: var(--panel2);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 9px 12px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .dist-hud-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .dist-meta-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+      }
+      .dist-pill {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 4px 9px;
+        font-size: 12.5px;
+        font-variant-numeric: tabular-nums;
+        color: var(--text);
+      }
+      .dist-pill span.lbl {
+        color: var(--muted);
+        font-weight: 700;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-right: 5px;
+      }
+      .dist-pill b {
+        font-weight: 800;
+        color: var(--accent);
+      }
+      .dist-stats-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        font-size: 12.5px;
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+        padding-top: 4px;
+        border-top: 1px dashed var(--border);
+      }
+      .dist-stats-row strong {
+        color: var(--text);
+        font-weight: 700;
+      }
+      .dist-win-btns {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+      .dist-win-btns span {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-right: 3px;
       }
 
       select {
         background: var(--panel);
         color: var(--text);
         border: 1px solid var(--border);
-        border-radius: 3px;
-        padding: 7px 9px;
-        font-size: 12.5px;
+        border-radius: 4px;
+        padding: 6px 10px;
+        font-size: 13px;
+        font-weight: 600;
         font-family: var(--font-body);
         cursor: pointer;
         outline: none;
@@ -616,40 +884,42 @@
 
       .cards {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
         gap: 1px;
         background: var(--border);
         border: 1px solid var(--border);
+        border-radius: 4px;
+        overflow: hidden;
         margin-bottom: 16px;
       }
       .cards .card {
         background: var(--panel);
-        padding: 9px 13px 10px;
+        padding: 12px 15px;
       }
       .cards .card .k {
-        font-size: 9px;
+        font-size: 11.5px;
         color: var(--muted);
         text-transform: uppercase;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.08em;
         font-weight: 700;
-        margin-bottom: 4px;
+        margin-bottom: 5px;
       }
       .cards .card .v {
         font-family: var(--font-display);
-        font-size: 17px;
-        font-weight: 700;
-        line-height: 1.1;
+        font-size: 21px;
+        font-weight: 800;
+        line-height: 1.15;
         font-variant-numeric: tabular-nums;
       }
 
-      /* ============ TABLE ============ */
-      table {
+      /* ============ TABLE (HISTORY KEPT COMPACT) ============ */
+      #histTable {
         width: 100%;
         border-collapse: collapse;
         font-size: 12px;
         font-variant-numeric: tabular-nums;
       }
-      th {
+      #histTable th {
         position: sticky;
         top: 0;
         background: var(--panel2);
@@ -662,16 +932,16 @@
         text-transform: uppercase;
         letter-spacing: 0.08em;
       }
-      td {
+      #histTable td {
         padding: 5px 9px;
         border-bottom: 1px solid var(--border);
         text-align: right;
       }
-      td:first-child,
-      th:first-child {
+      #histTable td:first-child,
+      #histTable th:first-child {
         text-align: left;
       }
-      tr:hover td {
+      #histTable tr:hover td {
         background: var(--panel2);
       }
       .tablewrap {
@@ -683,14 +953,14 @@
       /* ============ SPARK GRID ============ */
       .sparklist {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(172px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
         gap: 1px;
         background: var(--border);
         border: 1px solid var(--border);
       }
       .spark {
         background: var(--panel);
-        padding: 9px 11px 6px;
+        padding: 10px 12px 7px;
         cursor: pointer;
         transition: background-color 0.15s ease;
       }
@@ -698,35 +968,35 @@
         background: var(--panel2);
       }
       .spark .t {
-        font-weight: 700;
-        font-size: 12px;
-        letter-spacing: 0.03em;
+        font-weight: 800;
+        font-size: 13px;
+        letter-spacing: 0.02em;
       }
       .spark .c {
-        font-size: 12.5px;
+        font-size: 13.5px;
         font-weight: 700;
         margin-top: 3px;
         font-variant-numeric: tabular-nums;
       }
       .spark .c span {
         font-weight: 600;
-        font-size: 11.5px;
+        font-size: 12px;
         opacity: 0.9;
       }
       .spark .p {
-        font-size: 10.5px;
+        font-size: 11px;
         color: var(--muted);
-        margin-top: 1px;
+        margin-top: 2px;
       }
       .spark .mini {
-        height: 22px;
-        margin-top: 5px;
+        height: 24px;
+        margin-top: 6px;
       }
       .spark-empty {
-        padding: 22px 16px;
+        padding: 24px 16px;
         text-align: center;
         color: var(--muted);
-        font-size: 12px;
+        font-size: 13px;
         line-height: 1.7;
       }
 
@@ -735,12 +1005,12 @@
         padding: 70px 20px;
         text-align: center;
         color: var(--muted);
-        font-size: 13px;
+        font-size: 14px;
         line-height: 1.7;
       }
       .hint h2 {
         font-family: var(--font-display);
-        font-size: 26px;
+        font-size: 28px;
         color: var(--text);
         font-weight: 800;
         letter-spacing: -0.02em;
@@ -749,24 +1019,12 @@
       .hint p {
         margin-top: 8px;
       }
-      .hint .err {
-        color: var(--down);
-        font-family: ui-monospace, monospace;
-        font-size: 11.5px;
-        background: var(--panel2);
-        padding: 8px 12px;
-        border-radius: 3px;
-        margin: 10px auto;
-        max-width: 520px;
-        word-break: break-all;
-        display: inline-block;
-      }
       .kbd {
         background: var(--panel2);
         border: 1px solid var(--border);
         border-radius: 3px;
         padding: 2px 7px;
-        font-size: 11.5px;
+        font-size: 12px;
         font-family: ui-monospace, monospace;
         color: var(--text);
       }
@@ -774,10 +1032,10 @@
         padding: 18px;
         text-align: center;
         color: var(--muted);
-        font-size: 11px;
+        font-size: 12px;
         border-top: 1px solid var(--border);
-        margin-top: 20px;
-        letter-spacing: 0.04em;
+        margin-top: 24px;
+        letter-spacing: 0.03em;
       }
     </style>
   </head>
@@ -822,7 +1080,7 @@
               id="apiSaveBtn"
               style="margin-top: 10px; width: 100%"
             >
-              Save & reload
+              Save &amp; reload
             </button>
           </div>
         </div>
@@ -871,8 +1129,9 @@
       </div>
       <div class="searchwrap">
         <svg
-          width="14"
-          height="14"
+          class="search-ic"
+          width="15"
+          height="15"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -888,6 +1147,15 @@
           autocomplete="off"
           spellcheck="false"
         />
+        <button
+          type="button"
+          id="qClear"
+          class="search-clear"
+          title="Clear search"
+          aria-label="Clear search"
+        >
+          &#215;
+        </button>
         <div id="dropdown"></div>
       </div>
       <button class="btn" id="refreshBtn">Refresh</button>
@@ -903,43 +1171,93 @@
     </div>
 
     <div class="wrap" id="main" style="display: none">
-      <div class="quote-head">
-        <h1 id="tName">—</h1>
-        <span class="px" id="tLast">—</span>
-        <span class="chg" id="tChg">—</span>
+      <div class="quote-top-row">
+        <div>
+          <div class="quote-head">
+            <h1 id="tName">—</h1>
+            <span class="px" id="tLast">—</span>
+            <span class="chg" id="tChg">—</span>
+          </div>
+          <div class="subline" id="tSub">—</div>
+        </div>
+        <label class="adv-toggle-wrap" title="Switch between standard metrics and elaborated quantitative &amp; sentiment metrics">
+          <input type="checkbox" id="advMetricsToggle" />
+          <span class="adv-switch"></span>
+          <span class="adv-label">Advanced Metrics Enabled</span>
+          <span class="adv-tag" id="advModeBadge">Standard</span>
+        </label>
       </div>
-      <div class="subline" id="tSub">—</div>
 
       <div class="metrics">
         <div class="metric-group">
-          <div class="group-label">Price & Range</div>
+          <div class="group-label" id="groupLabel1">Price &amp; Range</div>
           <div class="group-cards" id="cardsPrice"></div>
         </div>
         <div class="metric-group">
-          <div class="group-label">Returns</div>
+          <div class="group-label" id="groupLabel2">Returns</div>
           <div class="group-cards" id="cardsReturns"></div>
         </div>
         <div class="metric-group">
-          <div class="group-label">Risk & Drawdown</div>
+          <div class="group-label" id="groupLabel3">Risk &amp; Drawdown</div>
           <div class="group-cards" id="cardsRisk"></div>
         </div>
       </div>
 
-      <div class="tabs">
-        <button class="on" data-tab="charts">Charts</button>
-        <button data-tab="overview">Overview</button>
-        <button data-tab="perf">Performance</button>
-        <button data-tab="hist">History</button>
+      <div class="tabs-bar">
+        <div class="tabs">
+          <button class="on" data-tab="charts">Charts</button>
+          <button data-tab="overview">Overview</button>
+          <button data-tab="perf">Performance</button>
+          <button data-tab="hist">History</button>
+        </div>
+
+        <!-- Seamless Overview Panel Settings Popover (only shown on Overview tab) -->
+        <div class="pop-wrap" id="ovSettingsWrap" style="display: none">
+          <button class="btn sm" id="ovSettingsBtn" type="button">
+            Overview Panels &#9662;
+          </button>
+          <div class="pop-menu" id="ovSettingsMenu">
+            <div class="pop-sec-title">Toggle Overview Graphs</div>
+            <label class="pop-item">
+              <span>Daily Return Distribution</span>
+              <input type="checkbox" data-ov-panel="boxHist" checked />
+            </label>
+            <label class="pop-item">
+              <span>Volatility (30d Rolling)</span>
+              <input type="checkbox" data-ov-panel="boxVol" checked />
+            </label>
+            <label class="pop-item">
+              <span>Bollinger Bands (20, 2)</span>
+              <input type="checkbox" data-ov-panel="boxBB" checked />
+            </label>
+            <div class="pop-divider"></div>
+            <div class="pop-sec-title">Technical &amp; Drawdown</div>
+            <label class="pop-item">
+              <span>RSI (14)</span>
+              <input type="checkbox" data-ov-panel="boxRSI_ov" checked />
+            </label>
+            <label class="pop-item">
+              <span>MACD (12, 26, 9)</span>
+              <input type="checkbox" data-ov-panel="boxMACD_ov" checked />
+            </label>
+            <label class="pop-item">
+              <span>Drawdown from ATH</span>
+              <input type="checkbox" data-ov-panel="boxDD_ov" checked />
+            </label>
+          </div>
+        </div>
       </div>
+
+      <!-- ==================== CHARTS TAB ==================== -->
       <div class="panel on" id="tab-charts">
         <div class="box">
           <div class="tfbar">
-            <button class="btn sm tf primary" data-days="21">1M</button>
+            <button class="btn sm tf" data-days="21">1M</button>
             <button class="btn sm tf" data-days="63">3M</button>
             <button class="btn sm tf" data-days="126">6M</button>
             <button class="btn sm tf" data-days="252">1Y</button>
             <button class="btn sm tf" data-days="756">3Y</button>
-            <button class="btn sm tf" data-days="0">ALL</button>
+            <button class="btn sm tf primary" data-days="0">ALL</button>
             <span style="flex: 1"></span>
             <select id="chartType">
               <option value="candle">Candlestick</option>
@@ -951,38 +1269,189 @@
               <option value="separate">Volume: Separate</option>
               <option value="off">Volume: Off</option>
             </select>
+
+            <!-- Seamless Chart Indicators Popover -->
+            <div class="pop-wrap" id="chartIndWrap">
+              <button class="btn sm" id="chartIndBtn" type="button">
+                Indicators <span id="indCountBadge">1</span> &#9662;
+              </button>
+              <div class="pop-menu" id="chartIndMenu">
+                <div class="pop-sec-title">Price Overlays</div>
+                <label class="pop-item">
+                  <span>Moving Averages (20/50/200)</span>
+                  <input type="checkbox" id="indSMA" checked />
+                </label>
+                <label class="pop-item">
+                  <span>Bollinger Bands (20, 2)</span>
+                  <input type="checkbox" id="indBB" />
+                </label>
+                <div class="pop-divider"></div>
+                <div class="pop-sec-title">Overlapped / Sub-Indicators</div>
+                <label class="pop-item">
+                  <span>RSI (14)</span>
+                  <input type="checkbox" id="indRSI" />
+                </label>
+                <label class="pop-item">
+                  <span>MACD (12, 26, 9)</span>
+                  <input type="checkbox" id="indMACD" />
+                </label>
+                <label class="pop-item">
+                  <span>Drawdown from ATH</span>
+                  <input type="checkbox" id="indDD" />
+                </label>
+                <div class="pop-divider"></div>
+                <div class="pop-sec-title">Indicator Layout Mode</div>
+                <label class="pop-item">
+                  <span>Overlap on Main Canvas</span>
+                  <input type="radio" name="indLayout" value="overlap" checked />
+                </label>
+                <label class="pop-item">
+                  <span>Stacked Panes</span>
+                  <input type="radio" name="indLayout" value="stacked" />
+                </label>
+              </div>
+            </div>
           </div>
-          <div id="chartMain" class="chart" style="height: 560px"></div>
-        </div>
-        <div class="box">
-          <h3>RSI (14)</h3>
-          <div id="chartRSI" class="chart" style="height: 180px"></div>
-        </div>
-        <div class="box">
-          <h3>MACD (12,26,9)</h3>
-          <div id="chartMACD" class="chart" style="height: 180px"></div>
-        </div>
-        <div class="box">
-          <h3>Drawdown from All-Time High</h3>
-          <div id="chartDD" class="chart" style="height: 180px"></div>
+          <div id="chartMain" class="chart" style="height: 580px"></div>
         </div>
       </div>
+
+      <!-- ==================== OVERVIEW TAB ==================== -->
       <div class="panel" id="tab-overview">
-        <div class="grid2">
-          <div class="box">
-            <h3>Volatility (30d rolling, annualized)</h3>
-            <div id="chartVol" class="chart" style="height: 260px"></div>
+        <div class="grid2" id="overviewGrid">
+          <!-- 1. Daily Return Distribution (with Expand & Full Window Telemetry) -->
+          <div class="box" id="boxHist">
+            <div class="box-head">
+              <h3>Daily Return Distribution</h3>
+              <button
+                class="btn xs expand-btn"
+                data-target="boxHist"
+                data-chart="chartHist"
+                type="button"
+              >
+                &#10530; Expand
+              </button>
+            </div>
+            <div class="dist-hud">
+              <div class="dist-hud-top">
+                <div class="dist-meta-pills">
+                  <div class="dist-pill">
+                    <span class="lbl">Full Range</span>
+                    <span id="distFullRange">—</span>
+                  </div>
+                  <div class="dist-pill">
+                    <span class="lbl">Window Range</span>
+                    <b id="distWinRange">—</b>
+                  </div>
+                  <div class="dist-pill">
+                    <span class="lbl">Window Width</span>
+                    <b id="distWinWidth">—</b>
+                  </div>
+                </div>
+                <div class="dist-win-btns">
+                  <span>Window Size:</span>
+                  <button class="btn xs dist-preset" data-w="21" type="button">1M</button>
+                  <button class="btn xs dist-preset" data-w="63" type="button">3M</button>
+                  <button class="btn xs dist-preset" data-w="126" type="button">6M</button>
+                  <button class="btn xs dist-preset" data-w="252" type="button">1Y</button>
+                  <button class="btn xs dist-preset" data-w="756" type="button">3Y</button>
+                  <button class="btn xs dist-preset primary" data-w="0" type="button">All</button>
+                </div>
+              </div>
+              <div class="dist-stats-row" id="distStatsRow">
+                <span>Mean: <strong>—</strong></span>
+                <span>Ann. Vol: <strong>—</strong></span>
+                <span>Skewness: <strong>—</strong></span>
+                <span>Kurtosis: <strong>—</strong></span>
+                <span>Positive Days: <strong>—</strong></span>
+              </div>
+            </div>
+            <div id="chartHist" class="chart" style="height: 310px"></div>
           </div>
-          <div class="box">
-            <h3>Daily Return Distribution</h3>
-            <div id="chartHist" class="chart" style="height: 260px"></div>
+
+          <!-- 2. Volatility (30d rolling, annualized) -->
+          <div class="box" id="boxVol">
+            <div class="box-head">
+              <h3>Volatility (30d Rolling, Annualized)</h3>
+              <button
+                class="btn xs expand-btn"
+                data-target="boxVol"
+                data-chart="chartVol"
+                type="button"
+              >
+                &#10530; Expand
+              </button>
+            </div>
+            <div id="chartVol" class="chart" style="height: 398px"></div>
           </div>
-        </div>
-        <div class="box">
-          <h3>Bollinger Bands (20, 2)</h3>
-          <div id="chartBB" class="chart" style="height: 320px"></div>
+
+          <!-- 3. Bollinger Bands (20, 2) -->
+          <div class="box span-full" id="boxBB">
+            <div class="box-head">
+              <h3>Bollinger Bands (20, 2)</h3>
+              <button
+                class="btn xs expand-btn"
+                data-target="boxBB"
+                data-chart="chartBB"
+                type="button"
+              >
+                &#10530; Expand
+              </button>
+            </div>
+            <div id="chartBB" class="chart" style="height: 340px"></div>
+          </div>
+
+          <!-- 4. RSI (14) — Permanently in Overview, toggleable via Overview Panels -->
+          <div class="box" id="boxRSI_ov">
+            <div class="box-head">
+              <h3>RSI (14)</h3>
+              <button
+                class="btn xs expand-btn"
+                data-target="boxRSI_ov"
+                data-chart="chartRSI_ov"
+                type="button"
+              >
+                &#10530; Expand
+              </button>
+            </div>
+            <div id="chartRSI_ov" class="chart" style="height: 270px"></div>
+          </div>
+
+          <!-- 5. MACD (12, 26, 9) -->
+          <div class="box" id="boxMACD_ov">
+            <div class="box-head">
+              <h3>MACD (12, 26, 9)</h3>
+              <button
+                class="btn xs expand-btn"
+                data-target="boxMACD_ov"
+                data-chart="chartMACD_ov"
+                type="button"
+              >
+                &#10530; Expand
+              </button>
+            </div>
+            <div id="chartMACD_ov" class="chart" style="height: 270px"></div>
+          </div>
+
+          <!-- 6. Drawdown from All-Time High -->
+          <div class="box span-full" id="boxDD_ov">
+            <div class="box-head">
+              <h3>Drawdown from All-Time High</h3>
+              <button
+                class="btn xs expand-btn"
+                data-target="boxDD_ov"
+                data-chart="chartDD_ov"
+                type="button"
+              >
+                &#10530; Expand
+              </button>
+            </div>
+            <div id="chartDD_ov" class="chart" style="height: 270px"></div>
+          </div>
         </div>
       </div>
+
+      <!-- ==================== PERFORMANCE TAB ==================== -->
       <div class="panel" id="tab-perf">
         <div class="cards" id="perfCards"></div>
         <div class="grid2">
@@ -1013,7 +1482,7 @@
                 border: none;
                 padding: 0;
                 margin: 0;
-                font-size: 11.5px;
+                font-size: 13px;
               "
             >
               Browse tickers — click to open
@@ -1021,7 +1490,7 @@
             <span
               id="loadSampleStatus"
               style="
-                font-size: 11px;
+                font-size: 12px;
                 color: var(--muted);
                 font-variant-numeric: tabular-nums;
               "
@@ -1031,11 +1500,13 @@
           <div id="sparklist" class="sparklist"></div>
         </div>
       </div>
+
+      <!-- ==================== HISTORY TAB ==================== -->
       <div class="panel" id="tab-hist">
         <div class="box">
           <div class="tfbar">
-            <span style="flex: 1"></span
-            ><button class="btn sm" id="dlBtn">Download CSV</button>
+            <span style="flex: 1"></span>
+            <button class="btn sm" id="dlBtn">Download CSV</button>
           </div>
           <div class="tablewrap">
             <table id="histTable">
@@ -1085,32 +1556,74 @@
       ]);
 
       /* ================================================================
-   THEMES
+   THEMES (WITH HIGH-CONTRAST SLIDER COLORS)
    ================================================================ */
       const THEMES = {
         minty: {
-          up: "#4a6b3f", down: "#9c4a35", line: "#566246",
-          accent: "#566246", accent2: "#7d9471", ma: ["#c08a3e", "#7d9471", "#9a6b8f"],
-          grid: "#e0e2da", axis: "#6b7261", text: "#2b2f26",
-          border: "#d8dad3", tipBg: "rgba(250,251,246,.97)", tipText: "#2b2f26",
-          upFill: "rgba(74,107,63,.55)", downFill: "rgba(156,74,53,.55)",
-          area: "rgba(86,98,70,.14)", heatMid: "#f1f2eb",
+          up: "#3b662e",
+          down: "#a63d26",
+          line: "#566246",
+          accent: "#566246",
+          accent2: "#7d9471",
+          ma: ["#c08a3e", "#7d9471", "#9a6b8f"],
+          grid: "#e0e2da",
+          axis: "#5c6353",
+          text: "#2b2f26",
+          border: "#d8dad3",
+          panel2: "#e9ebe1",
+          tipBg: "rgba(250,251,246,.97)",
+          tipText: "#2b2f26",
+          upFill: "rgba(59,102,46,.55)",
+          downFill: "rgba(166,61,38,.55)",
+          area: "rgba(86,98,70,.16)",
+          heatMid: "#f1f2eb",
+          sliderBg: "#e2e5d8",
+          sliderFill: "rgba(86, 98, 70, 0.42)",
+          sliderBorder: "#566246",
         },
         ocean: {
-          up: "#7ed9a4", down: "#ff8577", line: "#598392",
-          accent: "#598392", accent2: "#aec3b0", ma: ["#e3a857", "#6fc3b8", "#b98bb0"],
-          grid: "#123b47", axis: "#8fb0ae", text: "#eff6e0",
-          border: "#1d4b58", tipBg: "rgba(11,40,51,.97)", tipText: "#eff6e0",
-          upFill: "rgba(126,217,164,.5)", downFill: "rgba(255,133,119,.5)",
-          area: "rgba(89,131,146,.28)", heatMid: "#0b2833",
+          up: "#7ed9a4",
+          down: "#ff8577",
+          line: "#598392",
+          accent: "#598392",
+          accent2: "#aec3b0",
+          ma: ["#e3a857", "#6fc3b8", "#b98bb0"],
+          grid: "#123b47",
+          axis: "#9abcb9",
+          text: "#eff6e0",
+          border: "#1d4b58",
+          panel2: "#123b47",
+          tipBg: "rgba(11,40,51,.97)",
+          tipText: "#eff6e0",
+          upFill: "rgba(126,217,164,.55)",
+          downFill: "rgba(255,133,119,.55)",
+          area: "rgba(89,131,146,.28)",
+          heatMid: "#0b2833",
+          sliderBg: "#0f323d",
+          sliderFill: "rgba(126, 217, 164, 0.36)",
+          sliderBorder: "#7ed9a4",
         },
         sunny: {
-          up: "#15616d", down: "#78290f", line: "#ff7d00",
-          accent: "#ff7d00", accent2: "#15616d", ma: ["#c25e00", "#15616d", "#7b3f61"],
-          grid: "#f3cf9f", axis: "#8a5a34", text: "#001524",
-          border: "#f3cf9f", tipBg: "rgba(255,249,239,.97)", tipText: "#001524",
-          upFill: "rgba(21,97,109,.45)", downFill: "rgba(120,41,15,.45)",
-          area: "rgba(255,125,0,.16)", heatMid: "#ffecd1",
+          up: "#15616d",
+          down: "#9b2915",
+          line: "#ff7d00",
+          accent: "#ff7d00",
+          accent2: "#15616d",
+          ma: ["#c25e00", "#15616d", "#7b3f61"],
+          grid: "#f3cf9f",
+          axis: "#7a4b26",
+          text: "#001524",
+          border: "#f3cf9f",
+          panel2: "#ffe3c2",
+          tipBg: "rgba(255,249,239,.97)",
+          tipText: "#001524",
+          upFill: "rgba(21,97,109,.5)",
+          downFill: "rgba(155,41,21,.5)",
+          area: "rgba(255,125,0,.18)",
+          heatMid: "#ffecd1",
+          sliderBg: "#ffdcb0",
+          sliderFill: "rgba(255, 125, 0, 0.42)",
+          sliderBorder: "#ff7d00",
         },
       };
       let TH = THEMES.minty;
@@ -1126,30 +1639,58 @@
       let RANGE_DAYS = 0;
       let CURRENT_TAB = "charts";
       let PENDING_TICKER = null;
+      let ADV_METRICS = false;
       let sparkDirty = true;
       const charts = {};
 
+      // Return distribution state for zero-lag sliding window
+      let HIST_STATE = null;
+
       const $ = (id) => document.getElementById(id);
-      const fmt = (n, d = 2) => n == null || !isFinite(n) ? "—" : Number(n).toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
-      const pct = (n) => n == null || !isFinite(n) ? "—" : (n >= 0 ? "+" : "") + fmt(n * 100, 2) + "%";
-      const fmtDate = (d) => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
-      const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({ 
-  "&": "&" + "amp;", 
-  "<": "&" + "lt;", 
-  ">": "&" + "gt;", 
-  '"': "&" + "quot;", 
-  "'": "&" + "#39;" 
-}[c]));
+      const fmt = (n, d = 2) =>
+        n == null || !isFinite(n)
+          ? "—"
+          : Number(n).toLocaleString("en-US", {
+              minimumFractionDigits: d,
+              maximumFractionDigits: d,
+            });
+      const pct = (n) =>
+        n == null || !isFinite(n)
+          ? "—"
+          : (n >= 0 ? "+" : "") + fmt(n * 100, 2) + "%";
+      const fmtDate = (d) =>
+        d.getFullYear() +
+        "-" +
+        String(d.getMonth() + 1).padStart(2, "0") +
+        "-" +
+        String(d.getDate()).padStart(2, "0");
+
+      // Safe HTML escaping immune to copy-paste entity decoding
+      function escapeHtml(s) {
+        return String(s)
+          .replace(/&/g, "&" + "amp;")
+          .replace(/</g, "&" + "lt;")
+          .replace(/>/g, "&" + "gt;")
+          .replace(/"/g, "&" + "quot;")
+          .replace(/'/g, "&" + "#39;");
+      }
 
       const TAB_CHARTS = {
-        charts: ["chartMain", "chartRSI", "chartMACD", "chartDD"],
-        overview: ["chartVol", "chartHist", "chartBB"],
+        charts: ["chartMain"],
+        overview: [
+          "chartHist",
+          "chartVol",
+          "chartBB",
+          "chartRSI_ov",
+          "chartMACD_ov",
+          "chartDD_ov",
+        ],
         perf: ["chartYearly", "chartHeat"],
         hist: [],
       };
 
       /* ================================================================
-   CHART HELPERS
+   CHART HELPERS & HIGH-VISIBILITY SLIDER BUILDER
    ================================================================ */
       function getChart(divId) {
         if (charts[divId]) return charts[divId];
@@ -1167,19 +1708,81 @@
         return {
           axisLine: { lineStyle: { color: TH.grid } },
           axisTick: { lineStyle: { color: TH.grid } },
-          axisLabel: { color: TH.axis, fontSize: 10.5 },
+          axisLabel: {
+            color: TH.axis,
+            fontSize: 11,
+            fontFamily: "Figtree, sans-serif",
+          },
           splitLine: { lineStyle: { color: TH.grid } },
         };
       }
       function tip(extra) {
         return Object.assign(
-          { trigger: "axis", axisPointer: { type: "cross", lineStyle: { color: TH.axis } }, backgroundColor: TH.tipBg, borderColor: TH.border, textStyle: { color: TH.tipText, fontSize: 12 } },
+          {
+            trigger: "axis",
+            axisPointer: { type: "cross", lineStyle: { color: TH.axis } },
+            backgroundColor: TH.tipBg,
+            borderColor: TH.border,
+            textStyle: {
+              color: TH.tipText,
+              fontSize: 12.5,
+              fontFamily: "Figtree, sans-serif",
+            },
+          },
           extra || {}
         );
       }
+
+      // High-visibility, opaque slider with clear dates and handles
+      function makeSlider(opts) {
+        opts = opts || {};
+        return {
+          type: "slider",
+          xAxisIndex: opts.xAxisIndex != null ? opts.xAxisIndex : 0,
+          bottom: opts.bottom != null ? opts.bottom : 10,
+          height: opts.height != null ? opts.height : 28,
+          left: opts.left != null ? opts.left : 56,
+          right: opts.right != null ? opts.right : 56,
+          backgroundColor: TH.sliderBg,
+          fillerColor: TH.sliderFill,
+          borderColor: TH.sliderBorder,
+          handleSize: "108%",
+          handleStyle: {
+            color: TH.accent,
+            borderColor: TH.text,
+            borderWidth: 1.5,
+          },
+          moveHandleSize: 7,
+          moveHandleStyle: {
+            color: TH.accent,
+            opacity: 0.9,
+          },
+          dataBackground: {
+            lineStyle: { color: TH.accent, width: 1.2, opacity: 0.7 },
+            areaStyle: { color: TH.accent2, opacity: 0.25 },
+          },
+          selectedDataBackground: {
+            lineStyle: { color: TH.text, width: 1.5 },
+            areaStyle: { color: TH.accent, opacity: 0.45 },
+          },
+          textStyle: {
+            color: TH.text,
+            fontSize: 11.5,
+            fontWeight: 700,
+            fontFamily: "Figtree, sans-serif",
+          },
+          showDetail: true,
+          showDataShadow: "auto",
+          realtime: true,
+          labelFormatter: opts.labelFormatter || undefined,
+        };
+      }
+
       window.addEventListener("resize", () => {
         for (const id in charts) {
-          try { charts[id].resize(); } catch (e) {}
+          try {
+            charts[id].resize();
+          } catch (e) {}
         }
       });
 
@@ -1190,7 +1793,9 @@
         if (!THEMES[name]) name = "minty";
         document.documentElement.setAttribute("data-theme", name);
         TH = THEMES[name];
-        try { localStorage.setItem("dse-theme", name); } catch (e) {}
+        try {
+          localStorage.setItem("dse-theme", name);
+        } catch (e) {}
         const menu = $("themeMenu");
         if (menu)
           menu.querySelectorAll("button").forEach((b) => {
@@ -1201,7 +1806,9 @@
       }
       (function bootTheme() {
         let saved = "minty";
-        try { saved = localStorage.getItem("dse-theme") || "minty"; } catch (e) {}
+        try {
+          saved = localStorage.getItem("dse-theme") || "minty";
+        } catch (e) {}
         if (!THEMES[saved]) saved = "minty";
         document.documentElement.setAttribute("data-theme", saved);
         TH = THEMES[saved];
@@ -1213,16 +1820,36 @@
       })();
 
       function openMenu(menu, otherMenus) {
-        otherMenus.forEach((m) => { if (m) m.classList.remove("open"); });
+        otherMenus.forEach((m) => {
+          if (m) m.classList.remove("open");
+        });
         menu.classList.toggle("open");
       }
       (function wireWidgets() {
-        const themeWidget = $("themeWidget"), themeBtn = $("themeBtn"), themeMenu = $("themeMenu");
-        const apiWidget = $("apiWidget"), apiBtn = $("apiBtn"), apiMenu = $("apiMenu");
+        const themeWidget = $("themeWidget"),
+          themeBtn = $("themeBtn"),
+          themeMenu = $("themeMenu");
+        const apiWidget = $("apiWidget"),
+          apiBtn = $("apiBtn"),
+          apiMenu = $("apiMenu");
+        const chartIndWrap = $("chartIndWrap"),
+          chartIndBtn = $("chartIndBtn"),
+          chartIndMenu = $("chartIndMenu");
+        const ovSettingsWrap = $("ovSettingsWrap"),
+          ovSettingsBtn = $("ovSettingsBtn"),
+          ovSettingsMenu = $("ovSettingsMenu");
 
-        themeBtn.addEventListener("click", (e) => { e.stopPropagation(); openMenu(themeMenu, [apiMenu]); });
+        const allMenus = [themeMenu, apiMenu, chartIndMenu, ovSettingsMenu];
+
+        themeBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          openMenu(themeMenu, [apiMenu, chartIndMenu, ovSettingsMenu]);
+        });
         themeMenu.querySelectorAll("button").forEach((b) => {
-          b.addEventListener("click", () => { applyTheme(b.dataset.theme); themeMenu.classList.remove("open"); });
+          b.addEventListener("click", () => {
+            applyTheme(b.dataset.theme);
+            themeMenu.classList.remove("open");
+          });
         });
 
         apiBtn.addEventListener("click", (e) => {
@@ -1230,54 +1857,191 @@
           const inp = $("apiBaseInput");
           if (inp) inp.value = API_BASE;
           updateApiEndpointLabel();
-          openMenu(apiMenu, [themeMenu]);
+          openMenu(apiMenu, [themeMenu, chartIndMenu, ovSettingsMenu]);
         });
         $("apiSaveBtn").addEventListener("click", () => {
           const inp = $("apiBaseInput");
           const v = inp.value.trim().replace(/\/+$/, "");
           if (!v) return;
           API_BASE = v;
-          try { localStorage.setItem("dse-api-base", v); } catch (e) {}
+          try {
+            localStorage.setItem("dse-api-base", v);
+          } catch (e) {}
           updateApiEndpointLabel();
           apiMenu.classList.remove("open");
-          DATA.clear(); META.clear(); LOADING.clear(); CUR = null; PENDING_TICKER = null; sparkDirty = true; init();
+          DATA.clear();
+          META.clear();
+          LOADING.clear();
+          CUR = null;
+          PENDING_TICKER = null;
+          sparkDirty = true;
+          init();
+        });
+
+        chartIndBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          openMenu(chartIndMenu, [themeMenu, apiMenu, ovSettingsMenu]);
+        });
+
+        ovSettingsBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          openMenu(ovSettingsMenu, [themeMenu, apiMenu, chartIndMenu]);
         });
 
         document.addEventListener("click", (e) => {
           if (!themeWidget.contains(e.target)) themeMenu.classList.remove("open");
           if (!apiWidget.contains(e.target)) apiMenu.classList.remove("open");
+          if (!chartIndWrap.contains(e.target)) chartIndMenu.classList.remove("open");
+          if (!ovSettingsWrap.contains(e.target)) ovSettingsMenu.classList.remove("open");
         });
         updateApiEndpointLabel();
       })();
 
       function updateApiEndpointLabel() {
         const el = $("apiEndpointLabel");
-        if (el) el.textContent = API_BASE.replace(/\/+$/, "") + API_TICKER_PATH + "{ticker}";
+        if (el)
+          el.textContent =
+            API_BASE.replace(/\/+$/, "") + API_TICKER_PATH + "{ticker}";
       }
 
+      /* ================================================================
+   ADVANCED METRICS TOGGLE WIRING
+   ================================================================ */
+      (function wireAdvToggle() {
+        const chk = $("advMetricsToggle");
+        const badge = $("advModeBadge");
+        try {
+          ADV_METRICS = localStorage.getItem("dse-adv-metrics") === "1";
+        } catch (e) {}
+        chk.checked = ADV_METRICS;
+        badge.textContent = ADV_METRICS ? "Quant + Sentiment" : "Standard";
+        chk.addEventListener("change", () => {
+          ADV_METRICS = chk.checked;
+          badge.textContent = ADV_METRICS ? "Quant + Sentiment" : "Standard";
+          try {
+            localStorage.setItem("dse-adv-metrics", ADV_METRICS ? "1" : "0");
+          } catch (e) {}
+          if (CUR) renderAll();
+        });
+      })();
+
+      /* ================================================================
+   EXPAND BUTTONS & OVERVIEW PANEL VISIBILITY WIRING
+   ================================================================ */
+      (function wireOverviewControls() {
+        // Expand / Collapse buttons on Overview boxes
+        document.querySelectorAll(".expand-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const box = $(btn.dataset.target);
+            const chartId = btn.dataset.chart;
+            const chartEl = $(chartId);
+            if (!box || !chartEl) return;
+
+            const isDefaultFull =
+              btn.dataset.target === "boxBB" || btn.dataset.target === "boxDD_ov";
+            const isExpanded = box.classList.toggle("expanded");
+
+            if (!isDefaultFull) {
+              box.classList.toggle("span-full", isExpanded);
+            }
+            if (chartId === "chartHist") {
+              chartEl.style.height = isExpanded ? "460px" : "310px";
+            } else if (chartId === "chartVol") {
+              chartEl.style.height = isExpanded ? "460px" : "398px";
+            } else if (chartId === "chartBB") {
+              chartEl.style.height = isExpanded ? "480px" : "340px";
+            } else {
+              chartEl.style.height = isExpanded ? "400px" : "270px";
+            }
+
+            btn.innerHTML = isExpanded ? "&#10529; Collapse" : "&#10530; Expand";
+            requestAnimationFrame(() => {
+              if (charts[chartId]) charts[chartId].resize();
+            });
+          });
+        });
+
+        // Overview Panel Checkboxes
+        document
+          .querySelectorAll("#ovSettingsMenu input[type='checkbox']")
+          .forEach((chk) => {
+            chk.addEventListener("change", () => {
+              const targetBox = $(chk.dataset.ovPanel);
+              if (targetBox) {
+                targetBox.style.display = chk.checked ? "" : "none";
+              }
+              requestAnimationFrame(() => {
+                (TAB_CHARTS.overview || []).forEach((id) => {
+                  if (charts[id]) charts[id].resize();
+                });
+              });
+            });
+          });
+
+        // Return Distribution Window Preset Buttons
+        document.querySelectorAll(".dist-preset").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            document
+              .querySelectorAll(".dist-preset")
+              .forEach((b) => b.classList.remove("primary"));
+            btn.classList.add("primary");
+            const w = +btn.dataset.w;
+            applyHistWindowPreset(w);
+          });
+        });
+      })();
+
+      /* ================================================================
+   LOADING BADGE & STORAGE
+   ================================================================ */
       function showLoadingBadge(t) {
         const b = $("loadingBadge");
-        if (b) { b.textContent = "Loading " + t + "…"; b.style.display = ""; }
+        if (b) {
+          b.textContent = "Loading " + t + "…";
+          b.style.display = "";
+        }
       }
       function hideLoadingBadge() {
         const b = $("loadingBadge");
         if (b) b.style.display = "none";
       }
 
-      function saveTickerListToStorage() { try { localStorage.setItem("dse-tickers", JSON.stringify(TICKER_LIST)); } catch (e) {} }
+      function saveTickerListToStorage() {
+        try {
+          localStorage.setItem("dse-tickers", JSON.stringify(TICKER_LIST));
+        } catch (e) {}
+      }
       function loadTickerListFromStorage() {
         try {
           const s = localStorage.getItem("dse-tickers");
-          if (s) { const arr = JSON.parse(s); if (Array.isArray(arr)) return arr; }
-        } catch (e) {} return [];
+          if (s) {
+            const arr = JSON.parse(s);
+            if (Array.isArray(arr)) return arr;
+          }
+        } catch (e) {}
+        return [];
       }
-      function saveLastTicker(t) { try { localStorage.setItem("dse-last-ticker", t); } catch (e) {} }
+      function saveLastTicker(t) {
+        try {
+          localStorage.setItem("dse-last-ticker", t);
+        } catch (e) {}
+      }
 
+      /* ================================================================
+   API FETCH
+   ================================================================ */
       function num(x) {
         if (x == null || x === "") return NaN;
         if (typeof x === "number") return x;
         const s = String(x).replace(/[,\s৳$"]/g, "");
-        if (s === "" || s === "-" || s === "—" || /^null$/i.test(s) || /^nan$/i.test(s)) return NaN;
+        if (
+          s === "" ||
+          s === "-" ||
+          s === "—" ||
+          /^null$/i.test(s) ||
+          /^nan$/i.test(s)
+        )
+          return NaN;
         return parseFloat(s);
       }
       function parseAPIDate(s) {
@@ -1290,7 +2054,10 @@
       }
 
       async function fetchTicker(t) {
-        const url = API_BASE.replace(/\/+$/, "") + API_TICKER_PATH + encodeURIComponent(t);
+        const url =
+          API_BASE.replace(/\/+$/, "") +
+          API_TICKER_PATH +
+          encodeURIComponent(t);
         const r = await fetch(url, { cache: "no-store" });
         if (r.status === 404) return [];
         if (!r.ok) throw new Error("HTTP " + r.status);
@@ -1302,7 +2069,10 @@
           if (!d) continue;
           const c = num(item.Close);
           if (!(c > 0)) continue;
-          let o = num(item.Open), h = num(item.High), l = num(item.Low), v = num(item.Volume);
+          let o = num(item.Open),
+            h = num(item.High),
+            l = num(item.Low),
+            v = num(item.Volume);
           if (!(o > 0)) o = c;
           if (!(h > 0)) h = Math.max(o, c);
           if (!(l > 0)) l = Math.min(o, c);
@@ -1314,15 +2084,23 @@
       }
 
       async function loadTicker(t, silent) {
-        t = String(t || "").trim().toUpperCase();
+        t = String(t || "")
+          .trim()
+          .toUpperCase();
         if (!t) return null;
         if (DATA.has(t)) {
-          if (!silent) { CUR = t; renderAll(); saveLastTicker(t); }
+          if (!silent) {
+            CUR = t;
+            renderAll();
+            saveLastTicker(t);
+          }
           return DATA.get(t);
         }
         if (LOADING.has(t)) return null;
 
-        LOADING.add(t); PENDING_TICKER = t; showLoadingBadge(t);
+        LOADING.add(t);
+        PENDING_TICKER = t;
+        showLoadingBadge(t);
         try {
           const rows = await fetchTicker(t);
           const isCurrent = PENDING_TICKER === t;
@@ -1332,107 +2110,255 @@
             return null;
           }
           DATA.set(t, rows);
-          const last = rows[rows.length - 1], prev = rows.length > 1 ? rows[rows.length - 2] : last;
-          META.set(t, { lastClose: last.c, lastChg: prev ? last.c / prev.c - 1 : 0, lastDate: last.date, rows: rows.length });
-          if (!TICKER_LIST.includes(t)) { TICKER_LIST.push(t); TICKER_LIST.sort(); saveTickerListToStorage(); }
+          const last = rows[rows.length - 1],
+            prev = rows.length > 1 ? rows[rows.length - 2] : last;
+          META.set(t, {
+            lastClose: last.c,
+            lastChg: prev ? last.c / prev.c - 1 : 0,
+            lastDate: last.date,
+            rows: rows.length,
+          });
+          if (!TICKER_LIST.includes(t)) {
+            TICKER_LIST.push(t);
+            TICKER_LIST.sort();
+            saveTickerListToStorage();
+          }
           sparkDirty = true;
-          if (!silent && isCurrent) { CUR = t; renderAll(); saveLastTicker(t); }
+          if (!silent && isCurrent) {
+            CUR = t;
+            renderAll();
+            saveLastTicker(t);
+          }
           if (isCurrent) hideLoadingBadge();
           return rows;
         } catch (e) {
-          if (PENDING_TICKER === t) { hideLoadingBadge(); if (!silent) alert("Failed to load " + t + "\n\n" + e.message); }
+          if (PENDING_TICKER === t) {
+            hideLoadingBadge();
+            if (!silent) alert("Failed to load " + t + "\n\n" + e.message);
+          }
           return null;
-        } finally { LOADING.delete(t); }
+        } finally {
+          LOADING.delete(t);
+        }
       }
 
       async function init() {
-        TICKER_LIST = [...new Set([...loadTickerListFromStorage(), ...FALLBACK_TICKERS])].sort();
+        TICKER_LIST = [
+          ...new Set([...loadTickerListFromStorage(), ...FALLBACK_TICKERS]),
+        ].sort();
         $("emptyState").style.display = "none";
         $("main").style.display = "block";
         $("emptyMsg").textContent = "Connecting to API…";
         fillDropdown("");
         let start = null;
-        try { start = localStorage.getItem("dse-last-ticker"); } catch (e) {}
+        try {
+          start = localStorage.getItem("dse-last-ticker");
+        } catch (e) {}
         if (!start || (!TICKER_LIST.includes(start) && !DATA.has(start))) {
-          for (const b of FIRST_LOAD_CANDIDATES) { if (TICKER_LIST.includes(b)) { start = b; break; } }
+          for (const b of FIRST_LOAD_CANDIDATES) {
+            if (TICKER_LIST.includes(b)) {
+              start = b;
+              break;
+            }
+          }
         }
         if (!start) start = TICKER_LIST[0];
         const rows = await loadTicker(start, true);
-        if (!rows || !rows.length) { showAPIError(); return; }
-        CUR = start; saveLastTicker(start); renderAll();
+        if (!rows || !rows.length) {
+          showAPIError();
+          return;
+        }
+        CUR = start;
+        q.value = start;
+        syncClearBtn();
+        saveLastTicker(start);
+        renderAll();
       }
 
       function showAPIError() {
         $("main").style.display = "none";
         $("emptyState").style.display = "block";
-        $("emptyMsg").innerHTML = "Could not reach the API.<br><br>" + 'Endpoint: <span class="kbd">' + escapeHtml(API_BASE.replace(/\/+$/, "") + API_TICKER_PATH) + "{ticker}</span><br><br>" + "Check that server is running, CORS enabled, and API base URL is correct.<br><br>" + '<button class="btn sm" id="retryInitBtn" style="margin-top:8px">Retry</button>';
-        const btn = $("retryInitBtn"); if (btn) btn.onclick = init;
+        $("emptyMsg").innerHTML =
+          "Could not reach the API.<br><br>" +
+          'Endpoint: <span class="kbd">' +
+          escapeHtml(API_BASE.replace(/\/+$/, "") + API_TICKER_PATH) +
+          "{ticker}</span><br><br>" +
+          "Check that server is running, CORS is enabled, and API base URL is correct.<br><br>" +
+          '<button class="btn sm" id="retryInitBtn" style="margin-top:8px">Retry</button>';
+        const btn = $("retryInitBtn");
+        if (btn) btn.onclick = init;
       }
 
-      /* SEARCH DROPDOWN */
-      const q = $("q"), dd = $("dropdown");
-      q.addEventListener("input", () => fillDropdown(q.value));
-      q.addEventListener("focus", () => fillDropdown(q.value));
-      document.addEventListener("click", (e) => { if (!e.target.closest(".searchwrap")) dd.style.display = "none"; });
+      /* ================================================================
+   SEARCH DROPDOWN & CLEAR BUTTON
+   ================================================================ */
+      const q = $("q"),
+        qClear = $("qClear"),
+        dd = $("dropdown");
+
+      function syncClearBtn() {
+        qClear.style.display = q.value.length > 0 ? " inline-flex" : "none";
+      }
+
+      q.addEventListener("input", () => {
+        syncClearBtn();
+        fillDropdown(q.value);
+      });
+      q.addEventListener("focus", () => {
+        syncClearBtn();
+        fillDropdown(q.value);
+      });
+      qClear.addEventListener("click", (e) => {
+        e.stopPropagation();
+        q.value = "";
+        syncClearBtn();
+        q.focus();
+        fillDropdown("");
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".searchwrap")) dd.style.display = "none";
+      });
       q.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
           const it = dd.querySelector("div");
           if (it) pick(it.dataset.t);
-          else { const typed = q.value.trim().toUpperCase(); if (typed && typed.length <= 20) pick(typed); }
+          else {
+            const typed = q.value.trim().toUpperCase();
+            if (typed && typed.length <= 20) pick(typed);
+          }
         }
       });
+
       function fillDropdown(f) {
         const s = f.trim().toUpperCase();
-        const matches = TICKER_LIST.filter((t) => !s || t.includes(s)).sort().slice(0, 30);
+        const matches = TICKER_LIST.filter((t) => !s || t.includes(s))
+          .sort()
+          .slice(0, 30);
         const items = matches.map((t) => {
           const m = META.get(t);
-          const right = m ? fmt(m.lastClose) + " (" + pct(m.lastChg) + ")" : "click to fetch";
-          return '<div data-t="' + escapeHtml(t) + '"><span class="sym">' + escapeHtml(t) + '</span><span class="nm">' + right + "</span></div>";
+          const right = m
+            ? fmt(m.lastClose) + " (" + pct(m.lastChg) + ")"
+            : "click to fetch";
+          return (
+            '<div data-t="' +
+            escapeHtml(t) +
+            '"><span class="sym">' +
+            escapeHtml(t) +
+            '</span><span class="nm">' +
+            right +
+            "</span></div>"
+          );
         });
         if (s && s.length <= 20 && !matches.some((t) => t === s)) {
-          items.push('<div data-t="' + escapeHtml(s) + '"><span class="sym">Fetch ' + escapeHtml(s) + '</span><span class="nm">from API</span></div>');
+          items.push(
+            '<div data-t="' +
+              escapeHtml(s) +
+              '"><span class="sym">Fetch ' +
+              escapeHtml(s) +
+              '</span><span class="nm">from API</span></div>'
+          );
         }
-        if (!items.length) { dd.style.display = "none"; return; }
-        dd.innerHTML = items.join(""); dd.style.display = "block";
-        dd.querySelectorAll("div").forEach((d) => (d.onclick = () => pick(d.dataset.t)));
+        if (!items.length) {
+          dd.style.display = "none";
+          return;
+        }
+        dd.innerHTML = items.join("");
+        dd.style.display = "block";
+        dd.querySelectorAll("div").forEach(
+          (d) => (d.onclick = () => pick(d.dataset.t))
+        );
       }
-      function pick(t) { dd.style.display = "none"; q.value = t; loadTicker(t); }
+
+      function pick(t) {
+        dd.style.display = "none";
+        q.value = t;
+        syncClearBtn();
+        loadTicker(t);
+      }
 
       $("refreshBtn").onclick = async () => {
         if (!CUR) return;
-        const btn = $("refreshBtn"); btn.textContent = "Refreshing…"; btn.disabled = true; showLoadingBadge(CUR);
+        const btn = $("refreshBtn");
+        btn.textContent = "Refreshing…";
+        btn.disabled = true;
+        showLoadingBadge(CUR);
         try {
           const rows = await fetchTicker(CUR);
           if (rows && rows.length) {
             DATA.set(CUR, rows);
-            const last = rows[rows.length - 1], prev = rows.length > 1 ? rows[rows.length - 2] : last;
-            META.set(CUR, { lastClose: last.c, lastChg: prev ? last.c / prev.c - 1 : 0, lastDate: last.date, rows: rows.length });
-            sparkDirty = true; renderAll();
+            const last = rows[rows.length - 1],
+              prev = rows.length > 1 ? rows[rows.length - 2] : last;
+            META.set(CUR, {
+              lastClose: last.c,
+              lastChg: prev ? last.c / prev.c - 1 : 0,
+              lastDate: last.date,
+              rows: rows.length,
+            });
+            sparkDirty = true;
+            renderAll();
           } else alert("No data returned for " + CUR);
-        } catch (e) { alert("Refresh failed: " + e.message); } finally { hideLoadingBadge(); btn.textContent = "Refresh"; btn.disabled = false; }
+        } catch (e) {
+          alert("Refresh failed: " + e.message);
+        } finally {
+          hideLoadingBadge();
+          btn.textContent = "Refresh";
+          btn.disabled = false;
+        }
       };
 
+      /* ================================================================
+   RENDER MASTER & METRIC CARDS (STANDARD + ADVANCED)
+   ================================================================ */
       function subset(rows) {
         if (!RANGE_DAYS || RANGE_DAYS >= rows.length) return rows;
         return rows.slice(rows.length - RANGE_DAYS);
       }
-      function isIndex(t) { return INDEX_TICKERS.has(t); }
+      function isIndex(t) {
+        return INDEX_TICKERS.has(t);
+      }
 
       function renderAll() {
-        if (!CUR) return; const full = DATA.get(CUR); if (!full) return;
-        const last = full[full.length - 1].c, prev = full.length > 1 ? full[full.length - 2].c : last, chg = prev ? last / prev - 1 : 0;
+        if (!CUR) return;
+        const full = DATA.get(CUR);
+        if (!full) return;
+        const last = full[full.length - 1].c,
+          prev = full.length > 1 ? full[full.length - 2].c : last,
+          chg = prev ? last / prev - 1 : 0;
         $("tName").textContent = CUR;
-        const px = $("tLast"); px.textContent = fmt(last); px.className = "px " + (chg >= 0 ? "up" : "dn");
-        const el = $("tChg"); el.textContent = (chg >= 0 ? "+" : "") + fmt(last - prev) + " (" + pct(chg) + ")"; el.className = "chg " + (chg >= 0 ? "up" : "dn");
-        const win = full.slice(-Math.min(252, full.length)), hi52 = Math.max(...win.map((r) => r.h)), lo52 = Math.min(...win.map((r) => r.l)), ath = Math.max(...full.map((r) => r.h));
-        $("tSub").textContent = full.length + " sessions · 52W " + fmt(lo52) + "–" + fmt(hi52) + " · ATH " + fmt(ath) + " (" + pct(last / ath - 1) + ")";
-        $("dspan").textContent = fmtDate(full[0].date) + " → " + fmtDate(full[full.length - 1].date);
+        const px = $("tLast");
+        px.textContent = fmt(last);
+        px.className = "px " + (chg >= 0 ? "up" : "dn");
+        const el = $("tChg");
+        el.textContent =
+          (chg >= 0 ? "+" : "") + fmt(last - prev) + " (" + pct(chg) + ")";
+        el.className = "chg " + (chg >= 0 ? "up" : "dn");
+        const win = full.slice(-Math.min(252, full.length)),
+          hi52 = Math.max(...win.map((r) => r.h)),
+          lo52 = Math.min(...win.map((r) => r.l)),
+          ath = Math.max(...full.map((r) => r.h));
+        $("tSub").textContent =
+          full.length.toLocaleString() +
+          " sessions · 52W " +
+          fmt(lo52) +
+          " – " +
+          fmt(hi52) +
+          " · ATH " +
+          fmt(ath) +
+          " (" +
+          pct(last / ath - 1) +
+          ")";
+        $("dspan").textContent =
+          fmtDate(full[0].date) + " → " + fmtDate(full[full.length - 1].date);
+
         renderCards(full, last, chg, hi52, lo52, ath);
         renderActiveTab();
       }
 
       function renderActiveTab() {
-        if (!CUR) return; const full = DATA.get(CUR); if (!full) return;
+        if (!CUR) return;
+        const full = DATA.get(CUR);
+        if (!full) return;
         if (CURRENT_TAB === "charts") renderChartsTab(full);
         else if (CURRENT_TAB === "overview") renderOverviewTab(full);
         else if (CURRENT_TAB === "perf") renderPerfTab(full);
@@ -1440,92 +2366,1292 @@
       }
 
       function renderCards(full, last, chg, hi52, lo52, ath) {
-        const c = full.map((r) => r.c), v = full.map((r) => r.v), d = full.map((r) => r.date);
-        const ar = annRet(c), av = annVol(c), mdd = maxDD(c);
-        const r1w = retOver(c, 5), r1 = retOver(c, 21), r3 = retOver(c, 63), r6 = retOver(c, 126), r1y = retOver(c, 252), ytd = ytdRet(c, d);
-        const sh = ar != null && av ? (ar - 0.065) / av : null;
-        const pos52 = ((last - lo52) / Math.max(1e-9, hi52 - lo52)) * 100;
-        const sliceN = Math.min(30, v.length), avgV = v.slice(-sliceN).reduce((a, b) => a + b, 0) / sliceN;
-        const avgVtxt = avgV >= 1e6 ? (avgV / 1e6).toFixed(2) + "M" : fmt(avgV, 0);
-        const card = (k, val, sub, cls) => '<div class="card"><div class="k">' + k + '</div><div class="v ' + (cls || "") + '">' + val + "</div>" + (sub ? '<div class="s">' + sub + "</div>" : "") + "</div>";
-        $("cardsPrice").innerHTML = card("Last Price", fmt(last), pct(chg) + " today", chg >= 0 ? "up" : "dn") + card("52W Range", fmt(lo52) + " – " + fmt(hi52), "position " + fmt(pos52, 0) + "%") + card("All-Time High", fmt(ath), pct(last / ath - 1) + " below") + card("Avg Volume 30d", avgVtxt, "shares / day");
-        $("cardsReturns").innerHTML = card("1W", pct(r1w), "5 sessions", r1w >= 0 ? "up" : "dn") + card("1M", pct(r1), "21 sessions", r1 >= 0 ? "up" : "dn") + card("3M", pct(r3), "63 sessions", r3 >= 0 ? "up" : "dn") + card("6M", pct(r6), "126 sessions", r6 >= 0 ? "up" : "dn") + card("YTD", pct(ytd), String(d[d.length - 1].getFullYear()), ytd >= 0 ? "up" : "dn") + card("1Y", pct(r1y), "252 sessions", r1y >= 0 ? "up" : "dn");
-        $("cardsRisk").innerHTML = card("CAGR", pct(ar), "annualised", ar >= 0 ? "up" : "dn") + card("Volatility", pct(av), "annualised σ") + card("Sharpe", fmt(sh, 2), "rf 6.5%", sh != null && sh >= 0 ? "up" : "dn") + card("Max Drawdown", pct(mdd), "peak to trough", "dn");
+        const c = full.map((r) => r.c),
+          v = full.map((r) => r.v),
+          d = full.map((r) => r.date);
+        const card = (k, val, sub, cls) =>
+          '<div class="card"><div class="k">' +
+          k +
+          '</div><div class="v ' +
+          (cls || "") +
+          '">' +
+          val +
+          "</div>" +
+          (sub ? '<div class="s">' + sub + "</div>" : "") +
+          "</div>";
+
+        if (!ADV_METRICS) {
+          // STANDARD METRICS
+          $("groupLabel1").textContent = "Price & Range";
+          $("groupLabel2").textContent = "Returns";
+          $("groupLabel3").textContent = "Risk & Drawdown";
+
+          const ar = annRet(c),
+            av = annVol(c),
+            mdd = maxDD(c);
+          const r1w = retOver(c, 5),
+            r1 = retOver(c, 21),
+            r3 = retOver(c, 63),
+            r6 = retOver(c, 126),
+            r1y = retOver(c, 252),
+            ytd = ytdRet(c, d);
+          const sh = ar != null && av ? (ar - 0.065) / av : null;
+          const pos52 = ((last - lo52) / Math.max(1e-9, hi52 - lo52)) * 100;
+          const sliceN = Math.min(30, v.length),
+            avgV = v.slice(-sliceN).reduce((a, b) => a + b, 0) / sliceN;
+          const avgVtxt =
+            avgV >= 1e6 ? (avgV / 1e6).toFixed(2) + "M" : fmt(avgV, 0);
+
+          $("cardsPrice").innerHTML =
+            card(
+              "Last Price",
+              fmt(last),
+              pct(chg) + " today",
+              chg >= 0 ? "up" : "dn"
+            ) +
+            card(
+              "52W Range",
+              fmt(lo52) + " – " + fmt(hi52),
+              "Range position: " + fmt(pos52, 0) + "%"
+            ) +
+            card(
+              "All-Time High",
+              fmt(ath),
+              pct(last / ath - 1) + " from peak"
+            ) +
+            card("Avg Volume (30d)", avgVtxt, "shares / session");
+
+          $("cardsReturns").innerHTML =
+            card("1W Return", pct(r1w), "5 sessions", r1w >= 0 ? "up" : "dn") +
+            card("1M Return", pct(r1), "21 sessions", r1 >= 0 ? "up" : "dn") +
+            card("3M Return", pct(r3), "63 sessions", r3 >= 0 ? "up" : "dn") +
+            card("6M Return", pct(r6), "126 sessions", r6 >= 0 ? "up" : "dn") +
+            card(
+              "YTD Return",
+              pct(ytd),
+              "Year " + d[d.length - 1].getFullYear(),
+              ytd >= 0 ? "up" : "dn"
+            ) +
+            card("1Y Return", pct(r1y), "252 sessions", r1y >= 0 ? "up" : "dn");
+
+          $("cardsRisk").innerHTML =
+            card("CAGR", pct(ar), "Annualized return", ar >= 0 ? "up" : "dn") +
+            card("Volatility", pct(av), "Annualized σ") +
+            card(
+              "Sharpe Ratio",
+              fmt(sh, 2),
+              "Risk-free 6.5%",
+              sh != null && sh >= 0 ? "up" : "dn"
+            ) +
+            card("Max Drawdown", pct(mdd), "Peak to trough", "dn");
+        } else {
+          // ADVANCED QUANTITATIVE & SENTIMENT METRICS
+          $("groupLabel1").textContent = "Sentiment & Regime";
+          $("groupLabel2").textContent = "Tail Risk & Efficiency";
+          $("groupLabel3").textContent = "Momentum & Extremes";
+
+          const adv = computeAdvancedMetrics(full, c, v, last, ath);
+
+          $("cardsPrice").innerHTML =
+            card(
+              "Market Regime",
+              adv.regimeLabel,
+              adv.regimeSub,
+              adv.regimeCls
+            ) +
+            card(
+              "Bull vs Bear Vol",
+              fmt(adv.bullBearVolRatio, 2) + "x",
+              "σ+ " + pct(adv.upVol) + " vs σ- " + pct(adv.dnVol),
+              adv.bullBearVolRatio >= 1 ? "up" : "dn"
+            ) +
+            card(
+              "Volume Sentiment (30d)",
+              fmt(adv.upDnVolRatio, 2) + "x",
+              adv.upDnVolSub,
+              adv.upDnVolRatio >= 1 ? "up" : "dn"
+            ) +
+            card(
+              "Win Rate & Profit Factor",
+              fmt(adv.winRate * 100, 1) + "%",
+              "Profit Factor: " +
+                fmt(adv.profitFactor, 2) +
+                " · Payoff: " +
+                fmt(adv.payoffRatio, 2) +
+                "x",
+              adv.profitFactor >= 1 ? "up" : "dn"
+            ) +
+            card(
+              "Buying Pressure (20d CLV)",
+              (adv.clv20 >= 0 ? "+" : "") + fmt(adv.clv20 * 100, 1) + "%",
+              adv.clv20 >= 0.05
+                ? "Closes near session highs (Accum.)"
+                : adv.clv20 <= -0.05
+                ? "Closes near session lows (Distrib.)"
+                : "Balanced intraday closes",
+              adv.clv20 >= 0 ? "up" : "dn"
+            );
+
+          $("cardsReturns").innerHTML =
+            card(
+              "Sortino Ratio",
+              fmt(adv.sortino, 2),
+              "Downside σ-: " + pct(adv.dnDev),
+              adv.sortino != null && adv.sortino >= 0 ? "up" : "dn"
+            ) +
+            card(
+              "Calmar & Ulcer Index",
+              fmt(adv.calmar, 2),
+              "Ulcer Pain Index: " + fmt(adv.ulcer, 2) + "%",
+              adv.calmar != null && adv.calmar >= 0.5 ? "up" : "dn"
+            ) +
+            card(
+              "Daily VaR (95%)",
+              pct(adv.var95),
+              "CVaR (Expected Shortfall): " + pct(adv.cvar95),
+              "dn"
+            ) +
+            card(
+              "Return Skewness",
+              (adv.skew >= 0 ? "+" : "") + fmt(adv.skew, 2),
+              adv.skew >= 0.2
+                ? "Positive right-tail asymmetry"
+                : adv.skew <= -0.2
+                ? "Negative left-tail crash skew"
+                : "Near-symmetric tails",
+              adv.skew >= 0 ? "up" : "dn"
+            ) +
+            card(
+              "Excess Kurtosis",
+              (adv.kurt >= 0 ? "+" : "") + fmt(adv.kurt, 2),
+              adv.kurt > 1
+                ? "Fat tails (Leptokurtic outliers)"
+                : "Thin / normal tail thickness"
+            );
+
+          $("cardsRisk").innerHTML =
+            card(
+              "RSI (14) & 20d Z-Score",
+              fmt(adv.lastRSI, 1) +
+                " / " +
+                (adv.zScore20 >= 0 ? "+" : "") +
+                fmt(adv.zScore20, 2) +
+                "σ",
+              adv.rsiState,
+              adv.lastRSI >= 50 ? "up" : "dn"
+            ) +
+            card(
+              "ATR (14d) Volatility",
+              fmt(adv.atr14, 2) + " (" + fmt(adv.atrPct * 100, 2) + "%)",
+              "Avg daily true range swing"
+            ) +
+            card(
+              "Drawdown & Recovery",
+              pct(adv.curDD),
+              "Needs +" +
+                fmt(adv.reqGain * 100, 1) +
+                "% to ATH · " +
+                adv.daysSinceATH +
+                "d ago",
+              "dn"
+            ) +
+            card(
+              "Session Streaks",
+              adv.curStreakTxt,
+              "Max Win: " +
+                adv.maxWinStreak +
+                "d · Max Loss: " +
+                adv.maxLossStreak +
+                "d",
+              adv.curStreak >= 0 ? "up" : "dn"
+            ) +
+            card(
+              "Vol Regime (30d vs Hist)",
+              pct(adv.vol30),
+              adv.volRegimeTxt,
+              adv.vol30 <= adv.histVol ? "up" : "dn"
+            );
+        }
+      }
+
+      function computeAdvancedMetrics(full, c, v, last, ath) {
+        const rr = rets(c);
+        const n = rr.length;
+        const ar = annRet(c);
+        const histVol = annVol(c) || 0;
+        const mdd = maxDD(c);
+
+        // 1. Regime (SMA50 & SMA200)
+        const sma50Arr = sma(c, 50),
+          sma200Arr = sma(c, 200);
+        const s50 = sma50Arr[c.length - 1] || last;
+        const s200 = sma200Arr[c.length - 1] || s50;
+        const d50 = last / s50 - 1,
+          d200 = last / s200 - 1;
+        let regimeLabel = "Neutral",
+          regimeCls = "";
+        if (last > s50 && s50 > s200) {
+          regimeLabel = "Strong Bull";
+          regimeCls = "up";
+        } else if (last > s50 && last > s200) {
+          regimeLabel = "Bullish";
+          regimeCls = "up";
+        } else if (last < s50 && s50 < s200) {
+          regimeLabel = "Strong Bear";
+          regimeCls = "dn";
+        } else if (last < s50) {
+          regimeLabel = "Bearish Pullback";
+          regimeCls = "dn";
+        }
+        const regimeSub =
+          "vs SMA50: " + pct(d50) + " · SMA200: " + pct(d200);
+
+        // 2. Bull vs Bear Volatility & Win/Loss Asymmetry
+        const posRets = [],
+          negRets = [];
+        let sumPos = 0,
+          sumNeg = 0;
+        for (let i = 0; i < n; i++) {
+          if (rr[i] > 0) {
+            posRets.push(rr[i]);
+            sumPos += rr[i];
+          } else if (rr[i] < 0) {
+            negRets.push(rr[i]);
+            sumNeg += Math.abs(rr[i]);
+          }
+        }
+        const calcStdAnn = (arr) => {
+          if (arr.length < 2) return 0;
+          const m = arr.reduce((a, b) => a + b, 0) / arr.length;
+          return Math.sqrt(
+            (arr.reduce((a, b) => a + (b - m) ** 2, 0) / (arr.length - 1)) * 252
+          );
+        };
+        const upVol = calcStdAnn(posRets);
+        const dnVol = calcStdAnn(negRets);
+        const bullBearVolRatio = dnVol > 0 ? upVol / dnVol : 1;
+
+        const winRate = n > 0 ? posRets.length / n : 0;
+        const avgGain = posRets.length ? sumPos / posRets.length : 0;
+        const avgLoss = negRets.length ? sumNeg / negRets.length : 0;
+        const payoffRatio = avgLoss > 0 ? avgGain / avgLoss : 1;
+        const profitFactor = sumNeg > 0 ? sumPos / sumNeg : 1;
+
+        // 3. Volume Sentiment (30d Up Vol vs Down Vol)
+        const win30 = Math.min(30, full.length - 1);
+        let upVolSum = 0,
+          upVolCnt = 0,
+          dnVolSum = 0,
+          dnVolCnt = 0;
+        for (let i = full.length - win30; i < full.length; i++) {
+          if (i <= 0) continue;
+          if (full[i].c > full[i - 1].c) {
+            upVolSum += full[i].v;
+            upVolCnt++;
+          } else if (full[i].c < full[i - 1].c) {
+            dnVolSum += full[i].v;
+            dnVolCnt++;
+          }
+        }
+        const avgUpV = upVolCnt ? upVolSum / upVolCnt : 0;
+        const avgDnV = dnVolCnt ? dnVolSum / dnVolCnt : 0;
+        const upDnVolRatio =
+          avgDnV > 0 ? avgUpV / avgDnV : avgUpV > 0 ? 2.0 : 1.0;
+        const upDnVolSub =
+          upDnVolRatio >= 1.15
+            ? "Net Accumulation (Strong buying vol)"
+            : upDnVolRatio <= 0.85
+            ? "Net Distribution (Heavy sell vol)"
+            : "Neutral volume balance";
+
+        // 4. Buying Pressure (20d Close Location Value)
+        const w20 = full.slice(-Math.min(20, full.length));
+        let clvSum = 0;
+        for (const r of w20) {
+          const span = r.h - r.l;
+          clvSum += span > 0 ? (r.c - r.l - (r.h - r.c)) / span : 0;
+        }
+        const clv20 = w20.length ? clvSum / w20.length : 0;
+
+        // 5. Sortino, Calmar, Ulcer Index
+        let sumDownSq = 0;
+        for (let i = 0; i < n; i++) {
+          if (rr[i] < 0) sumDownSq += rr[i] * rr[i];
+        }
+        const dnDev = n > 1 ? Math.sqrt((sumDownSq / n) * 252) : 0;
+        const sortino = ar != null && dnDev > 0 ? (ar - 0.065) / dnDev : null;
+        const calmar =
+          ar != null && mdd < 0 ? ar / Math.abs(mdd) : null;
+
+        let pk = c[0],
+          ddSqSum = 0,
+          athIdx = 0;
+        for (let i = 0; i < c.length; i++) {
+          if (full[i].h >= ath) athIdx = i;
+          if (c[i] > pk) pk = c[i];
+          const dPct = (c[i] / pk - 1) * 100;
+          ddSqSum += dPct * dPct;
+        }
+        const ulcer = Math.sqrt(ddSqSum / c.length);
+
+        // 6. VaR (95%), CVaR (95%), Skewness, Kurtosis
+        const sortedR = [...rr].sort((a, b) => a - b);
+        const varIdx = Math.max(0, Math.floor(sortedR.length * 0.05));
+        const var95 = sortedR.length ? sortedR[varIdx] : 0;
+        const tailSlice = sortedR.slice(0, varIdx + 1);
+        const cvar95 = tailSlice.length
+          ? tailSlice.reduce((a, b) => a + b, 0) / tailSlice.length
+          : 0;
+
+        const stats = calcMoments(rr);
+
+        // 7. RSI, 20d Z-Score, ATR(14), Streaks
+        const rsiArr = rsi(c, 14);
+        const lastRSI = rsiArr[rsiArr.length - 1] || 50;
+        const c20 = c.slice(-Math.min(20, c.length));
+        const m20 = c20.reduce((a, b) => a + b, 0) / c20.length;
+        const sd20 =
+          Math.sqrt(c20.reduce((a, b) => a + (b - m20) ** 2, 0) / c20.length) ||
+          1;
+        const zScore20 = (last - m20) / sd20;
+        const rsiState =
+          lastRSI >= 70
+            ? "Overbought regime (>70)"
+            : lastRSI <= 30
+            ? "Oversold regime (<30)"
+            : "Neutral momentum zone";
+
+        const atrSlice = full.slice(-Math.min(15, full.length));
+        let trSum = 0,
+          trCnt = 0;
+        for (let i = 1; i < atrSlice.length; i++) {
+          const cur = atrSlice[i],
+            prv = atrSlice[i - 1];
+          const tr = Math.max(
+            cur.h - cur.l,
+            Math.abs(cur.h - prv.c),
+            Math.abs(cur.l - prv.c)
+          );
+          trSum += tr;
+          trCnt++;
+        }
+        const atr14 = trCnt ? trSum / trCnt : 0;
+        const atrPct = last > 0 ? atr14 / last : 0;
+
+        const curDD = last / ath - 1;
+        const reqGain = last > 0 ? ath / last - 1 : 0;
+        const daysSinceATH = c.length - 1 - athIdx;
+
+        let maxWinStreak = 0,
+          maxLossStreak = 0,
+          curW = 0,
+          curL = 0,
+          curStreak = 0;
+        for (let i = 0; i < n; i++) {
+          if (rr[i] > 0) {
+            curW++;
+            curL = 0;
+            if (curW > maxWinStreak) maxWinStreak = curW;
+            curStreak = curW;
+          } else if (rr[i] < 0) {
+            curL++;
+            curW = 0;
+            if (curL > maxLossStreak) maxLossStreak = curL;
+            curStreak = -curL;
+          }
+        }
+        const curStreakTxt =
+          curStreak > 0
+            ? "+" + curStreak + "d Win Streak"
+            : curStreak < 0
+            ? Math.abs(curStreak) + "d Loss Streak"
+            : "Flat Today";
+
+        const vol30 = annVol(c.slice(-Math.min(31, c.length))) || histVol;
+        const volRatio = histVol > 0 ? vol30 / histVol : 1;
+        const volRegimeTxt =
+          volRatio >= 1.25
+            ? "High Vol Expansion (" + fmt(volRatio, 2) + "x hist)"
+            : volRatio <= 0.75
+            ? "Low Vol Compression (" + fmt(volRatio, 2) + "x hist)"
+            : "Normal Vol (" + fmt(volRatio, 2) + "x hist)";
+
+        return {
+          regimeLabel,
+          regimeSub,
+          regimeCls,
+          upVol,
+          dnVol,
+          bullBearVolRatio,
+          winRate,
+          payoffRatio,
+          profitFactor,
+          upDnVolRatio,
+          upDnVolSub,
+          clv20,
+          sortino,
+          dnDev,
+          calmar,
+          ulcer,
+          var95,
+          cvar95,
+          skew: stats.skew,
+          kurt: stats.kurt,
+          lastRSI,
+          zScore20,
+          rsiState,
+          atr14,
+          atrPct,
+          curDD,
+          reqGain,
+          daysSinceATH,
+          maxWinStreak,
+          maxLossStreak,
+          curStreak,
+          curStreakTxt,
+          vol30,
+          histVol,
+          volRegimeTxt,
+        };
+      }
+
+      function calcMoments(arr) {
+        const n = arr.length;
+        if (n < 3) return { mean: 0, sd: 0, skew: 0, kurt: 0, posPct: 0 };
+        let sum = 0,
+          pos = 0;
+        for (let i = 0; i < n; i++) {
+          sum += arr[i];
+          if (arr[i] > 0) pos++;
+        }
+        const mean = sum / n;
+        let m2 = 0,
+          m3 = 0,
+          m4 = 0;
+        for (let i = 0; i < n; i++) {
+          const d = arr[i] - mean;
+          const d2 = d * d;
+          m2 += d2;
+          m3 += d2 * d;
+          m4 += d2 * d2;
+        }
+        const variance = m2 / n;
+        const sd = Math.sqrt(variance);
+        if (sd === 0)
+          return { mean, sd: 0, skew: 0, kurt: 0, posPct: pos / n };
+        const skew = m3 / n / Math.pow(sd, 3);
+        const kurt = m4 / n / (variance * variance) - 3;
+        return { mean, sd, skew, kurt, posPct: pos / n };
       }
 
       /* ================================================================
-   CHARTS TAB
+   CHARTS TAB (WITH SEAMLESS OVERLAPPED / STACKED INDICATORS)
    ================================================================ */
-      const BASE_TOOLBOX = { feature: { dataZoom: { yAxisIndex: "none" }, restore: {} } };
+      const BASE_TOOLBOX = {
+        feature: { dataZoom: { yAxisIndex: "none" }, restore: {} },
+      };
 
       function renderChartsTab(full) {
         const rows = subset(full);
-        const dates = rows.map((r) => r.date), c = rows.map((r) => r.c), v = rows.map((r) => r.v);
-        renderMain(rows, dates, c, v); renderRSI(dates, c); renderMACD(dates, c); renderDD(dates, c);
+        const dates = rows.map((r) => r.date),
+          c = rows.map((r) => r.c),
+          v = rows.map((r) => r.v);
+        renderMain(rows, dates, c, v);
       }
 
       function renderMain(rows, dates, c, v) {
-        const type = $("chartType").value, volMode = $("volMode") ? $("volMode").value : "overlay";
-        const C = rows.map((r) => r.c), s20 = sma(C, 20), s50 = sma(C, 50), s200 = sma(C, 200), dts = dates.map(fmtDate);
-        const volData = rows.map((r, i) => ({ value: r.v, itemStyle: { color: i > 0 && r.c >= rows[i - 1].c ? TH.upFill : TH.downFill } }));
-        let series = [];
-        if (type === "candle") series.push({ name: CUR, type: "candlestick", data: rows.map((r) => [r.o, r.c, r.l, r.h]), itemStyle: { color: TH.up, color0: TH.down, borderColor: TH.up, borderColor0: TH.down } });
-        else if (type === "area") series.push({ name: CUR, type: "line", data: C, areaStyle: { color: TH.area }, lineStyle: { width: 1.6, color: TH.line }, itemStyle: { color: TH.line }, showSymbol: false });
-        else series.push({ name: CUR, type: "line", data: C, lineStyle: { width: 1.6, color: TH.line }, itemStyle: { color: TH.line }, showSymbol: false });
-        series.push({ name: "SMA20", type: "line", data: s20, lineStyle: { width: 1, color: TH.ma[0] }, showSymbol: false });
-        series.push({ name: "SMA50", type: "line", data: s50, lineStyle: { width: 1, color: TH.ma[1] }, showSymbol: false });
-        series.push({ name: "SMA200", type: "line", data: s200, lineStyle: { width: 1, color: TH.ma[2] }, showSymbol: false });
+        const type = $("chartType").value;
+        const volMode = $("volMode") ? $("volMode").value : "overlay";
+        const showSMA = $("indSMA").checked;
+        const showBB = $("indBB").checked;
+        const showRSI = $("indRSI").checked;
+        const showMACD = $("indMACD").checked;
+        const showDD = $("indDD").checked;
+        const indLayout =
+          document.querySelector("input[name='indLayout']:checked")?.value ||
+          "overlap";
 
-        let grid, xAxis, yAxis, dataZoom, legendData = [CUR, "SMA20", "SMA50", "SMA200"];
-        if (volMode === "off") {
-          grid = { left: 60, right: 20, top: 40, bottom: 50 };
-          xAxis = [Object.assign({ type: "category", data: dts, boundaryGap: false }, ax())];
-          yAxis = [Object.assign({ scale: true }, ax())];
-          dataZoom = [{ type: "inside" }, { type: "slider", bottom: 5, height: 20 }];
-        } else if (volMode === "overlay") {
-          series.push({ name: "Volume", type: "bar", data: volData, yAxisIndex: 1, zlevel: 0 }); legendData.push("Volume");
-          grid = { left: 60, right: 70, top: 40, bottom: 50 };
-          xAxis = [Object.assign({ type: "category", data: dts, boundaryGap: false }, ax())];
-          yAxis = [Object.assign({ scale: true }, ax()), Object.assign({ scale: true, splitLine: { show: false }, axisLine: { show: false }, axisTick: { show: false }, axisLabel: { formatter: (val) => val >= 1e6 ? (val / 1e6).toFixed(1) + "M" : val >= 1e3 ? (val / 1e3).toFixed(0) + "K" : val.toFixed(0), color: TH.axis }, max: function (v) { return v.max * 4; } }, ax())];
-          dataZoom = [{ type: "inside" }, { type: "slider", bottom: 5, height: 20 }];
-        } else {
-          series.push({ name: "Volume", type: "bar", xAxisIndex: 1, yAxisIndex: 1, data: volData }); legendData.push("Volume");
-          grid = [{ left: 60, right: 20, top: 40, height: "65%" }, { left: 60, right: 20, top: "72%", height: "23%" }];
-          xAxis = [Object.assign({ type: "category", data: dts, boundaryGap: false }, ax()), Object.assign({ type: "category", data: dts, gridIndex: 1 }, ax(), { show: false })];
-          yAxis = [Object.assign({ scale: true }, ax()), Object.assign({ gridIndex: 1, scale: true, splitNumber: 2 }, ax())];
-          dataZoom = [{ type: "inside", xAxisIndex: [0, 1] }, { type: "slider", xAxisIndex: [0, 1], bottom: 5, height: 20 }];
+        // Update active indicator count badge
+        const activeCnt =
+          (showSMA ? 1 : 0) +
+          (showBB ? 1 : 0) +
+          (showRSI ? 1 : 0) +
+          (showMACD ? 1 : 0) +
+          (showDD ? 1 : 0);
+        $("indCountBadge").textContent = activeCnt;
+
+        const C = rows.map((r) => r.c);
+        const dts = dates.map(fmtDate);
+        const volData = rows.map((r, i) => ({
+          value: r.v,
+          itemStyle: {
+            color: i > 0 && r.c >= rows[i - 1].c ? TH.upFill : TH.downFill,
+          },
+        }));
+
+        const subPanes = [];
+        if (indLayout === "stacked") {
+          if (showRSI) subPanes.push("rsi");
+          if (showMACD) subPanes.push("macd");
+          if (showDD) subPanes.push("dd");
         }
-        drawChart("chartMain", { tooltip: tip(), legend: { data: legendData, top: 0, textStyle: { color: TH.axis } }, grid: grid, xAxis: xAxis, yAxis: yAxis, dataZoom: dataZoom, toolbox: BASE_TOOLBOX, series: series });
+
+        // Dynamic chart height when stacked panes are active
+        const mainEl = $("chartMain");
+        const targetH = 580 + subPanes.length * 140;
+        if (mainEl && mainEl.style.height !== targetH + "px") {
+          mainEl.style.height = targetH + "px";
+          if (charts.chartMain) charts.chartMain.resize();
+        }
+
+        let series = [];
+        let legendData = [CUR];
+
+        if (type === "candle") {
+          series.push({
+            name: CUR,
+            type: "candlestick",
+            data: rows.map((r) => [r.o, r.c, r.l, r.h]),
+            itemStyle: {
+              color: TH.up,
+              color0: TH.down,
+              borderColor: TH.up,
+              borderColor0: TH.down,
+            },
+          });
+        } else if (type === "area") {
+          series.push({
+            name: CUR,
+            type: "line",
+            data: C,
+            areaStyle: { color: TH.area },
+            lineStyle: { width: 1.8, color: TH.line },
+            itemStyle: { color: TH.line },
+            showSymbol: false,
+          });
+        } else {
+          series.push({
+            name: CUR,
+            type: "line",
+            data: C,
+            lineStyle: { width: 1.8, color: TH.line },
+            itemStyle: { color: TH.line },
+            showSymbol: false,
+          });
+        }
+
+        if (showSMA) {
+          const s20 = sma(C, 20),
+            s50 = sma(C, 50),
+            s200 = sma(C, 200);
+          series.push({
+            name: "SMA20",
+            type: "line",
+            data: s20,
+            lineStyle: { width: 1.2, color: TH.ma[0] },
+            showSymbol: false,
+          });
+          series.push({
+            name: "SMA50",
+            type: "line",
+            data: s50,
+            lineStyle: { width: 1.2, color: TH.ma[1] },
+            showSymbol: false,
+          });
+          series.push({
+            name: "SMA200",
+            type: "line",
+            data: s200,
+            lineStyle: { width: 1.2, color: TH.ma[2] },
+            showSymbol: false,
+          });
+          legendData.push("SMA20", "SMA50", "SMA200");
+        }
+
+        if (showBB) {
+          const bb = boll(C, 20, 2);
+          series.push({
+            name: "BB Upper",
+            type: "line",
+            data: bb.up,
+            lineStyle: { width: 1, color: TH.down, type: "dashed" },
+            showSymbol: false,
+          });
+          series.push({
+            name: "BB Lower",
+            type: "line",
+            data: bb.lo,
+            lineStyle: { width: 1, color: TH.up, type: "dashed" },
+            showSymbol: false,
+          });
+          legendData.push("BB Upper", "BB Lower");
+        }
+
+        let grids = [];
+        let xAxes = [];
+        let yAxes = [];
+        let allXIndices = [];
+
+        // Build main price + volume grids
+        const hasSepVol = volMode === "separate";
+        const totalSub = (hasSepVol ? 1 : 0) + subPanes.length;
+
+        if (totalSub === 0) {
+          grids.push({ left: 62, right: 68, top: 42, bottom: 68 });
+          xAxes.push(
+            Object.assign(
+              { type: "category", data: dts, boundaryGap: false, gridIndex: 0 },
+              ax()
+            )
+          );
+          yAxes.push(Object.assign({ scale: true, gridIndex: 0 }, ax()));
+          allXIndices.push(0);
+
+          if (volMode === "overlay") {
+            const vAxisIdx = yAxes.length;
+            yAxes.push(
+              Object.assign(
+                {
+                  scale: true,
+                  gridIndex: 0,
+                  splitLine: { show: false },
+                  axisLine: { show: false },
+                  axisTick: { show: false },
+                  axisLabel: {
+                    formatter: (val) =>
+                      val >= 1e6
+                        ? (val / 1e6).toFixed(1) + "M"
+                        : val >= 1e3
+                        ? (val / 1e3).toFixed(0) + "K"
+                        : val.toFixed(0),
+                    color: TH.axis,
+                  },
+                  max: (v) => v.max * 4,
+                },
+                ax()
+              )
+            );
+            series.push({
+              name: "Volume",
+              type: "bar",
+              data: volData,
+              yAxisIndex: vAxisIdx,
+              zlevel: 0,
+            });
+            legendData.push("Volume");
+          }
+        } else {
+          // Multi-grid stacked layout
+          const mainH = Math.max(38, 74 - totalSub * 14);
+          const paneH = Math.floor((80 - mainH) / totalSub) - 3;
+          grids.push({ left: 62, right: 68, top: "6%", height: mainH + "%" });
+          xAxes.push(
+            Object.assign(
+              { type: "category", data: dts, boundaryGap: false, gridIndex: 0 },
+              ax(),
+              { axisLabel: { show: false } }
+            )
+          );
+          yAxes.push(Object.assign({ scale: true, gridIndex: 0 }, ax()));
+          allXIndices.push(0);
+
+          if (volMode === "overlay") {
+            const vAxisIdx = yAxes.length;
+            yAxes.push(
+              Object.assign(
+                {
+                  scale: true,
+                  gridIndex: 0,
+                  splitLine: { show: false },
+                  axisLine: { show: false },
+                  axisTick: { show: false },
+                  axisLabel: { show: false },
+                  max: (v) => v.max * 4,
+                },
+                ax()
+              )
+            );
+            series.push({
+              name: "Volume",
+              type: "bar",
+              data: volData,
+              yAxisIndex: vAxisIdx,
+            });
+            legendData.push("Volume");
+          }
+
+          let curTop = 6 + mainH + 3;
+          let gIdx = 1;
+
+          if (hasSepVol) {
+            grids.push({
+              left: 62,
+              right: 68,
+              top: curTop + "%",
+              height: paneH + "%",
+            });
+            const isLast = gIdx === totalSub;
+            xAxes.push(
+              Object.assign(
+                { type: "category", data: dts, gridIndex: gIdx },
+                ax(),
+                { axisLabel: { show: isLast, color: TH.axis, fontSize: 11 } }
+              )
+            );
+            const yIdx = yAxes.length;
+            yAxes.push(
+              Object.assign(
+                { gridIndex: gIdx, scale: true, splitNumber: 2 },
+                ax()
+              )
+            );
+            series.push({
+              name: "Volume",
+              type: "bar",
+              xAxisIndex: gIdx,
+              yAxisIndex: yIdx,
+              data: volData,
+            });
+            legendData.push("Volume");
+            allXIndices.push(gIdx);
+            curTop += paneH + 3;
+            gIdx++;
+          }
+
+          for (const sp of subPanes) {
+            const isLast = gIdx === totalSub;
+            grids.push({
+              left: 62,
+              right: 68,
+              top: curTop + "%",
+              height: paneH + "%",
+            });
+            xAxes.push(
+              Object.assign(
+                { type: "category", data: dts, gridIndex: gIdx },
+                ax(),
+                { axisLabel: { show: isLast, color: TH.axis, fontSize: 11 } }
+              )
+            );
+            const yIdx = yAxes.length;
+            if (sp === "rsi") {
+              yAxes.push(
+                Object.assign(
+                  { gridIndex: gIdx, min: 0, max: 100, splitNumber: 2 },
+                  ax()
+                )
+              );
+              series.push({
+                name: "RSI(14)",
+                type: "line",
+                xAxisIndex: gIdx,
+                yAxisIndex: yIdx,
+                data: rsi(C),
+                lineStyle: { width: 1.4, color: TH.accent },
+                showSymbol: false,
+              });
+              legendData.push("RSI(14)");
+            } else if (sp === "macd") {
+              const m = macd(C);
+              yAxes.push(
+                Object.assign(
+                  { gridIndex: gIdx, scale: true, splitNumber: 2 },
+                  ax()
+                )
+              );
+              series.push(
+                {
+                  name: "MACD Hist",
+                  type: "bar",
+                  xAxisIndex: gIdx,
+                  yAxisIndex: yIdx,
+                  data: m.hist,
+                  itemStyle: {
+                    color: (p) => (p.value >= 0 ? TH.upFill : TH.downFill),
+                  },
+                },
+                {
+                  name: "MACD",
+                  type: "line",
+                  xAxisIndex: gIdx,
+                  yAxisIndex: yIdx,
+                  data: m.line,
+                  lineStyle: { width: 1.3, color: TH.accent },
+                  showSymbol: false,
+                },
+                {
+                  name: "Signal",
+                  type: "line",
+                  xAxisIndex: gIdx,
+                  yAxisIndex: yIdx,
+                  data: m.sig,
+                  lineStyle: { width: 1.2, color: TH.ma[0] },
+                  showSymbol: false,
+                }
+              );
+              legendData.push("MACD", "Signal");
+            } else if (sp === "dd") {
+              let p = C[0];
+              const ddv = C.map((x) => {
+                p = Math.max(p, x);
+                return (x / p - 1) * 100;
+              });
+              yAxes.push(
+                Object.assign(
+                  { gridIndex: gIdx, max: 0, splitNumber: 2 },
+                  ax(),
+                  {
+                    axisLabel: {
+                      formatter: (v) => v.toFixed(0) + "%",
+                      color: TH.axis,
+                    },
+                  }
+                )
+              );
+              series.push({
+                name: "Drawdown %",
+                type: "line",
+                xAxisIndex: gIdx,
+                yAxisIndex: yIdx,
+                data: ddv,
+                lineStyle: { width: 1.3, color: TH.down },
+                areaStyle: { color: TH.downFill },
+                showSymbol: false,
+              });
+              legendData.push("Drawdown %");
+            }
+            allXIndices.push(gIdx);
+            curTop += paneH + 3;
+            gIdx++;
+          }
+        }
+
+        // If Overlap Mode is chosen, overlay RSI / MACD / Drawdown directly onto the Main Canvas (gridIndex 0)
+        if (indLayout === "overlap") {
+          if (showRSI) {
+            const yIdx = yAxes.length;
+            yAxes.push({
+              gridIndex: 0,
+              min: 0,
+              max: 100,
+              position: "right",
+              splitLine: { show: false },
+              axisLine: { show: false },
+              axisLabel: {
+                formatter: (v) => "RSI " + v,
+                color: TH.ma[2],
+                fontSize: 10,
+              },
+            });
+            series.push({
+              name: "RSI(14)",
+              type: "line",
+              xAxisIndex: 0,
+              yAxisIndex: yIdx,
+              data: rsi(C),
+              lineStyle: { width: 1.5, color: TH.ma[2], type: "solid" },
+              showSymbol: false,
+            });
+            legendData.push("RSI(14)");
+          }
+          if (showMACD) {
+            const m = macd(C);
+            const yIdx = yAxes.length;
+            yAxes.push({
+              gridIndex: 0,
+              scale: true,
+              position: "right",
+              splitLine: { show: false },
+              axisLine: { show: false },
+              axisLabel: { show: false },
+            });
+            series.push(
+              {
+                name: "MACD",
+                type: "line",
+                xAxisIndex: 0,
+                yAxisIndex: yIdx,
+                data: m.line,
+                lineStyle: { width: 1.4, color: TH.accent2 },
+                showSymbol: false,
+              },
+              {
+                name: "Signal",
+                type: "line",
+                xAxisIndex: 0,
+                yAxisIndex: yIdx,
+                data: m.sig,
+                lineStyle: { width: 1.2, color: TH.ma[0], type: "dashed" },
+                showSymbol: false,
+              }
+            );
+            legendData.push("MACD", "Signal");
+          }
+          if (showDD) {
+            let p = C[0];
+            const ddv = C.map((x) => {
+              p = Math.max(p, x);
+              return (x / p - 1) * 100;
+            });
+            const yIdx = yAxes.length;
+            yAxes.push({
+              gridIndex: 0,
+              min: -100,
+              max: 0,
+              position: "right",
+              splitLine: { show: false },
+              axisLine: { show: false },
+              axisLabel: { show: false },
+            });
+            series.push({
+              name: "Drawdown %",
+              type: "line",
+              xAxisIndex: 0,
+              yAxisIndex: yIdx,
+              data: ddv,
+              lineStyle: { width: 1.2, color: TH.down },
+              areaStyle: { color: TH.downFill },
+              showSymbol: false,
+            });
+            legendData.push("Drawdown %");
+          }
+        }
+
+        drawChart("chartMain", {
+          tooltip: tip(),
+          legend: {
+            data: legendData,
+            top: 0,
+            textStyle: { color: TH.text, fontFamily: "Figtree, sans-serif" },
+          },
+          grid: grids,
+          xAxis: xAxes,
+          yAxis: yAxes,
+          dataZoom: [
+            { type: "inside", xAxisIndex: allXIndices },
+            makeSlider({ xAxisIndex: allXIndices, bottom: 10, height: 28 }),
+          ],
+          toolbox: BASE_TOOLBOX,
+          series: series,
+        });
       }
 
-      $("chartType").onchange = () => { if (CUR) renderActiveTab(); };
-      if ($("volMode")) $("volMode").onchange = () => { if (CUR) renderActiveTab(); };
-      document.querySelectorAll(".tf").forEach((b) => b.onclick = () => { document.querySelectorAll(".tf").forEach((x) => x.classList.remove("primary")); b.classList.add("primary"); RANGE_DAYS = +b.dataset.days; if (CUR) renderAll(); });
+      $("chartType").onchange = () => {
+        if (CUR) renderActiveTab();
+      };
+      if ($("volMode"))
+        $("volMode").onchange = () => {
+          if (CUR) renderActiveTab();
+        };
+      ["indSMA", "indBB", "indRSI", "indMACD", "indDD"].forEach((id) => {
+        const el = $(id);
+        if (el)
+          el.onchange = () => {
+            if (CUR) renderActiveTab();
+          };
+      });
+      document.querySelectorAll("input[name='indLayout']").forEach((r) => {
+        r.onchange = () => {
+          if (CUR) renderActiveTab();
+        };
+      });
 
-      function renderRSI(dates, c) {
-        const r = rsi(c);
-        drawChart("chartRSI", { tooltip: tip(), grid: { left: 50, right: 15, top: 10, bottom: 20 }, xAxis: Object.assign({ type: "category", data: dates.map(fmtDate) }, ax(), { show: false }), yAxis: Object.assign({ min: 0, max: 100 }, ax()), series: [{ type: "line", data: r, lineStyle: { width: 1.2, color: TH.accent }, showSymbol: false, markLine: { silent: true, symbol: "none", data: [{ yAxis: 70, lineStyle: { color: TH.down, type: "dashed", width: 1 } }, { yAxis: 30, lineStyle: { color: TH.up, type: "dashed", width: 1 } }] } }], dataZoom: [{ type: "inside" }] });
-      }
-      function renderMACD(dates, c) {
-        const m = macd(c);
-        drawChart("chartMACD", { tooltip: tip(), grid: { left: 50, right: 15, top: 25, bottom: 20 }, legend: { data: ["MACD", "Signal", "Hist"], top: 0, textStyle: { color: TH.axis } }, xAxis: Object.assign({ type: "category", data: dates.map(fmtDate) }, ax(), { show: false }), yAxis: Object.assign({}, ax()), series: [{ name: "Hist", type: "bar", data: m.hist, itemStyle: { color: m.hist.map((h) => (h >= 0 ? TH.upFill : TH.downFill)) } }, { name: "MACD", type: "line", data: m.line, lineStyle: { width: 1.2, color: TH.accent }, showSymbol: false }, { name: "Signal", type: "line", data: m.sig, lineStyle: { width: 1.2, color: TH.ma[0] }, showSymbol: false }], dataZoom: [{ type: "inside" }] });
-      }
-      function renderDD(dates, c) {
-        let p = c[0]; const ddv = c.map((x) => { p = Math.max(p, x); return x / p - 1; });
-        drawChart("chartDD", { tooltip: tip({ valueFormatter: (v) => (v * 100).toFixed(1) + "%" }), grid: { left: 50, right: 15, top: 10, bottom: 20 }, xAxis: Object.assign({ type: "category", data: dates.map(fmtDate) }, ax(), { show: false }), yAxis: Object.assign({}, ax(), { axisLabel: { formatter: (v) => (v * 100).toFixed(0) + "%", color: TH.axis } }), series: [{ type: "line", data: ddv, lineStyle: { width: 1, color: TH.down }, areaStyle: { color: TH.downFill }, showSymbol: false }], dataZoom: [{ type: "inside" }] });
-      }
+      document.querySelectorAll(".tf").forEach(
+        (b) =>
+          (b.onclick = () => {
+            document
+              .querySelectorAll(".tf")
+              .forEach((x) => x.classList.remove("primary"));
+            b.classList.add("primary");
+            RANGE_DAYS = +b.dataset.days;
+            if (CUR) renderAll();
+          })
+      );
 
       /* ================================================================
-   OVERVIEW TAB
+   OVERVIEW TAB (ZERO-LAG HISTOGRAM + INDEPENDENT TIMELINE SLIDERS)
    ================================================================ */
       function renderOverviewTab(full) {
         const rows = subset(full);
-        const dates = rows.map((r) => r.date), c = rows.map((r) => r.c), v = rows.map((r) => r.v);
+        const dates = rows.map((r) => r.date),
+          c = rows.map((r) => r.c),
+          v = rows.map((r) => r.v);
         renderOverviewCharts(dates, c, v);
       }
-      
+
+      function updateHistTelemetry(sv, ev) {
+        if (!HIST_STATE) return;
+        const { dts, rawDates, rr, binIdxOfDay, numBins } = HIST_STATE;
+        const n = rr.length;
+        if (!n) return;
+
+        sv = Math.max(0, Math.min(n - 1, Math.round(sv)));
+        ev = Math.max(sv, Math.min(n - 1, Math.round(ev)));
+
+        const startStr = dts[sv] || "—";
+        const endStr = dts[ev] || "—";
+        const sessions = ev - sv + 1;
+
+        const dStart = rawDates[sv];
+        const dEnd = rawDates[ev];
+        const calDays =
+          dStart && dEnd
+            ? Math.max(1, Math.round((dEnd - dStart) / 86400000) + 1)
+            : sessions;
+        const weeks = (calDays / 7).toFixed(1);
+
+        $("distFullRange").textContent =
+          dts[0] + " → " + dts[n - 1] + " (" + n.toLocaleString() + "d)";
+        $("distWinRange").textContent = startStr + " → " + endStr;
+        $("distWinWidth").textContent =
+          sessions.toLocaleString() +
+          " sessions · " +
+          calDays.toLocaleString() +
+          " cal days (" +
+          weeks +
+          " wks)";
+
+        // Fast O(W) single-pass integer re-binning + moment calculation
+        const counts = new Array(numBins).fill(0);
+        let sum = 0,
+          pos = 0;
+        for (let i = sv; i <= ev; i++) {
+          counts[binIdxOfDay[i]]++;
+          const r = rr[i];
+          sum += r;
+          if (r > 0) pos++;
+        }
+        const mean = sum / sessions;
+        let m2 = 0,
+          m3 = 0,
+          m4 = 0;
+        for (let i = sv; i <= ev; i++) {
+          const d = rr[i] - mean;
+          const d2 = d * d;
+          m2 += d2;
+          m3 += d2 * d;
+          m4 += d2 * d2;
+        }
+        const variance = m2 / sessions;
+        const sd = Math.sqrt(variance);
+        const annV = sd * Math.sqrt(252);
+        const skew = sd > 0 ? m3 / sessions / Math.pow(sd, 3) : 0;
+        const kurt = sd > 0 ? m4 / sessions / (variance * variance) - 3 : 0;
+        const posPct = (pos / sessions) * 100;
+
+        $("distStatsRow").innerHTML =
+          "<span>Mean: <strong>" +
+          pct(mean) +
+          "</strong></span>" +
+          "<span>Ann. Vol: <strong>" +
+          pct(annV) +
+          "</strong></span>" +
+          "<span>Skewness: <strong>" +
+          (skew >= 0 ? "+" : "") +
+          fmt(skew, 2) +
+          "</strong></span>" +
+          "<span>Kurtosis: <strong>" +
+          (kurt >= 0 ? "+" : "") +
+          fmt(kurt, 2) +
+          "</strong></span>" +
+          "<span>Positive Days: <strong>" +
+          fmt(posPct, 1) +
+          "% (" +
+          pos +
+          "/" +
+          sessions +
+          ")</strong></span>";
+
+        return counts;
+      }
+
+      function applyHistWindowPreset(windowSessions) {
+        if (!HIST_STATE || !charts.chartHist) return;
+        const chHist = charts.chartHist;
+        const n = HIST_STATE.rr.length;
+        if (!n) return;
+
+        // Anchor the right side of the current window so the user can resize and drag smoothly
+        const opt = chHist.getOption();
+        let curEnd =
+          opt && opt.dataZoom && opt.dataZoom[1] && opt.dataZoom[1].endValue != null
+            ? opt.dataZoom[1].endValue
+            : n - 1;
+        if (curEnd >= n || curEnd < 0) curEnd = n - 1;
+
+        let newStart =
+          windowSessions <= 0 ? 0 : Math.max(0, curEnd - windowSessions + 1);
+        const counts = updateHistTelemetry(newStart, curEnd);
+
+        chHist.setOption(
+          {
+            dataZoom: [
+              { xAxisIndex: 1, startValue: newStart, endValue: curEnd },
+              { xAxisIndex: 1, startValue: newStart, endValue: curEnd },
+            ],
+            series: [{ id: "histBars", data: counts }],
+          },
+          { lazyUpdate: false }
+        );
+      }
+
       function renderOverviewCharts(dates, c, v) {
-        // --- 1. VOLATILITY CHART ---
+        const dtsAll = dates.map(fmtDate);
+
+        // --- 1. DAILY RETURN DISTRIBUTION (ZERO-LAG SLIDER + TELEMETRY) ---
+        const chHist = getChart("chartHist");
+        chHist.off("datazoom");
+
+        const rr = rets(c);
+        const dts = dates.slice(1).map(fmtDate);
+        const rawDates = dates.slice(1);
+        const numBins = 40;
+        const min = rr.length ? Math.min(...rr) : -0.05;
+        const max = rr.length ? Math.max(...rr) : 0.05;
+        const step = (max - min) / numBins || 0.0025;
+
+        const catLabels = [];
+        const binColors = [];
+        for (let i = 0; i < numBins; i++) {
+          const midVal = min + (i + 0.5) * step;
+          catLabels.push(((min + i * step) * 100).toFixed(1) + "%");
+          binColors.push(midVal >= 0 ? TH.up : TH.down);
+        }
+
+        // Pre-compute bin index for each session once -> O(1) lookup during slider drag
+        const binIdxOfDay = new Uint8Array(rr.length);
+        for (let i = 0; i < rr.length; i++) {
+          let idx = Math.floor((rr[i] - min) / step);
+          if (idx >= numBins) idx = numBins - 1;
+          if (idx < 0) idx = 0;
+          binIdxOfDay[i] = idx;
+        }
+
+        HIST_STATE = { dts, rawDates, rr, binIdxOfDay, numBins, binColors };
+        const initialCounts = updateHistTelemetry(0, rr.length - 1);
+
+        drawChart("chartHist", {
+          animation: false,
+          tooltip: {
+            trigger: "axis",
+            backgroundColor: TH.tipBg,
+            borderColor: TH.border,
+            textStyle: {
+              color: TH.tipText,
+              fontSize: 12.5,
+              fontFamily: "Figtree, sans-serif",
+            },
+            formatter: (params) => {
+              const p = params && params[0];
+              if (!p) return "";
+              return (
+                "<b>Return Bucket: " +
+                p.name +
+                "</b><br/>Sessions: <b>" +
+                p.value +
+                "</b>"
+              );
+            },
+          },
+          grid: { left: 52, right: 24, top: 14, bottom: 82 },
+          xAxis: [
+            Object.assign(
+              {
+                type: "category",
+                data: catLabels,
+                axisLabel: {
+                  color: TH.axis,
+                  fontSize: 11,
+                  interval: 3,
+                  fontFamily: "Figtree, sans-serif",
+                },
+              },
+              ax()
+            ),
+            { type: "category", data: dts, show: false },
+          ],
+          yAxis: [
+            Object.assign({ name: "Sessions", nameTextStyle: { color: TH.axis, fontSize: 11 } }, ax()),
+            { type: "value", show: false, scale: true },
+          ],
+          dataZoom: [
+            { type: "inside", xAxisIndex: 1, filterMode: "none" },
+            Object.assign(
+              makeSlider({
+                xAxisIndex: 1,
+                bottom: 10,
+                height: 34,
+                left: 60,
+                right: 60,
+                labelFormatter: (val) => dts[Math.round(val)] || "",
+              }),
+              { filterMode: "none" }
+            ),
+          ],
+          series: [
+            {
+              id: "histBars",
+              type: "bar",
+              xAxisIndex: 0,
+              yAxisIndex: 0,
+              data: initialCounts,
+              barWidth: "82%",
+              itemStyle: {
+                color: (p) => binColors[p.dataIndex] || TH.accent2,
+                borderRadius: [2, 2, 0, 0],
+              },
+            },
+            // Hidden price shadow series on xAxisIndex 1 so the bottom slider displays the price curve inside the slider track!
+            {
+              id: "histShadow",
+              type: "line",
+              xAxisIndex: 1,
+              yAxisIndex: 1,
+              data: c.slice(1),
+              lineStyle: { opacity: 0 },
+              itemStyle: { opacity: 0 },
+              areaStyle: { opacity: 0 },
+              showSymbol: false,
+              silent: true,
+              tooltip: { show: false },
+            },
+          ],
+        });
+
+        // Ultra-fast RAF-throttled listener using event percentages directly
+        let histRaf = null;
+        chHist.on("datazoom", function (evt) {
+          if (histRaf) cancelAnimationFrame(histRaf);
+          histRaf = requestAnimationFrame(() => {
+            const n = rr.length;
+            if (!n) return;
+            let startPct = evt.start;
+            let endPct = evt.end;
+            if (evt.batch && evt.batch[0]) {
+              startPct = evt.batch[0].start;
+              endPct = evt.batch[0].end;
+            }
+            let sv = 0,
+              ev = n - 1;
+            if (startPct != null && endPct != null) {
+              sv = Math.round((startPct / 100) * (n - 1));
+              ev = Math.round((endPct / 100) * (n - 1));
+            } else {
+              const opt = chHist.getOption();
+              if (opt && opt.dataZoom && opt.dataZoom[0]) {
+                sv = opt.dataZoom[0].startValue || 0;
+                ev = opt.dataZoom[0].endValue ?? n - 1;
+              }
+            }
+            const newCounts = updateHistTelemetry(sv, ev);
+            chHist.setOption(
+              { series: [{ id: "histBars", data: newCounts }] },
+              { lazyUpdate: false, silent: true }
+            );
+          });
+        });
+
+        // --- 2. VOLATILITY (30d ROLLING) ---
         const r30 = [];
         for (let i = 5; i < c.length; i++) {
           const w = c.slice(Math.max(0, i - 29), i + 1);
@@ -1534,11 +3660,10 @@
         }
         drawChart("chartVol", {
           tooltip: tip({ valueFormatter: (v) => (v * 100).toFixed(1) + "%" }),
-          grid: { left: 50, right: 15, top: 10, bottom: 50 },
+          grid: { left: 54, right: 24, top: 14, bottom: 76 },
           xAxis: Object.assign(
-            { type: "category", data: dates.slice(5).map(fmtDate) },
-            ax(),
-            { axisLabel: { show: false } }
+            { type: "category", data: dates.slice(5).map(fmtDate), boundaryGap: false },
+            ax()
           ),
           yAxis: Object.assign({}, ax(), {
             axisLabel: {
@@ -1548,126 +3673,59 @@
           }),
           dataZoom: [
             { type: "inside" },
-            { type: "slider", bottom: 5, height: 18 }
+            makeSlider({ bottom: 10, height: 28 }),
           ],
           series: [
             {
+              name: "30d Ann. Vol",
               type: "line",
               data: r30,
-              lineStyle: { width: 1.2, color: TH.accent },
+              lineStyle: { width: 1.6, color: TH.accent },
               areaStyle: { color: TH.area },
               showSymbol: false,
             },
           ],
         });
 
-        // --- 2. DAILY RETURN DISTRIBUTION (HISTOGRAM WITH TIMELINE) ---
-        const chHist = getChart("chartHist");
-        chHist.off("datazoom"); // Clear old listeners on re-render
-
-        const rr = rets(c);
-        const min = Math.min(...rr), max = Math.max(...rr);
-        const step = (max - min) / 40 || 1;
-        
-        // Define stable X-Axis categories
-        const catLabels = [];
-        for (let i = 0; i < 40; i++) {
-          catLabels.push(((min + i * step) * 100).toFixed(1) + "%");
-        }
-
-        // Helper to dynamically slice and bin returns
-        function getBins(retArray) {
-          const counts = new Array(40).fill(0);
-          for(let r of retArray) {
-            let idx = Math.floor((r - min) / step);
-            if(idx >= 40) idx = 39;
-            if(idx < 0) idx = 0;
-            counts[idx]++;
-          }
-          return counts;
-        }
-
-        const dts = dates.slice(1).map(fmtDate);
-
-        drawChart("chartHist", {
-          tooltip: tip(),
-          grid: { left: 50, right: 15, top: 10, bottom: 50 },
-          xAxis: [
-            Object.assign({ type: "category", data: catLabels }, ax()),
-            { type: "category", data: dts, show: false } // Dummy time axis for slider
-          ],
-          yAxis: Object.assign({}, ax()),
-          dataZoom: [
-            { type: "inside", xAxisIndex: 1 },
-            { 
-              type: "slider", 
-              xAxisIndex: 1, 
-              bottom: 5, 
-              height: 18,
-              labelFormatter: function (val, str) { return dts[val] || str; }
-            }
-          ],
-          series: [
-            {
-              type: "bar",
-              data: getBins(rr), // Start with all data
-              itemStyle: { color: TH.accent2 },
-            },
-          ],
-        });
-
-        // Evolve bins dynamically based on slider selection
-        chHist.on("datazoom", function () {
-          const opt = chHist.getOption();
-          if(!opt.dataZoom || !opt.dataZoom[0]) return;
-          const dz = opt.dataZoom[0];
-          const sv = dz.startValue;
-          const ev = dz.endValue;
-          const subRr = rr.slice(sv, ev + 1);
-          chHist.setOption({
-            series: [{ data: getBins(subRr) }]
-          });
-        });
-
-        // --- 3. BOLLINGER BANDS ---
+        // --- 3. BOLLINGER BANDS (20, 2) ---
         const bb = boll(c);
         drawChart("chartBB", {
           tooltip: tip(),
           legend: {
             data: ["Close", "Upper", "Lower", "Mid"],
             top: 0,
-            textStyle: { color: TH.axis },
+            textStyle: { color: TH.text, fontFamily: "Figtree, sans-serif" },
           },
-          grid: { left: 50, right: 15, top: 35, bottom: 50 },
+          grid: { left: 56, right: 24, top: 34, bottom: 76 },
           xAxis: Object.assign(
-            { type: "category", data: dates.map(fmtDate), boundaryGap: false },
+            { type: "category", data: dtsAll, boundaryGap: false },
             ax()
           ),
           yAxis: Object.assign({ scale: true }, ax()),
           dataZoom: [
             { type: "inside" },
-            { type: "slider", bottom: 5, height: 18 },
+            makeSlider({ bottom: 10, height: 28 }),
           ],
           series: [
             {
               name: "Close",
               type: "line",
               data: c,
-              lineStyle: { width: 1.2, color: TH.text },
+              lineStyle: { width: 1.5, color: TH.text },
               showSymbol: false,
             },
             {
               name: "Upper",
               type: "line",
               data: bb.up,
-              lineStyle: { width: 1, color: TH.down },
+              lineStyle: { width: 1.1, color: TH.down },
               showSymbol: false,
             },
             {
               name: "Lower",
               type: "line",
               data: bb.lo,
-              lineStyle: { width: 1, color: TH.up },
+              lineStyle: { width: 1.1, color: TH.up },
               showSymbol: false,
               areaStyle: { color: TH.upFill.replace(/[\d.]+\)$/, "0.08)") },
             },
@@ -1675,7 +3733,125 @@
               name: "Mid",
               type: "line",
               data: bb.mid,
-              lineStyle: { width: 1, color: TH.ma[0], type: "dashed" },
+              lineStyle: { width: 1.1, color: TH.ma[0], type: "dashed" },
+              showSymbol: false,
+            },
+          ],
+        });
+
+        // --- 4. RSI (14) IN OVERVIEW ---
+        drawChart("chartRSI_ov", {
+          tooltip: tip({ valueFormatter: (v) => (v != null ? v.toFixed(1) : "—") }),
+          grid: { left: 52, right: 24, top: 14, bottom: 76 },
+          xAxis: Object.assign(
+            { type: "category", data: dtsAll, boundaryGap: false },
+            ax()
+          ),
+          yAxis: Object.assign({ min: 0, max: 100 }, ax()),
+          dataZoom: [
+            { type: "inside" },
+            makeSlider({ bottom: 10, height: 28 }),
+          ],
+          series: [
+            {
+              name: "RSI(14)",
+              type: "line",
+              data: rsi(c),
+              lineStyle: { width: 1.5, color: TH.accent },
+              showSymbol: false,
+              markLine: {
+                silent: true,
+                symbol: "none",
+                data: [
+                  {
+                    yAxis: 70,
+                    lineStyle: { color: TH.down, type: "dashed", width: 1 },
+                  },
+                  {
+                    yAxis: 30,
+                    lineStyle: { color: TH.up, type: "dashed", width: 1 },
+                  },
+                ],
+              },
+            },
+          ],
+        });
+
+        // --- 5. MACD (12, 26, 9) IN OVERVIEW ---
+        const m = macd(c);
+        drawChart("chartMACD_ov", {
+          tooltip: tip({ valueFormatter: (v) => (v != null ? v.toFixed(2) : "—") }),
+          legend: {
+            data: ["MACD", "Signal", "Hist"],
+            top: 0,
+            textStyle: { color: TH.text, fontFamily: "Figtree, sans-serif" },
+          },
+          grid: { left: 52, right: 24, top: 28, bottom: 76 },
+          xAxis: Object.assign(
+            { type: "category", data: dtsAll, boundaryGap: false },
+            ax()
+          ),
+          yAxis: Object.assign({ scale: true }, ax()),
+          dataZoom: [
+            { type: "inside" },
+            makeSlider({ bottom: 10, height: 28 }),
+          ],
+          series: [
+            {
+              name: "Hist",
+              type: "bar",
+              data: m.hist,
+              itemStyle: {
+                color: (p) => (p.value >= 0 ? TH.upFill : TH.downFill),
+              },
+            },
+            {
+              name: "MACD",
+              type: "line",
+              data: m.line,
+              lineStyle: { width: 1.4, color: TH.accent },
+              showSymbol: false,
+            },
+            {
+              name: "Signal",
+              type: "line",
+              data: m.sig,
+              lineStyle: { width: 1.3, color: TH.ma[0] },
+              showSymbol: false,
+            },
+          ],
+        });
+
+        // --- 6. DRAWDOWN FROM ATH IN OVERVIEW ---
+        let p = c[0];
+        const ddv = c.map((x) => {
+          p = Math.max(p, x);
+          return x / p - 1;
+        });
+        drawChart("chartDD_ov", {
+          tooltip: tip({ valueFormatter: (v) => (v * 100).toFixed(2) + "%" }),
+          grid: { left: 56, right: 24, top: 14, bottom: 76 },
+          xAxis: Object.assign(
+            { type: "category", data: dtsAll, boundaryGap: false },
+            ax()
+          ),
+          yAxis: Object.assign({}, ax(), {
+            axisLabel: {
+              formatter: (v) => (v * 100).toFixed(0) + "%",
+              color: TH.axis,
+            },
+          }),
+          dataZoom: [
+            { type: "inside" },
+            makeSlider({ bottom: 10, height: 28 }),
+          ],
+          series: [
+            {
+              name: "Drawdown",
+              type: "line",
+              data: ddv,
+              lineStyle: { width: 1.4, color: TH.down },
+              areaStyle: { color: TH.downFill },
               showSymbol: false,
             },
           ],
@@ -1689,143 +3865,453 @@
         const dates = full.map((r) => r.date);
         const c = full.map((r) => r.c);
         const periods = [
-          ["1W", 5], ["1M", 21], ["3M", 63], ["6M", 126], ["YTD", "ytd"], ["1Y", 252], ["3Y", 756], ["5Y", 1260], ["All", 0],
+          ["1W", 5],
+          ["1M", 21],
+          ["3M", 63],
+          ["6M", 126],
+          ["YTD", "ytd"],
+          ["1Y", 252],
+          ["3Y", 756],
+          ["5Y", 1260],
+          ["All", 0],
         ];
-        const card = (k, val, cls) => '<div class="card"><div class="k">' + k + '</div><div class="v ' + (cls || "") + '">' + val + "</div></div>";
-        $("perfCards").innerHTML = periods.map(([l, d]) => { const r = d === 0 ? c[c.length - 1] / c[0] - 1 : d === "ytd" ? ytdRet(c, dates) : retOver(c, d); return card(l, pct(r), r >= 0 ? "up" : "dn"); }).join("");
+        const card = (k, val, cls) =>
+          '<div class="card"><div class="k">' +
+          k +
+          '</div><div class="v ' +
+          (cls || "") +
+          '">' +
+          val +
+          "</div></div>";
+        $("perfCards").innerHTML = periods
+          .map(([l, d]) => {
+            const r =
+              d === 0
+                ? c[c.length - 1] / c[0] - 1
+                : d === "ytd"
+                ? ytdRet(c, dates)
+                : retOver(c, d);
+            return card(l, pct(r), r >= 0 ? "up" : "dn");
+          })
+          .join("");
 
-        const yr = {}; for (let i = 1; i < full.length; i++) { const y = full[i].date.getFullYear(); (yr[y] = yr[y] || []).push(full[i].c / full[i - 1].c - 1); }
-        const years = Object.keys(yr).sort(), yrRet = years.map((y) => yr[y].reduce((a, b) => (1 + a) * (1 + b) - 1, 0));
-        drawChart("chartYearly", { tooltip: tip({ valueFormatter: (v) => (v * 100).toFixed(2) + "%" }), grid: { left: 50, right: 15, top: 10, bottom: 25 }, xAxis: Object.assign({ type: "category", data: years }, ax()), yAxis: Object.assign({}, ax(), { axisLabel: { formatter: (v) => (v * 100).toFixed(0) + "%", color: TH.axis } }), series: [{ type: "bar", data: yrRet, itemStyle: { color: yrRet.map((r) => (r >= 0 ? TH.up : TH.down)) } }] });
+        const yr = {};
+        for (let i = 1; i < full.length; i++) {
+          const y = full[i].date.getFullYear();
+          (yr[y] = yr[y] || []).push(full[i].c / full[i - 1].c - 1);
+        }
+        const years = Object.keys(yr).sort(),
+          yrRet = years.map((y) =>
+            yr[y].reduce((a, b) => (1 + a) * (1 + b) - 1, 0)
+          );
+        drawChart("chartYearly", {
+          tooltip: tip({ valueFormatter: (v) => (v * 100).toFixed(2) + "%" }),
+          grid: { left: 52, right: 18, top: 12, bottom: 28 },
+          xAxis: Object.assign({ type: "category", data: years }, ax()),
+          yAxis: Object.assign({}, ax(), {
+            axisLabel: {
+              formatter: (v) => (v * 100).toFixed(0) + "%",
+              color: TH.axis,
+            },
+          }),
+          series: [
+            {
+              type: "bar",
+              data: yrRet,
+              itemStyle: {
+                color: (p) => (p.value >= 0 ? TH.up : TH.down),
+              },
+            },
+          ],
+        });
 
-        const heat = {}; for (let i = 1; i < full.length; i++) { const y = full[i].date.getFullYear(), m = full[i].date.getMonth(), k = y + "-" + m; heat[k] = (heat[k] || 1) * (full[i].c / full[i - 1].c); }
-        const ms = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        const z = years.map((y) => ms.map((_, m) => { const k = y + "-" + m; return heat[k] != null ? (heat[k] - 1) * 100 : null; }));
-        drawChart("chartHeat", { tooltip: { position: "top", backgroundColor: TH.tipBg, borderColor: TH.border, textStyle: { color: TH.tipText } }, grid: { left: 50, right: 20, top: 10, bottom: 34 }, xAxis: Object.assign({ type: "category", data: ms }, ax()), yAxis: Object.assign({ type: "category", data: years }, ax()), visualMap: { min: -15, max: 15, calculable: true, orient: "horizontal", left: "center", bottom: 0, textStyle: { color: TH.axis }, inRange: { color: [TH.down, TH.heatMid, TH.up] } }, series: [{ type: "heatmap", data: years.flatMap((y, yi) => ms.map((m, mi) => [mi, yi, z[yi][mi]])), label: { show: true, color: TH.text, fontSize: 10.5, formatter: (p) => p.value[2] != null ? p.value[2].toFixed(1) + "%" : "-" } }] });
+        const heat = {};
+        for (let i = 1; i < full.length; i++) {
+          const y = full[i].date.getFullYear(),
+            m = full[i].date.getMonth(),
+            k = y + "-" + m;
+          heat[k] = (heat[k] || 1) * (full[i].c / full[i - 1].c);
+        }
+        const ms = [
+          "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+        ];
+        const z = years.map((y) =>
+          ms.map((_, m) => {
+            const k = y + "-" + m;
+            return heat[k] != null ? (heat[k] - 1) * 100 : null;
+          })
+        );
+        drawChart("chartHeat", {
+          tooltip: {
+            position: "top",
+            backgroundColor: TH.tipBg,
+            borderColor: TH.border,
+            textStyle: { color: TH.tipText, fontFamily: "Figtree, sans-serif" },
+          },
+          grid: { left: 52, right: 20, top: 10, bottom: 38 },
+          xAxis: Object.assign({ type: "category", data: ms }, ax()),
+          yAxis: Object.assign({ type: "category", data: years }, ax()),
+          visualMap: {
+            min: -15,
+            max: 15,
+            calculable: true,
+            orient: "horizontal",
+            left: "center",
+            bottom: 0,
+            textStyle: { color: TH.axis, fontFamily: "Figtree, sans-serif" },
+            inRange: { color: [TH.down, TH.heatMid, TH.up] },
+          },
+          series: [
+            {
+              type: "heatmap",
+              data: years.flatMap((y, yi) =>
+                ms.map((m, mi) => [mi, yi, z[yi][mi]])
+              ),
+              label: {
+                show: true,
+                color: TH.text,
+                fontSize: 10.5,
+                fontFamily: "Figtree, sans-serif",
+                formatter: (p) =>
+                  p.value[2] != null ? p.value[2].toFixed(1) + "%" : "-",
+              },
+            },
+          ],
+        });
         if (sparkDirty) buildSparkList();
       }
 
       function sparkSVG(values, color) {
-        const n = values.length; if (n < 2) return "";
-        let min = values[0], max = values[0];
-        for (let i = 1; i < n; i++) { const v = values[i]; if (v < min) min = v; if (v > max) max = v; }
-        const span = max - min || 1, W = 100, H = 22; let line = "";
-        for (let i = 0; i < n; i++) { const x = (i / (n - 1)) * W, y = H - ((values[i] - min) / span) * (H - 2) - 1; line += (i ? " " : "") + x.toFixed(1) + "," + y.toFixed(1); }
+        const n = values.length;
+        if (n < 2) return "";
+        let min = values[0],
+          max = values[0];
+        for (let i = 1; i < n; i++) {
+          const v = values[i];
+          if (v < min) min = v;
+          if (v > max) max = v;
+        }
+        const span = max - min || 1,
+          W = 100,
+          H = 24;
+        let line = "";
+        for (let i = 0; i < n; i++) {
+          const x = (i / (n - 1)) * W,
+            y = H - ((values[i] - min) / span) * (H - 2) - 1;
+          line += (i ? " " : "") + x.toFixed(1) + "," + y.toFixed(1);
+        }
         const area = "0," + H + " " + line + " " + W + "," + H;
-        return '<svg viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="none" style="width:100%;height:100%;display:block" aria-hidden="true"><polygon points="' + area + '" fill="' + color + '" opacity="0.14"/><polyline points="' + line + '" fill="none" stroke="' + color + '" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>';
+        return (
+          '<svg viewBox="0 0 ' +
+          W +
+          " " +
+          H +
+          '" preserveAspectRatio="none" style="width:100%;height:100%;display:block" aria-hidden="true"><polygon points="' +
+          area +
+          '" fill="' +
+          color +
+          '" opacity="0.16"/><polyline points="' +
+          line +
+          '" fill="none" stroke="' +
+          color +
+          '" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>'
+        );
       }
 
       function buildSparkList() {
-        const el = $("sparklist"); if (!el) return;
-        const ts = TICKER_LIST.filter((t) => DATA.has(t) && !isIndex(t) && !t.startsWith("TB")).sort();
-        if (!ts.length) { el.innerHTML = '<div class="spark-empty" style="grid-column:1/-1">No tickers loaded yet.<br>Click <b>Load sample</b> above, or search any ticker to add it here.</div>'; sparkDirty = false; return; }
+        const el = $("sparklist");
+        if (!el) return;
+        const ts = TICKER_LIST.filter(
+          (t) => DATA.has(t) && !isIndex(t) && !t.startsWith("TB")
+        ).sort();
+        if (!ts.length) {
+          el.innerHTML =
+            '<div class="spark-empty" style="grid-column:1/-1">No tickers loaded yet.<br>Click <b>Load sample</b> above, or search any ticker to add it here.</div>';
+          sparkDirty = false;
+          return;
+        }
         let html = "";
         for (const t of ts.slice(0, 200)) {
-          const m = META.get(t); if (!m) continue;
-          const rows = DATA.get(t), closes = rows ? rows.slice(-30).map((r) => r.c) : [m.lastClose], col = m.lastChg >= 0 ? TH.up : TH.down;
-          html += '<div class="spark" data-t="' + escapeHtml(t) + '"><div class="t">' + escapeHtml(t) + '</div><div class="c ' + (m.lastChg >= 0 ? "up" : "dn") + '">' + fmt(m.lastClose) + " <span>" + pct(m.lastChg) + '</span></div><div class="p">' + m.rows + ' sessions</div><div class="mini">' + sparkSVG(closes, col) + "</div></div>";
+          const m = META.get(t);
+          if (!m) continue;
+          const rows = DATA.get(t),
+            closes = rows ? rows.slice(-30).map((r) => r.c) : [m.lastClose],
+            col = m.lastChg >= 0 ? TH.up : TH.down;
+          html +=
+            '<div class="spark" data-t="' +
+            escapeHtml(t) +
+            '"><div class="t">' +
+            escapeHtml(t) +
+            '</div><div class="c ' +
+            (m.lastChg >= 0 ? "up" : "dn") +
+            '">' +
+            fmt(m.lastClose) +
+            " <span>" +
+            pct(m.lastChg) +
+            '</span></div><div class="p">' +
+            m.rows +
+            ' sessions</div><div class="mini">' +
+            sparkSVG(closes, col) +
+            "</div></div>";
         }
         el.innerHTML = html;
-        el.onclick = (e) => { const card = e.target.closest(".spark"); if (card && card.dataset.t) { pick(card.dataset.t); window.scrollTo({ top: 0, behavior: "smooth" }); } };
+        el.onclick = (e) => {
+          const card = e.target.closest(".spark");
+          if (card && card.dataset.t) {
+            pick(card.dataset.t);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        };
         sparkDirty = false;
       }
 
       async function loadSampleTickers() {
-        const btn = $("loadSampleBtn"), status = $("loadSampleStatus");
+        const btn = $("loadSampleBtn"),
+          status = $("loadSampleStatus");
         const toFetch = SAMPLE_TICKERS.filter((t) => !DATA.has(t));
-        if (!toFetch.length) { if (status) status.textContent = "all loaded"; return; }
-        btn.disabled = true; btn.textContent = "Loading…";
-        let done = 0, failed = 0;
-        const update = () => { if (status) status.textContent = done + " / " + toFetch.length + (failed ? " (" + failed + " failed)" : ""); }; update();
-        let idx = 0; const CONCURRENCY = 3;
+        if (!toFetch.length) {
+          if (status) status.textContent = "all loaded";
+          return;
+        }
+        btn.disabled = true;
+        btn.textContent = "Loading…";
+        let done = 0,
+          failed = 0;
+        const update = () => {
+          if (status)
+            status.textContent =
+              done +
+              " / " +
+              toFetch.length +
+              (failed ? " (" + failed + " failed)" : "");
+        };
+        update();
+        let idx = 0;
+        const CONCURRENCY = 3;
         async function worker() {
           while (idx < toFetch.length) {
             const t = toFetch[idx++];
             try {
               const rows = await fetchTicker(t);
               if (rows && rows.length) {
-                DATA.set(t, rows); const last = rows[rows.length - 1], prev = rows.length > 1 ? rows[rows.length - 2] : last;
-                META.set(t, { lastClose: last.c, lastChg: prev ? last.c / prev.c - 1 : 0, lastDate: last.date, rows: rows.length });
-                if (!TICKER_LIST.includes(t)) { TICKER_LIST.push(t); TICKER_LIST.sort(); saveTickerListToStorage(); }
+                DATA.set(t, rows);
+                const last = rows[rows.length - 1],
+                  prev = rows.length > 1 ? rows[rows.length - 2] : last;
+                META.set(t, {
+                  lastClose: last.c,
+                  lastChg: prev ? last.c / prev.c - 1 : 0,
+                  lastDate: last.date,
+                  rows: rows.length,
+                });
+                if (!TICKER_LIST.includes(t)) {
+                  TICKER_LIST.push(t);
+                  TICKER_LIST.sort();
+                  saveTickerListToStorage();
+                }
               } else failed++;
-            } catch (e) { failed++; }
-            done++; update();
+            } catch (e) {
+              failed++;
+            }
+            done++;
+            update();
           }
         }
-        await Promise.all(Array(CONCURRENCY).fill(0).map(() => worker()));
-        btn.disabled = false; btn.textContent = "Load more";
-        if (status) setTimeout(() => { status.textContent = ""; }, 1500);
-        sparkDirty = true; buildSparkList();
+        await Promise.all(
+          Array(CONCURRENCY)
+            .fill(0)
+            .map(() => worker())
+        );
+        btn.disabled = false;
+        btn.textContent = "Load more";
+        if (status)
+          setTimeout(() => {
+            status.textContent = "";
+          }, 1500);
+        sparkDirty = true;
+        buildSparkList();
       }
       $("loadSampleBtn").onclick = loadSampleTickers;
 
       /* ================================================================
-   HISTORY TAB
+   HISTORY TAB (KEPT COMPACT)
    ================================================================ */
-      function renderHistTab(full) { renderHist(subset(full)); }
+      function renderHistTab(full) {
+        renderHist(subset(full));
+      }
       function renderHist(rows) {
-        const t = $("histTable"); if (!t) return;
-        const h = t.querySelector("thead"), b = t.querySelector("tbody"); if (!h || !b) return;
-        h.innerHTML = "<tr><th>Date</th><th>Open</th><th>High</th><th>Low</th><th>Close</th><th>Chg%</th><th>Volume</th></tr>";
+        const t = $("histTable");
+        if (!t) return;
+        const h = t.querySelector("thead"),
+          b = t.querySelector("tbody");
+        if (!h || !b) return;
+        h.innerHTML =
+          "<tr><th>Date</th><th>Open</th><th>High</th><th>Low</th><th>Close</th><th>Chg%</th><th>Volume</th></tr>";
         let html = "";
         for (let i = rows.length - 1; i >= 0; i--) {
-          const r = rows[i], p = rows[i - 1], ch = p ? r.c / p.c - 1 : null;
-          html += "<tr><td>" + fmtDate(r.date) + "</td><td>" + fmt(r.o) + "</td><td>" + fmt(r.h) + "</td><td>" + fmt(r.l) + "</td><td>" + fmt(r.c) + '</td><td class="' + (ch == null ? "" : ch >= 0 ? "up" : "dn") + '">' + (ch == null ? "—" : pct(ch)) + "</td><td>" + r.v.toLocaleString() + "</td></tr>";
+          const r = rows[i],
+            p = rows[i - 1],
+            ch = p ? r.c / p.c - 1 : null;
+          html +=
+            "<tr><td>" +
+            fmtDate(r.date) +
+            "</td><td>" +
+            fmt(r.o) +
+            "</td><td>" +
+            fmt(r.h) +
+            "</td><td>" +
+            fmt(r.l) +
+            "</td><td>" +
+            fmt(r.c) +
+            '</td><td class="' +
+            (ch == null ? "" : ch >= 0 ? "up" : "dn") +
+            '">' +
+            (ch == null ? "—" : pct(ch)) +
+            "</td><td>" +
+            r.v.toLocaleString() +
+            "</td></tr>";
         }
         b.innerHTML = html;
       }
 
       $("dlBtn").onclick = () => {
-        if (!CUR) return; const rows = subset(DATA.get(CUR));
-        const csv = "Date,Open,High,Low,Close,Volume\n" + rows.map((r) => [fmtDate(r.date), r.o, r.h, r.l, r.c, r.v].join(",")).join("\n");
-        const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" })); a.download = CUR + ".csv"; a.click();
+        if (!CUR) return;
+        const rows = subset(DATA.get(CUR));
+        const csv =
+          "Date,Open,High,Low,Close,Volume\n" +
+          rows
+            .map((r) => [fmtDate(r.date), r.o, r.h, r.l, r.c, r.v].join(","))
+            .join("\n");
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+        a.download = CUR + ".csv";
+        a.click();
       };
 
       /* ================================================================
    TABS
    ================================================================ */
-      document.querySelectorAll(".tabs button").forEach((b) => b.onclick = () => {
-        document.querySelectorAll(".tabs button").forEach((x) => x.classList.remove("on"));
-        document.querySelectorAll(".panel").forEach((x) => x.classList.remove("on"));
-        b.classList.add("on"); $("tab-" + b.dataset.tab).classList.add("on");
-        CURRENT_TAB = b.dataset.tab; if (CUR) renderActiveTab();
-        requestAnimationFrame(() => { (TAB_CHARTS[CURRENT_TAB] || []).forEach((id) => { if (charts[id]) charts[id].resize(); }); });
-      });
+      document.querySelectorAll(".tabs button").forEach(
+        (b) =>
+          (b.onclick = () => {
+            document
+              .querySelectorAll(".tabs button")
+              .forEach((x) => x.classList.remove("on"));
+            document
+              .querySelectorAll(".panel")
+              .forEach((x) => x.classList.remove("on"));
+            b.classList.add("on");
+            $("tab-" + b.dataset.tab).classList.add("on");
+            CURRENT_TAB = b.dataset.tab;
+            $("ovSettingsWrap").style.display =
+              CURRENT_TAB === "overview" ? "inline-block" : "none";
+            if (CUR) renderActiveTab();
+            requestAnimationFrame(() => {
+              (TAB_CHARTS[CURRENT_TAB] || []).forEach((id) => {
+                if (charts[id]) charts[id].resize();
+              });
+            });
+          })
+      );
 
       /* ================================================================
    INDICATORS
    ================================================================ */
-      const sma = (a, n) => a.map((_, i) => i < n - 1 ? null : a.slice(i - n + 1, i + 1).reduce((x, y) => x + y, 0) / n);
-      const ema = (a, n) => { const k = 2 / (n + 1); let e = a[0]; return a.map((v, i) => (i === 0 ? v : (e = v * k + e * (1 - k)))); };
+      const sma = (a, n) =>
+        a.map((_, i) =>
+          i < n - 1
+            ? null
+            : a.slice(i - n + 1, i + 1).reduce((x, y) => x + y, 0) / n
+        );
+      const ema = (a, n) => {
+        const k = 2 / (n + 1);
+        let e = a[0];
+        return a.map((v, i) => (i === 0 ? v : (e = v * k + e * (1 - k))));
+      };
       function rsi(c, n = 14) {
-        const o = new Array(c.length).fill(null); let g = 0, l = 0;
+        const o = new Array(c.length).fill(null);
+        let g = 0,
+          l = 0;
         for (let i = 1; i < c.length; i++) {
-          const ch = c[i] - c[i - 1], u = Math.max(ch, 0), d = Math.max(-ch, 0);
-          if (i <= n) { g += u / n; l += d / n; if (i === n) o[i] = l === 0 ? 100 : 100 - 100 / (1 + g / l); } 
-          else { g = (g * (n - 1) + u) / n; l = (l * (n - 1) + d) / n; o[i] = l === 0 ? 100 : 100 - 100 / (1 + g / l); }
+          const ch = c[i] - c[i - 1],
+            u = Math.max(ch, 0),
+            d = Math.max(-ch, 0);
+          if (i <= n) {
+            g += u / n;
+            l += d / n;
+            if (i === n) o[i] = l === 0 ? 100 : 100 - 100 / (1 + g / l);
+          } else {
+            g = (g * (n - 1) + u) / n;
+            l = (l * (n - 1) + d) / n;
+            o[i] = l === 0 ? 100 : 100 - 100 / (1 + g / l);
+          }
         }
         return o;
       }
-      function macd(c) { const f = ema(c, 12), s = ema(c, 26); const line = c.map((_, i) => f[i] - s[i]); const sig = ema(line, 9); return { line, sig, hist: line.map((v, i) => v - sig[i]) }; }
+      function macd(c) {
+        const f = ema(c, 12),
+          s = ema(c, 26);
+        const line = c.map((_, i) => f[i] - s[i]);
+        const sig = ema(line, 9);
+        return { line, sig, hist: line.map((v, i) => v - sig[i]) };
+      }
       function boll(c, n = 20, m = 2) {
         const mid = sma(c, n);
-        const up = c.map((_, i) => { if (mid[i] == null) return null; const sd = Math.sqrt(c.slice(i - n + 1, i + 1).reduce((s, x) => s + (x - mid[i]) ** 2, 0) / n); return mid[i] + m * sd; });
+        const up = c.map((_, i) => {
+          if (mid[i] == null) return null;
+          const sd = Math.sqrt(
+            c
+              .slice(i - n + 1, i + 1)
+              .reduce((s, x) => s + (x - mid[i]) ** 2, 0) / n
+          );
+          return mid[i] + m * sd;
+        });
         const lo = up.map((u, i) => (u == null ? null : mid[i] - (u - mid[i])));
         return { mid, up, lo };
       }
-      function rets(c) { const r = []; for (let i = 1; i < c.length; i++) r.push(c[i] / c[i - 1] - 1); return r; }
-      function maxDD(c) { let p = c[0], m = 0; for (const v of c) { p = Math.max(p, v); m = Math.min(m, v / p - 1); } return m; }
-      function annVol(c) {
-        const r = rets(c); if (r.length < 2) return null;
-        const m = r.reduce((a, b) => a + b) / r.length;
-        return Math.sqrt((r.reduce((a, b) => a + (b - m) ** 2, 0) / (r.length - 1)) * 252);
+      function rets(c) {
+        const r = [];
+        for (let i = 1; i < c.length; i++) r.push(c[i] / c[i - 1] - 1);
+        return r;
       }
-      function annRet(c) { if (c.length < 2) return null; return Math.pow(c[c.length - 1] / c[0], 252 / (c.length - 1)) - 1; }
-      function retOver(c, d) { if (c.length < 2) return null; const i = Math.max(0, c.length - 1 - d); return c[c.length - 1] / c[i] - 1; }
+      function maxDD(c) {
+        let p = c[0],
+          m = 0;
+        for (const v of c) {
+          p = Math.max(p, v);
+          m = Math.min(m, v / p - 1);
+        }
+        return m;
+      }
+      function annVol(c) {
+        const r = rets(c);
+        if (r.length < 2) return null;
+        const m = r.reduce((a, b) => a + b) / r.length;
+        return Math.sqrt(
+          (r.reduce((a, b) => a + (b - m) ** 2, 0) / (r.length - 1)) * 252
+        );
+      }
+      function annRet(c) {
+        if (c.length < 2) return null;
+        return Math.pow(c[c.length - 1] / c[0], 252 / (c.length - 1)) - 1;
+      }
+      function retOver(c, d) {
+        if (c.length < 2) return null;
+        const i = Math.max(0, c.length - 1 - d);
+        return c[c.length - 1] / c[i] - 1;
+      }
       function ytdRet(c, d) {
-        const y = d[d.length - 1].getFullYear(); let b = null;
-        for (let i = d.length - 1; i >= 0; i--) { if (d[i].getFullYear() < y) { b = i; break; } }
-        return b == null ? c[c.length - 1] / c[0] - 1 : c[c.length - 1] / c[b] - 1;
+        const y = d[d.length - 1].getFullYear();
+        let b = null;
+        for (let i = d.length - 1; i >= 0; i--) {
+          if (d[i].getFullYear() < y) {
+            b = i;
+            break;
+          }
+        }
+        return b == null
+          ? c[c.length - 1] / c[0] - 1
+          : c[c.length - 1] / c[b] - 1;
       }
 
       /* ================================================================
