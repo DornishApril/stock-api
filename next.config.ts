@@ -15,6 +15,14 @@ const nextConfig: NextConfig = {
       },
     },
   },
+
+  async rewrites() {
+    return {
+      beforeFiles: [{ source: "/", destination: "/home.html" }],
+      afterFiles: [],
+      fallback: [],
+    };
+  },
 };
 
 export default nextConfig;
